@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   ft_strjoin_freed.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/01 14:24:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/01 17:13:11 by beiglesi         ###   ########.fr       */
+/*   Created: 2024/01/02 18:21:19 by aolabarr          #+#    #+#             */
+/*   Updated: 2024/10/26 15:11:28 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-#define MINIRT_H
+#include "libft.h"
 
-# include "variables.h"
-# include "macros.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <math.h>
-# include <fcntl.h>
-# include <string.h>
+char	*ft_strjoin_freed(char *s1, char const *s2)
+{
+	char	*str;
 
-int handle_error(int error);
-
-#endif
+	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, s1, ft_strlen(s1) + 1);
+	ft_strlcpy(str + ft_strlen(s1), s2, ft_strlen(s2) + 1);
+	free(s1);
+	return (str);
+}
