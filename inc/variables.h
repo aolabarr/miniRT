@@ -6,9 +6,12 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:30:53 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/01 14:47:30 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/02/01 15:17:21 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef VARIABLES_H
+#define VARIABLES_H
 
 typedef struct s_ambient
 {
@@ -71,3 +74,5 @@ typedef struct s_data
 	t_light		lig;
 	t_element	*elem;
 }				t_data;
+
+#endif

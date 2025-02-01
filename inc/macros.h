@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/01 14:24:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/01 16:01:49 by beiglesi         ###   ########.fr       */
+/*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
+/*   Updated: 2025/02/01 15:54:20 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-#define MINIRT_H
+#ifndef MACROS_H
+#define MACROS_H
 
-# include "variables.h"
-# include "macros.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <math.h>
-# include <fcntl.h>
-# include <string.h>
+# define ERR_ARG 0
+# define ERR_EXT 1
 
-int handle_error(int error);
+# define ERR_MSG_ARG "Error: incorrect number of arguments"
+# define ERR_MSG_EXT "Error: incorrect file extension"
 
-#endif
+#endif 
