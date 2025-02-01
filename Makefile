@@ -6,7 +6,7 @@
 #    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/01 15:23:12 by aolabarr          #+#    #+#              #
-#    Updated: 2025/02/01 16:51:51 by aolabarr         ###   ########.fr        #
+#    Updated: 2025/02/01 17:16:03 by aolabarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,9 +48,7 @@ lib:
 		cd lib; \
 		tar -xvzf minilibx-linux.tgz; \
 		mv minilibx-linux libmlx; \
-		cd libmlx; \
-		rm -rf .git; \
-		cd ../..; \
+		cd ..; \
 	fi
 	make -C $(LIBMLX_DIR)
 
