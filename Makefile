@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
+#    By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/01 15:23:12 by aolabarr          #+#    #+#              #
-#    Updated: 2025/02/01 17:16:03 by aolabarr         ###   ########.fr        #
+#    Updated: 2025/02/08 13:18:30 by beiglesi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,9 @@ MATH_DIR = /usr/local/lib
 LIBFLAGS = -L$(LIBFT_DIR) -lft -L$(LIBIO_DIR) -lio -L$(LIBMLX_DIR) -lmlx_Linux -L$(MATH_DIR) -lm -lX11 -lXext
 
 SRC =	main.c \
+		init.c \
+		aux.c \
+		get_data.c
 		
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
