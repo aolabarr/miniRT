@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:20:36 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/08 13:57:32 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:46:22 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int handle_error(int error)
 		printf(ERR_MSG_EXT);
 	if (error == ERR_FD)
 		printf(ERR_MSG_FD);
+	if (error == ERR_SCENE)
+		printf(ERR_MSG_SCENE);
 	return (EXIT_FAILURE);
 }
 
@@ -29,4 +31,40 @@ int	is_space(char c)
 	if (c == 32 || (c >= 8 && c <= 13))
 		return (1);
 	return (0);
+}
+
+int	valid_str(char *str)
+{
+	int i;
+
+	i = 1;
+	if (!str)
+		return(1);
+	while(str[i] != '\0')
+	{
+		if ((str[i] >= '0' && str[i] <= '9') || str[i] == '.' || str[i] == ',' \
+			|| str[i] == '-' || is_space(str[i]))
+			i++;
+		else
+			return (1);
+	}
+	return (0);
+}
+
+void	ft_free_mat(char **mat)
+{
+	int i;
+
+	i = 0;
+	if (!mat)
+		return ;
+	while(mat[i])
+	{
+		if (mat[i])
+			free(mat[i]);
+		i++;
+	}
+	free(mat);
+	mat = NULL;
+	return ;
 }

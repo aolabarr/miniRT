@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:24:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/08 13:57:31 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:51:38 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,22 @@
 /* aux.c */
 int		handle_error(int error);
 int		is_space(char c);
+int	    valid_str(char *str);
+void	ft_free_mat(char **mat);
 
 /* init.c */
 void	init_data(t_data *scene);
-void	init_ambient(t_ambient *amb);
+void     init_ambient(t_ambient *amb);
 void	init_camera(t_camera *cam);
 void	init_light(t_light *light);
 int		check_extension(char *str);
 
 /* get_data.c */
-void	get_ambient(char *line, t_ambient *amb);
+int     get_ambient(char *line, t_ambient *amb);
+int get_camera(char *line, t_camera *cam);
+int     rgb_to_hex(char *str);
+int	    ft_atoi_hex(char *str);
+int	    dec_to_hex(int dec);
 float	ft_atof(char *str);
 
 #endif

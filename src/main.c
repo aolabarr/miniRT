@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:22:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/08 13:17:57 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:52:09 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,16 @@ int	main(int argc, char **argv)
 	{
 		if (line[0] == 'A')
 		{
-			get_ambient(line, &scene.amb);
+			if(get_ambient(line, &scene.amb))
+				return (EXIT_FAILURE);
 			ft_printf("Ambient found\n");
 		}
 		else if (line[0] == 'C')
+		{
+			if(get_camera(line, &scene.cam))
+				return (EXIT_FAILURE);
 			printf("Camera found\n");
+		}
 		else if (line[0] == 'L')
 			printf("Light found\n");
 		else
