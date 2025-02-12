@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:24:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/10 15:51:38 by binary           ###   ########.fr       */
+/*   Updated: 2025/02/12 13:00:51 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,16 @@
 
 
 /* aux.c */
-int		handle_error(int error);
-int		is_space(char c);
-int	    valid_str(char *str);
-void	ft_free_mat(char **mat);
+int		    handle_error(int error);
+int		    is_space(char c);
+int	        valid_str(char *str);
+void	    ft_free_mat(char **mat);
+t_position  get_position(char *str);
+t_vector    get_vector(char *str);
 
 /* init.c */
 void	init_data(t_data *scene);
-void     init_ambient(t_ambient *amb);
+void    init_ambient(t_ambient *amb);
 void	init_camera(t_camera *cam);
 void	init_light(t_light *light);
 int		check_extension(char *str);

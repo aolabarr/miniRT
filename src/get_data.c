@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/10 15:51:15 by binary           ###   ########.fr       */
+/*   Updated: 2025/02/12 13:09:49 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,23 @@ int get_ambient(char *line, t_ambient *amb)
 
 int get_camera(char *line, t_camera *cam)
 {
-	char	**mat;
-	(void)cam;
+	char	**temp;
+
 	if (valid_str(line))
 		return (handle_error(ERR_SCENE), EXIT_FAILURE);
 	printf("CAMERA %s\n", line);
-	mat = ft_split(line, ' ');
-	
-	ft_free_mat(mat);
+	temp = ft_split(line, ' ');
+	cam->pos = get_position(temp[1]);
+	printf("POS X: %f\n", cam->pos.x);
+	printf("POS Y: %f\n", cam->pos.y);
+	printf("POS Z: %f\n", cam->pos.z);
+	cam->vec = get_vector(temp[2]);
+	printf("VEC X: %f\n", cam->vec.x);	
+	printf("VEC Y: %f\n", cam->vec.y);
+	printf("VEC Z: %f\n", cam->vec.z);
+	cam->fov = ft_atoi(temp[3]);
+	printf("FOV %d\n", cam->fov);
+	ft_free_mat(temp);
 	return (EXIT_SUCCESS);
 }
 

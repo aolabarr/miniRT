@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:20:36 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/10 15:46:22 by binary           ###   ########.fr       */
+/*   Updated: 2025/02/12 13:07:59 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,30 @@ void	ft_free_mat(char **mat)
 	free(mat);
 	mat = NULL;
 	return ;
+}
+
+t_position	get_position(char *str)
+{
+	t_position pos;
+	char **temp;
+
+	temp = ft_split(str, ',');
+	pos.x = ft_atof(temp[0]);
+	pos.y = ft_atof(temp[1]);
+	pos.z = ft_atof(temp[2]);
+	ft_free_mat(temp);
+	return (pos);
+}
+
+t_vector	get_vector(char *str)
+{
+	t_vector	vec;
+	char		**temp;
+
+	temp = ft_split(str, ',');
+	vec.x = ft_atof(temp[0]);
+	vec.y = ft_atof(temp[1]);
+	vec.z = ft_atof(temp[2]);
+	ft_free_mat(temp);
+	return (vec);
 }
