@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:22:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/17 15:12:11 by binary           ###   ########.fr       */
+/*   Updated: 2025/02/17 15:52:15 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(int argc, char **argv)
 		return(handle_error(ERR_FD), EXIT_FAILURE);
 	while((line = get_next_line(fd)))
 	{
+		printf("LINE: %s\n", line);
 		if (line[0] == '\n' || line[0] == '\0')
 		{
 			free(line);
@@ -40,12 +41,12 @@ int	main(int argc, char **argv)
 		if (line[0] == 'A')
 		{
 			if(get_ambient(line, &scene.amb))
-				return (EXIT_FAILURE);
+				return (handle_error(ERR_SCENE),EXIT_FAILURE);
 		}
 		else if (line[0] == 'C')
 		{
 			if(get_camera(line, &scene.cam))
-				return (EXIT_FAILURE);
+				return (handle_error(ERR_SCENE), EXIT_FAILURE);
 		}
 		else if (line[0] == 'L')
 		{
@@ -55,7 +56,7 @@ int	main(int argc, char **argv)
 		else
 		{
 			if(get_element(line, &elem))
-				return (EXIT_FAILURE);
+				return (handle_error(ERR_SCENE), EXIT_FAILURE);
 			if(add_element(&scene, &elem))
 				return (EXIT_FAILURE);
 		}

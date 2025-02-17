@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/17 15:09:23 by binary           ###   ########.fr       */
+/*   Updated: 2025/02/17 15:52:02 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int get_ambient(char *line, t_ambient *amb)
 	char	**mat;
 
 	if (valid_str(line))
-		return (handle_error(ERR_SCENE), EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	mat = ft_split(line, ' ');
 	amb->ratio = ft_atof(mat[1]);
 	//printf("RATIO %f\n", amb->ratio);
@@ -32,13 +32,14 @@ int	get_camera(char *line, t_camera *cam)
 	char	**temp;
 
 	if (valid_str(line))
-		return (handle_error(ERR_SCENE), EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	temp = ft_split(line, ' ');
 	cam->pos = get_position(temp[1]);
 	// printf("POS X: %f\n", cam->pos.x);
 	// printf("POS Y: %f\n", cam->pos.y);
 	// printf("POS Z: %f\n", cam->pos.z);
-	cam->vec = get_vector(temp[2]);
+	if(get_vector(temp[2], &(cam->vec)))
+		return (EXIT_FAILURE);		
 	// printf("VEC X: %f\n", cam->vec.x);	
 	// printf("VEC Y: %f\n", cam->vec.y);
 	// printf("VEC Z: %f\n", cam->vec.z);
@@ -72,10 +73,9 @@ int get_element(char *line, t_element *elem)
 	char	**temp;
 
 	if (valid_str(line))
-		return (handle_error(ERR_SCENE), EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	temp = ft_split(line, ' ');
 	elem->type = get_elem_type(temp[0]);
-	//printf("TYPE %d\n", elem->type);
 	elem->pos = get_position(temp[1]);
 	if (elem->type == SP)
 	{
@@ -86,14 +86,16 @@ int get_element(char *line, t_element *elem)
 	}
 	else if (elem->type == PL)
 	{
-		elem->vec = get_vector(temp[2]);
+		if(get_vector(temp[2], &(elem->vec)))
+			return (EXIT_FAILURE);
 		elem->color = rgb_to_hex(temp[3]);
 		elem->height = 0;
 		elem->diam = 0;
 	}
 	else if (elem->type == CY)
 	{
-		elem->vec = get_vector(temp[2]);
+		if(get_vector(temp[2], &(elem->vec)))
+			return (EXIT_FAILURE);
 		elem->diam = ft_atof(temp[3]);
 		elem->height = ft_atof(temp[4]);
 		elem->color = rgb_to_hex(temp[5]);

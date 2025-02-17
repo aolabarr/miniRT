@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:20:36 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/17 15:08:37 by binary           ###   ########.fr       */
+/*   Updated: 2025/02/17 15:38:40 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,17 +86,18 @@ t_position	get_position(char *str)
 	return (pos);
 }
 
-t_vector	get_vector(char *str)
+int	get_vector(char *str, t_vector *vec)
 {
-	t_vector	vec;
 	char		**temp;
 
 	temp = ft_split(str, ',');
-	vec.x = ft_atof(temp[0]);
-	vec.y = ft_atof(temp[1]);
-	vec.z = ft_atof(temp[2]);
+	vec->x = ft_atof(temp[0]);
+	vec->y = ft_atof(temp[1]);
+	vec->z = ft_atof(temp[2]);
 	ft_free_mat(temp);
-	return (vec);
+	if(!normalized_vector(*vec))
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
 t_eltype get_elem_type(char *str)

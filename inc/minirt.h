@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:24:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/17 12:43:22 by binary           ###   ########.fr       */
+/*   Updated: 2025/02/17 15:46:05 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		    is_space(char c);
 int	        valid_str(char *str);
 void	    ft_free_mat(char **mat);
 t_position  get_position(char *str);
-t_vector    get_vector(char *str);
+int         get_vector(char *str, t_vector *vec);
 t_eltype	get_elem_type(char *str);
 int         is_element(char *str);
 
@@ -54,5 +54,8 @@ int     rgb_to_hex(char *str);
 int	    ft_atoi_hex(char *str);
 int	    dec_to_hex(int dec);
 float	ft_atof(char *str);
+
+/* check_values.c */
+int     normalized_vector(t_vector vec);
 
 #endif

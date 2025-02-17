@@ -6,7 +6,7 @@
 #    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/01 15:23:12 by aolabarr          #+#    #+#              #
-#    Updated: 2025/02/15 09:15:15 by binary           ###   ########.fr        #
+#    Updated: 2025/02/17 15:26:55 by binary           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ LIBFLAGS = -L$(LIBFT_DIR) -lft -L$(LIBIO_DIR) -lio -L$(LIBMLX_DIR) -lmlx_Linux -
 SRC =	main.c \
 		init.c \
 		aux.c \
-		get_data.c
+		get_data.c \
+		check_values.c
 		
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
