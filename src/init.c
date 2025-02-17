@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 10:46:45 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/08 12:09:03 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:56:45 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_data(t_data *scene)
 	init_camera(&scene->cam);
 	init_light(&scene->lig);
 	scene->elem = NULL;
+	scene->n_elem = 0;
 }
 
 void	init_ambient(t_ambient *amb)

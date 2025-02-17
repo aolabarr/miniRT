@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variables.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:30:53 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/01 17:13:24 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/02/12 15:11:33 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ typedef	enum e_eltype
 {
 	SP,
 	CY,
-	PL
+	PL,
+	UNKOWN
 }			t_eltype;
 
 typedef struct s_element
@@ -73,6 +74,7 @@ typedef struct s_data
 	t_camera	cam;
 	t_light		lig;
 	t_element	*elem;
+	int			n_elem;
 }				t_data;
 
 #endif

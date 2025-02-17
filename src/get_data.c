@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/12 13:09:49 by binary           ###   ########.fr       */
+/*   Updated: 2025/02/17 15:09:23 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,101 @@ int get_ambient(char *line, t_ambient *amb)
 	return (EXIT_SUCCESS);
 }
 
-int get_camera(char *line, t_camera *cam)
+int	get_camera(char *line, t_camera *cam)
 {
 	char	**temp;
 
 	if (valid_str(line))
 		return (handle_error(ERR_SCENE), EXIT_FAILURE);
-	printf("CAMERA %s\n", line);
 	temp = ft_split(line, ' ');
 	cam->pos = get_position(temp[1]);
-	printf("POS X: %f\n", cam->pos.x);
-	printf("POS Y: %f\n", cam->pos.y);
-	printf("POS Z: %f\n", cam->pos.z);
+	// printf("POS X: %f\n", cam->pos.x);
+	// printf("POS Y: %f\n", cam->pos.y);
+	// printf("POS Z: %f\n", cam->pos.z);
 	cam->vec = get_vector(temp[2]);
-	printf("VEC X: %f\n", cam->vec.x);	
-	printf("VEC Y: %f\n", cam->vec.y);
-	printf("VEC Z: %f\n", cam->vec.z);
+	// printf("VEC X: %f\n", cam->vec.x);	
+	// printf("VEC Y: %f\n", cam->vec.y);
+	// printf("VEC Z: %f\n", cam->vec.z);
 	cam->fov = ft_atoi(temp[3]);
-	printf("FOV %d\n", cam->fov);
+	// printf("FOV %d\n", cam->fov);
 	ft_free_mat(temp);
+	return (EXIT_SUCCESS);
+}
+
+int	get_light(char *line, t_light *lig)
+{
+	char	**temp;
+
+	if (valid_str(line))
+		return (handle_error(ERR_SCENE), EXIT_FAILURE);
+	temp = ft_split(line, ' ');
+	lig->pos = get_position(temp[1]);
+	// printf("POS X: %f\n", lig->pos.x);
+	// printf("POS Y: %f\n", lig->pos.y);
+	// printf("POS Z: %f\n", lig->pos.z);
+	lig->bright = ft_atof(temp[2]);
+	// printf("BRIGHT %f\n", lig->bright);
+	lig->color = rgb_to_hex(temp[3]);
+	// printf("COLOR 0x%06X\n", lig->color);
+	ft_free_mat(temp);
+	return (EXIT_SUCCESS);
+}
+
+int get_element(char *line, t_element *elem)
+{
+	char	**temp;
+
+	if (valid_str(line))
+		return (handle_error(ERR_SCENE), EXIT_FAILURE);
+	temp = ft_split(line, ' ');
+	elem->type = get_elem_type(temp[0]);
+	//printf("TYPE %d\n", elem->type);
+	elem->pos = get_position(temp[1]);
+	if (elem->type == SP)
+	{
+			elem->diam = ft_atof(temp[2]);
+			elem->color = rgb_to_hex(temp[3]);
+			elem->height = 0;
+			elem->vec = (t_vector){0,0,0};
+	}
+	else if (elem->type == PL)
+	{
+		elem->vec = get_vector(temp[2]);
+		elem->color = rgb_to_hex(temp[3]);
+		elem->height = 0;
+		elem->diam = 0;
+	}
+	else if (elem->type == CY)
+	{
+		elem->vec = get_vector(temp[2]);
+		elem->diam = ft_atof(temp[3]);
+		elem->height = ft_atof(temp[4]);
+		elem->color = rgb_to_hex(temp[5]);
+	}
+	ft_free_mat(temp);
+	return (EXIT_SUCCESS);
+
+}
+
+int add_element(t_data *scene, t_element *new_elem)
+{
+	t_element	*new_array;
+	int			i;
+
+	i = 0;
+	new_array = malloc(sizeof(t_element) * (scene->n_elem + 1));
+	if (!new_array)
+		return (handle_error(ERR_MALL), EXIT_FAILURE);
+	while(i < scene->n_elem)
+	{
+		new_array[i] = scene->elem[i];
+		i++;
+	}
+	new_array[scene->n_elem] = *new_elem;
+	if (scene->elem)
+		free (scene->elem); //MEJORAR
+	scene->elem = new_array;
+	scene->n_elem++;
 	return (EXIT_SUCCESS);
 }
 

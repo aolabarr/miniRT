@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:20:36 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/12 13:07:59 by binary           ###   ########.fr       */
+/*   Updated: 2025/02/17 15:08:37 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ int	valid_str(char *str)
 	i = 1;
 	if (!str)
 		return(1);
+	if(is_element(str))
+	{
+		i = 2;
+	}
 	while(str[i] != '\0')
 	{
 		if ((str[i] >= '0' && str[i] <= '9') || str[i] == '.' || str[i] == ',' \
@@ -93,4 +97,24 @@ t_vector	get_vector(char *str)
 	vec.z = ft_atof(temp[2]);
 	ft_free_mat(temp);
 	return (vec);
+}
+
+t_eltype get_elem_type(char *str)
+{
+	if (ft_strncmp(str, "sp", 2) == 0)
+		return (SP);
+	if (ft_strncmp(str, "cy", 2) == 0)
+		return (CY);
+	if (ft_strncmp(str, "pl", 2) == 0)	
+		return (PL);
+	else
+		return (handle_error(ERR_ELEM), UNKOWN);
+}
+
+int is_element(char *str)
+{
+	if (!ft_strncmp(str, "sp", 2) || !ft_strncmp(str, "cy", 2) || !ft_strncmp(str, "pl", 2))
+		return (1);
+	else
+		return (0);
 }

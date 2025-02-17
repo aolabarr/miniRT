@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:22:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/10 15:52:09 by binary           ###   ########.fr       */
+/*   Updated: 2025/02/17 15:12:11 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int argc, char **argv)
 	int		fd;
 	char	*line;
 	t_data	scene;
+	t_element elem;
 	
 	if (argc != 2)
 		return(handle_error(ERR_ARG), EXIT_FAILURE);
@@ -31,24 +32,36 @@ int	main(int argc, char **argv)
 		return(handle_error(ERR_FD), EXIT_FAILURE);
 	while((line = get_next_line(fd)))
 	{
+		if (line[0] == '\n' || line[0] == '\0')
+		{
+			free(line);
+			continue;
+		}
 		if (line[0] == 'A')
 		{
 			if(get_ambient(line, &scene.amb))
 				return (EXIT_FAILURE);
-			ft_printf("Ambient found\n");
 		}
 		else if (line[0] == 'C')
 		{
 			if(get_camera(line, &scene.cam))
 				return (EXIT_FAILURE);
-			printf("Camera found\n");
 		}
 		else if (line[0] == 'L')
-			printf("Light found\n");
+		{
+			if(get_light(line, &scene.lig))
+				return (EXIT_FAILURE);
+		}
 		else
-			printf("The elements\n");
+		{
+			if(get_element(line, &elem))
+				return (EXIT_FAILURE);
+			if(add_element(&scene, &elem))
+				return (EXIT_FAILURE);
+		}
 		free (line);
 	}
+	close(fd);
 	return(EXIT_SUCCESS);	
 }
 
