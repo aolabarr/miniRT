@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/17 15:52:02 by binary           ###   ########.fr       */
+/*   Updated: 2025/02/19 11:45:15 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,21 @@
 
 int get_ambient(char *line, t_ambient *amb)
 {
-	char	**mat;
+	char	**temp;
 
 	if (valid_str(line))
 		return (EXIT_FAILURE);
-	mat = ft_split(line, ' ');
-	amb->ratio = ft_atof(mat[1]);
+	temp = ft_split(line, ' ');
+	amb->ratio = ft_atof(temp[1]);
 	//printf("RATIO %f\n", amb->ratio);
-	amb->color = rgb_to_hex(mat[2]);
+	amb->color = rgb_to_hex(temp[2]);
+	if (amb->color == ERR_INT)
+	{
+		ft_free_mat(temp);
+		return (EXIT_FAILURE);
+	}
 	//printf("COLOR 0x%06X\n", amb->color);
-	ft_free_mat(mat);
+	ft_free_mat(temp);
 	return (EXIT_SUCCESS);
 }
 
@@ -63,6 +68,11 @@ int	get_light(char *line, t_light *lig)
 	lig->bright = ft_atof(temp[2]);
 	// printf("BRIGHT %f\n", lig->bright);
 	lig->color = rgb_to_hex(temp[3]);
+	if (lig->color == ERR_INT)
+	{
+		ft_free_mat(temp);
+		return (EXIT_FAILURE);
+	}
 	// printf("COLOR 0x%06X\n", lig->color);
 	ft_free_mat(temp);
 	return (EXIT_SUCCESS);
@@ -81,6 +91,11 @@ int get_element(char *line, t_element *elem)
 	{
 			elem->diam = ft_atof(temp[2]);
 			elem->color = rgb_to_hex(temp[3]);
+			if (elem->color == ERR_INT)
+			{
+				ft_free_mat(temp);
+				return (EXIT_FAILURE);
+			}
 			elem->height = 0;
 			elem->vec = (t_vector){0,0,0};
 	}
@@ -89,6 +104,11 @@ int get_element(char *line, t_element *elem)
 		if(get_vector(temp[2], &(elem->vec)))
 			return (EXIT_FAILURE);
 		elem->color = rgb_to_hex(temp[3]);
+		if (elem->color == ERR_INT)
+			{
+				ft_free_mat(temp);
+				return (EXIT_FAILURE);
+			}
 		elem->height = 0;
 		elem->diam = 0;
 	}
@@ -99,6 +119,11 @@ int get_element(char *line, t_element *elem)
 		elem->diam = ft_atof(temp[3]);
 		elem->height = ft_atof(temp[4]);
 		elem->color = rgb_to_hex(temp[5]);
+		if (elem->color == ERR_INT)
+		{
+			ft_free_mat(temp);
+			return (EXIT_FAILURE);
+		}
 	}
 	ft_free_mat(temp);
 	return (EXIT_SUCCESS);
@@ -136,13 +161,23 @@ int	rgb_to_hex(char *str)
 	int		hex_color;
 	char	**rgb;
 
+	if (!str)
+		return (ERR_SCENE);
 	rgb = ft_split(str, ',');
+	if (!rgb[0] || !rgb[1] || !rgb[2])
+		return (ERR_SCENE);
 	r = ft_atoi_hex(rgb[0]);
-	//printf("R dec es %d\n",  ft_atoi(rgb[0]));
+	if (r == ERR_INT)
+		return (r);
+	printf("R dec es %d\n",  ft_atoi(rgb[0]));
 	g = ft_atoi_hex(rgb[1]);
-	//printf("G dec %d\n", ft_atoi(rgb[1]));
+	printf("G dec %d\n", ft_atoi(rgb[1]));
+	if (g == ERR_INT)
+		return (g);
 	b = ft_atoi_hex(rgb[2]);
-	//printf("B dec %d\n", ft_atoi(rgb[2]));
+	printf("B dec %d\n", ft_atoi(rgb[2]));
+	if (b == ERR_INT)
+		return (b);
 	hex_color = (r * 10000) + (g * 100) + b;
 	return (hex_color);
 }
@@ -152,6 +187,8 @@ int	ft_atoi_hex(char *str)
 	int result;
 
 	result = ft_atoi(str);
+	if (result < 0 || result > 255)
+		return (ERR_INT);
 	result = dec_to_hex(result);
 	return (result);
 }
