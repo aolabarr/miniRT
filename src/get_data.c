@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/19 11:45:15 by binary           ###   ########.fr       */
+/*   Updated: 2025/02/19 12:11:44 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	get_camera(char *line, t_camera *cam)
 	if (valid_str(line))
 		return (EXIT_FAILURE);
 	temp = ft_split(line, ' ');
-	cam->pos = get_position(temp[1]);
+	if(get_position(temp[1], &(cam->pos)))
+		return (EXIT_FAILURE);
 	// printf("POS X: %f\n", cam->pos.x);
 	// printf("POS Y: %f\n", cam->pos.y);
 	// printf("POS Z: %f\n", cam->pos.z);
@@ -61,7 +62,8 @@ int	get_light(char *line, t_light *lig)
 	if (valid_str(line))
 		return (handle_error(ERR_SCENE), EXIT_FAILURE);
 	temp = ft_split(line, ' ');
-	lig->pos = get_position(temp[1]);
+	if(get_position(temp[1], &(lig->pos)))
+		return (EXIT_FAILURE);
 	// printf("POS X: %f\n", lig->pos.x);
 	// printf("POS Y: %f\n", lig->pos.y);
 	// printf("POS Z: %f\n", lig->pos.z);
@@ -86,7 +88,8 @@ int get_element(char *line, t_element *elem)
 		return (EXIT_FAILURE);
 	temp = ft_split(line, ' ');
 	elem->type = get_elem_type(temp[0]);
-	elem->pos = get_position(temp[1]);
+	if(get_position(temp[1], &(elem->pos)))
+		return (EXIT_FAILURE);
 	if (elem->type == SP)
 	{
 			elem->diam = ft_atof(temp[2]);
@@ -169,13 +172,13 @@ int	rgb_to_hex(char *str)
 	r = ft_atoi_hex(rgb[0]);
 	if (r == ERR_INT)
 		return (r);
-	printf("R dec es %d\n",  ft_atoi(rgb[0]));
+	// printf("R dec es %d\n",  ft_atoi(rgb[0]));
 	g = ft_atoi_hex(rgb[1]);
-	printf("G dec %d\n", ft_atoi(rgb[1]));
+	// printf("G dec %d\n", ft_atoi(rgb[1]));
 	if (g == ERR_INT)
 		return (g);
 	b = ft_atoi_hex(rgb[2]);
-	printf("B dec %d\n", ft_atoi(rgb[2]));
+	// printf("B dec %d\n", ft_atoi(rgb[2]));
 	if (b == ERR_INT)
 		return (b);
 	hex_color = (r * 10000) + (g * 100) + b;
