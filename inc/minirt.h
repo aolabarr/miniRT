@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:24:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/19 12:07:52 by binary           ###   ########.fr       */
+/*   Updated: 2025/02/19 13:58:24 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		    handle_error(int error);
 int		    is_space(char c);
 int	        valid_str(char *str);
 void	    ft_free_mat(char **mat);
+void		free_scene(t_data *scene);
 int			get_position(char *str, t_position *pos);
 int         get_vector(char *str, t_vector *vec);
 t_eltype	get_elem_type(char *str);
@@ -58,5 +59,8 @@ float	ft_atof(char *str);
 /* check_values.c */
 int     normalized_vector(t_vector vec);
 int     len_mat(char **str);
+int		get_sphere (char **str, t_element *elem);
+int		get_plane(char **str, t_element *elem);
+int		get_cylinder(char **str, t_element *elem);
 
 #endif

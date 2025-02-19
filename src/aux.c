@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:20:36 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/19 12:05:36 by binary           ###   ########.fr       */
+/*   Updated: 2025/02/19 13:58:04 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,15 @@ void	ft_free_mat(char **mat)
 	mat = NULL;
 	return ;
 }
-
+void	free_scene(t_data *scene)
+{
+	if (scene->elem)
+	{
+		free(scene->elem);
+		scene->elem = NULL;
+	}
+	return ;
+}
 int	get_position(char *str, t_position *pos)
 {
 	char **temp;

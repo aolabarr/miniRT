@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:21:22 by binary            #+#    #+#             */
-/*   Updated: 2025/02/19 12:00:56 by binary           ###   ########.fr       */
+/*   Updated: 2025/02/19 13:38:50 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,3 +34,55 @@ int len_mat(char **str)
     return (i);
 }
 
+int	get_sphere(char **str, t_element *elem)
+{
+	if(!str || !elem)
+		return (EXIT_FAILURE);
+	if (len_mat(str) == 4)
+	{
+		elem->diam = ft_atof(str[2]);
+		if ((elem->color = rgb_to_hex(str[3])) == ERR_INT)
+			return (EXIT_FAILURE);
+		elem->height = 0;
+		elem->vec = (t_vector){0,0,0};
+	}
+	else
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
+int	get_plane(char **str, t_element *elem)
+{
+	if(!str || !elem)
+		return (EXIT_FAILURE);
+	if (len_mat(str) == 4)
+	{
+		if(get_vector(str[2], &(elem->vec)))
+			return (EXIT_FAILURE);
+		if ((elem->color = rgb_to_hex(str[3])) == ERR_INT)
+			return (EXIT_FAILURE);
+		elem->height = 0;
+		elem->diam = 0;
+	}
+	else
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
+int	get_cylinder(char **str, t_element *elem)
+{
+	if(!str || !elem)
+		return (EXIT_FAILURE);
+	if (len_mat(str) == 6)
+	{
+		if(get_vector(str[2], &(elem->vec)))
+			return (EXIT_FAILURE);
+		elem->diam = ft_atof(str[3]);
+		elem->height = ft_atof(str[4]);
+		if ((elem->color = rgb_to_hex(str[3])) == ERR_INT)
+			return (EXIT_FAILURE);
+	}
+	else
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}

@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:22:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/19 08:36:52 by binary           ###   ########.fr       */
+/*   Updated: 2025/02/19 14:01:40 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 		return(handle_error(ERR_FD), EXIT_FAILURE);
 	while((line = get_next_line(fd)))
 	{
-		printf("LINE: %s\n", line);
+		//printf("LINE: %s\n", line);
 		if (line[0] == '\n' || line[0] == '\0')
 		{
 			free(line);
@@ -51,7 +51,7 @@ int	main(int argc, char **argv)
 		else if (line[0] == 'L')
 		{
 			if(get_light(line, &scene.lig))
-				return (EXIT_FAILURE);
+				return (handle_error(ERR_SCENE), EXIT_FAILURE);
 		}
 		else
 		{
@@ -62,6 +62,7 @@ int	main(int argc, char **argv)
 		}
 		free (line);
 	}
+	free_scene(&scene);
 	close(fd);
 	return(EXIT_SUCCESS);	
 }

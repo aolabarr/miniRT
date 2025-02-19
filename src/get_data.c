@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/19 12:11:44 by binary           ###   ########.fr       */
+/*   Updated: 2025/02/19 13:57:51 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,69 +15,86 @@
 int get_ambient(char *line, t_ambient *amb)
 {
 	char	**temp;
+	int		status;
 
+	status = EXIT_SUCCESS;
 	if (valid_str(line))
 		return (EXIT_FAILURE);
 	temp = ft_split(line, ' ');
-	amb->ratio = ft_atof(temp[1]);
-	//printf("RATIO %f\n", amb->ratio);
-	amb->color = rgb_to_hex(temp[2]);
-	if (amb->color == ERR_INT)
+	if (temp && len_mat(temp) == 3)
 	{
-		ft_free_mat(temp);
-		return (EXIT_FAILURE);
+		amb->ratio = ft_atof(temp[1]);
+		if (amb->ratio >= 0.0 || amb->ratio <= 1.0)
+		{
+			if ((amb->color = rgb_to_hex(temp[2]) == ERR_INT))
+				status = EXIT_FAILURE;
+		}
+		else 
+			status = EXIT_FAILURE;
 	}
-	//printf("COLOR 0x%06X\n", amb->color);
+	else
+		status = EXIT_FAILURE;
 	ft_free_mat(temp);
-	return (EXIT_SUCCESS);
+	return (status);
 }
+
 
 int	get_camera(char *line, t_camera *cam)
 {
 	char	**temp;
+	int		status;
 
+	status = EXIT_SUCCESS;
 	if (valid_str(line))
 		return (EXIT_FAILURE);
 	temp = ft_split(line, ' ');
-	if(get_position(temp[1], &(cam->pos)))
-		return (EXIT_FAILURE);
-	// printf("POS X: %f\n", cam->pos.x);
-	// printf("POS Y: %f\n", cam->pos.y);
-	// printf("POS Z: %f\n", cam->pos.z);
-	if(get_vector(temp[2], &(cam->vec)))
-		return (EXIT_FAILURE);		
-	// printf("VEC X: %f\n", cam->vec.x);	
-	// printf("VEC Y: %f\n", cam->vec.y);
-	// printf("VEC Z: %f\n", cam->vec.z);
-	cam->fov = ft_atoi(temp[3]);
-	// printf("FOV %d\n", cam->fov);
+	if (temp && len_mat(temp) == 4)
+	{
+		if (!get_position(temp[1], &(cam->pos)))
+		{
+			if(!get_vector(temp[2], &(cam->vec)))
+				cam->fov = ft_atoi(temp[3]);
+			else
+				status = EXIT_FAILURE;
+		}
+		else 
+		status = EXIT_FAILURE;
+	}
+	else
+		status = EXIT_FAILURE;
 	ft_free_mat(temp);
-	return (EXIT_SUCCESS);
+	return (status);
 }
 
 int	get_light(char *line, t_light *lig)
 {
 	char	**temp;
+	int		status;
 
+	status = EXIT_SUCCESS;
 	if (valid_str(line))
-		return (handle_error(ERR_SCENE), EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	temp = ft_split(line, ' ');
-	if(get_position(temp[1], &(lig->pos)))
-		return (EXIT_FAILURE);
-	// printf("POS X: %f\n", lig->pos.x);
-	// printf("POS Y: %f\n", lig->pos.y);
-	// printf("POS Z: %f\n", lig->pos.z);
-	lig->bright = ft_atof(temp[2]);
-	// printf("BRIGHT %f\n", lig->bright);
-	lig->color = rgb_to_hex(temp[3]);
-	if (lig->color == ERR_INT)
+	if (temp && len_mat(temp) == 4)
 	{
-		ft_free_mat(temp);
-		return (EXIT_FAILURE);
+		if (!get_position(temp[1], &(lig->pos)))
+		{
+			lig->bright = ft_atof(temp[2]);
+			if (lig->bright >= 0.0 || lig->bright <= 1.0)
+			{
+				if ((lig->color = rgb_to_hex(temp[3])) == ERR_INT)
+					status = EXIT_FAILURE;
+			}
+			else
+				status = EXIT_FAILURE;
+		}
+		else
+			status = EXIT_FAILURE;
 	}
-	// printf("COLOR 0x%06X\n", lig->color);
+	else
+		status = EXIT_FAILURE;
 	ft_free_mat(temp);
-	return (EXIT_SUCCESS);
+	return (status);
 }
 
 int get_element(char *line, t_element *elem)
@@ -92,41 +109,54 @@ int get_element(char *line, t_element *elem)
 		return (EXIT_FAILURE);
 	if (elem->type == SP)
 	{
-			elem->diam = ft_atof(temp[2]);
-			elem->color = rgb_to_hex(temp[3]);
-			if (elem->color == ERR_INT)
-			{
-				ft_free_mat(temp);
-				return (EXIT_FAILURE);
-			}
-			elem->height = 0;
-			elem->vec = (t_vector){0,0,0};
-	}
-	else if (elem->type == PL)
-	{
-		if(get_vector(temp[2], &(elem->vec)))
-			return (EXIT_FAILURE);
-		elem->color = rgb_to_hex(temp[3]);
-		if (elem->color == ERR_INT)
-			{
-				ft_free_mat(temp);
-				return (EXIT_FAILURE);
-			}
-		elem->height = 0;
-		elem->diam = 0;
-	}
-	else if (elem->type == CY)
-	{
-		if(get_vector(temp[2], &(elem->vec)))
-			return (EXIT_FAILURE);
-		elem->diam = ft_atof(temp[3]);
-		elem->height = ft_atof(temp[4]);
-		elem->color = rgb_to_hex(temp[5]);
-		if (elem->color == ERR_INT)
+		if (get_sphere(temp, elem))
 		{
 			ft_free_mat(temp);
 			return (EXIT_FAILURE);
 		}
+		// printf("SPHERE\n");
+		// printf("Diam: %f\n", elem->diam);
+		// printf("Color: %0X06\n", elem->color);
+		// printf("Position x: %f\n", elem->pos.x);
+		// printf("Position y: %f\n", elem->pos.y);
+		// printf("Position z: %f\n", elem->pos.z);
+		// printf("\n");
+	}
+	else if (elem->type == PL)
+	{
+		if (get_plane(temp, elem))
+		{
+			ft_free_mat(temp);
+			return (EXIT_FAILURE);
+		}
+		// printf("PLANE\n");
+		// printf("Vector x: %f\n", elem->vec.x);
+		// printf("Vector y: %f\n", elem->vec.y);
+		// printf("Vector z: %f\n", elem->vec.z);
+		// printf("Color: %0X06\n", elem->color);
+		// printf("Position x: %f\n", elem->pos.x);
+		// printf("Position y: %f\n", elem->pos.y);
+		// printf("Position z: %f\n", elem->pos.z);
+		// printf("\n");
+	}
+	else if (elem->type == CY)
+	{
+		if (get_cylinder(temp, elem))
+		{
+			ft_free_mat(temp);
+			return (EXIT_FAILURE);
+		}
+		// printf("CYLINDER\n");
+		// printf("Diam: %f\n", elem->diam);
+		// printf("Height: %f\n", elem->height);
+		// printf("Color: %0X06\n", elem->color);
+		// printf("Position x: %f\n", elem->pos.x);
+		// printf("Position y: %f\n", elem->pos.y);
+		// printf("Position z: %f\n", elem->pos.z);
+		// printf("Vector x: %f\n", elem->vec.x);
+		// printf("Vector y: %f\n", elem->vec.y);
+		// printf("Vector z: %f\n", elem->vec.z);
+		// printf("\n");
 	}
 	ft_free_mat(temp);
 	return (EXIT_SUCCESS);
@@ -149,7 +179,7 @@ int add_element(t_data *scene, t_element *new_elem)
 	}
 	new_array[scene->n_elem] = *new_elem;
 	if (scene->elem)
-		free (scene->elem); //MEJORAR
+		free(scene->elem);
 	scene->elem = new_array;
 	scene->n_elem++;
 	return (EXIT_SUCCESS);
@@ -167,7 +197,7 @@ int	rgb_to_hex(char *str)
 	if (!str)
 		return (ERR_SCENE);
 	rgb = ft_split(str, ',');
-	if (!rgb[0] || !rgb[1] || !rgb[2])
+	if (len_mat(rgb) != 3)
 		return (ERR_SCENE);
 	r = ft_atoi_hex(rgb[0]);
 	if (r == ERR_INT)
