@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/02/20 17:56:56 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/02/22 11:16:05 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	render_image(t_data *data)
 				&data->img.bpp,
 				&data->img.line_len,
 				&data->img.endian);
-		if (create_image(data) == ERR_MALLOC)
-			return (ERR_MALLOC);
+		if (create_image(data) == ERR_MALL)
+			return (ERR_MALL);
 		mlx_put_image_to_window(data->mlx, data->win, data->img.ptr, 0, 0);
 		data->update = 0;
 	}

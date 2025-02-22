@@ -6,24 +6,11 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:22:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/22 10:48:12 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/02/22 11:16:05 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
-
-int	check_extension(char *str)
-{
-	int	len;
-
-	len = ft_strlen(str) - 3;
-	if (ft_strlen(str) <  4)
-		return (EXIT_FAILURE);
-	if (ft_strncmp(str + len, ".rt", 3))
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
-
 
 int	main(int argc, char **argv)
 {
@@ -36,27 +23,13 @@ int	main(int argc, char **argv)
 		return(handle_error(ERR_ARG), EXIT_FAILURE);
 	if (check_extension(argv[1]))
 		return (handle_error(ERR_EXT), EXIT_FAILURE);
-	*/
 
-	initial_set_data(&data);
-	data.mlx = mlx_init();
-	if (!data.mlx)
-		return (ERR_MALLOC);
-	if (!new_window(&data, data.name))
-		return (ERR_MALLOC);
-	mlx_loop_hook(data.mlx, render_image, &data);
-	mlx_hook(data.win, DestroyNotify, NoEventMask, handle_close, &data);
-	mlx_hook(data.win, KeyPress, KeyPressMask, handle_key_input, &data);
-	//mlx_hook(data->win, ButtonPress, ButtonPressMask, handle_scroll, data);
-	//mlx_hook(data->win, MotionNotify, PointerMotionMask, mouse_move, data);
-	mlx_loop(data.mlx);
-	return (0);
 	
-	{
-		handle_error(ERR_EXT);
-		return (EXIT_FAILURE);
-	}	
-	init_data(&scene);
+	
+
+	
+	
+	init_scene(&scene);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		return(handle_error(ERR_FD), EXIT_FAILURE);
@@ -92,9 +65,25 @@ int	main(int argc, char **argv)
 		}
 		free (line);
 	}
-	free_scene(&scene);
 	close(fd);
+
+
+	init_mlx(&scene);
+	scene.mlx = mlx_init();
+	if (!scene.mlx)
+		return (ERR_MALL);
+	if (!new_window(&scene, scene.name))
+		return (ERR_MALL);
+	mlx_loop_hook(scene.mlx, render_image, &scene);
+	mlx_hook(scene.win, DestroyNotify, NoEventMask, handle_close, &scene);
+	mlx_hook(scene.win, KeyPress, KeyPressMask, handle_key_input, &scene);
+	//mlx_hook(scene->win, ButtonPress, ButtonPressMask, handle_scroll, scene);
+	//mlx_hook(scene->win, MotionNotify, PointerMotionMask, mouse_move, scene);
+	mlx_loop(scene.mlx);
+	
+	free_scene(&scene); // dentro de handle_free
 	return(EXIT_SUCCESS);	
 }
+
 
 

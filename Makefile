@@ -6,7 +6,7 @@
 #    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/01 15:23:12 by aolabarr          #+#    #+#              #
-#    Updated: 2025/02/22 10:42:06 by aolabarr         ###   ########.fr        #
+#    Updated: 2025/02/22 11:13:36 by aolabarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,6 @@ SRC =	main.c \
 		render.c \
 		keys.c \
 		init.c \
-		aux.c \
 		get_data.c \
 		check_values.c
 		

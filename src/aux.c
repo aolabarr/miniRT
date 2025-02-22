@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:20:36 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/22 10:43:08 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/02/22 11:13:39 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	ft_free_v(void *str)
 		free(str);
 	return ;
 }
-
-
 
 int	is_space(char c)
 {

@@ -6,71 +6,71 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:22:53 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/02/20 17:41:41 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/02/22 10:59:18 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void	initial_set_data(t_data *data)
+void	init_mlx(t_data *scene)
 {
-	data->mlx = NULL;
-	data->win = NULL;
-	data->close = 0;
-	data->img.ptr = NULL;
-	data->img.addr = NULL;
-	data->img.bpp = 0;
-	data->img.line_len = 0;
-	data->img.endian = 0;
-	data->update = 1;
-	data->img.domain[0] = DOM_MIN;
-	data->img.domain[1] = DOM_MAX;
-	data->img.domain[2] = DOM_MIN;
-	data->img.domain[3] = DOM_MAX;
-	data->img.zoom = 1;
-	data->name = ft_strdup(MINI_RT);
+	scene->mlx = NULL;
+	scene->win = NULL;
+	scene->close = 0;
+	scene->img.ptr = NULL;
+	scene->img.addr = NULL;
+	scene->img.bpp = 0;
+	scene->img.line_len = 0;
+	scene->img.endian = 0;
+	scene->update = 1;
+	scene->img.domain[0] = DOM_MIN;
+	scene->img.domain[1] = DOM_MAX;
+	scene->img.domain[2] = DOM_MIN;
+	scene->img.domain[3] = DOM_MAX;
+	scene->img.zoom = 1;
+	scene->name = ft_strdup(MINI_RT);
 	return ;
 }
 
-void	set_initial_zoom(t_data *data)
+void	set_initial_zoom(t_data *scene)
 {
-	data->img.domain[0] = DOM_MIN;
-	data->img.domain[1] = DOM_MAX;
-	data->img.domain[2] = DOM_MIN;
-	data->img.domain[3] = DOM_MAX;
+	scene->img.domain[0] = DOM_MIN;
+	scene->img.domain[1] = DOM_MAX;
+	scene->img.domain[2] = DOM_MIN;
+	scene->img.domain[3] = DOM_MAX;
 	return ;
 }
 
-void	*new_window(t_data *data, char *title)
+void	*new_window(t_data *scene, char *title)
 {
-	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, title);
-	if (!data->win)
+	scene->win = mlx_new_window(scene->mlx, WIDTH, HEIGHT, title);
+	if (!scene->win)
 	{
-		mlx_destroy_display(data->mlx);
-		ft_free_v(data->mlx);
+		mlx_destroy_display(scene->mlx);
+		ft_free_v(scene->mlx);
 		return (NULL);
 	}
-	return (data->win);
+	return (scene->win);
 }
 
-int	handle_close(t_data *data)
+int	handle_close(t_data *scene)
 {
-	data->close = 1;
+	scene->close = 1;
 	return (0);
 }
 
-int	close_window(t_data *data)
+int	close_window(t_data *scene)
 {
-	if (data->img.ptr)
-		mlx_destroy_image(data->mlx, data->img.ptr);
-	if (data->name)
-		ft_free(data->name);
-	data->name = NULL;
-	data->name = NULL;
-	data->img.ptr = NULL;
-	mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
+	if (scene->img.ptr)
+		mlx_destroy_image(scene->mlx, scene->img.ptr);
+	if (scene->name)
+		ft_free(scene->name);
+	scene->name = NULL;
+	scene->name = NULL;
+	scene->img.ptr = NULL;
+	mlx_destroy_window(scene->mlx, scene->win);
+	mlx_destroy_display(scene->mlx);
+	free(scene->mlx);
 	ft_putstr_fd(ESC_MSG, STDOUT_FILENO);
 	exit(EXIT_SUCCESS);
 	return (0);
