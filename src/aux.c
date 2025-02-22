@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:20:36 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/22 11:13:39 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/02/22 16:15:20 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,6 @@ int handle_error(int error)
 	if (error == ERR_SCENE)
 		ft_putendl_fd(ERR_MSG_SCENE, STDOUT_FILENO);
 	return (EXIT_FAILURE);
-}
-void	ft_free_v(void *str)
-{
-	if (str)
-		free(str);
-	return ;
 }
 
 int	is_space(char c)
@@ -61,32 +55,6 @@ int	valid_str(char *str)
 	return (0);
 }
 
-void	ft_free_mat(char **mat)
-{
-	int i;
-
-	i = 0;
-	if (!mat)
-		return ;
-	while(mat[i])
-	{
-		if (mat[i])
-			free(mat[i]);
-		i++;
-	}
-	free(mat);
-	mat = NULL;
-	return ;
-}
-void	free_scene(t_data *scene)
-{
-	if (scene->elem)
-	{
-		free(scene->elem);
-		scene->elem = NULL;
-	}
-	return ;
-}
 int	get_position(char *str, t_position *pos)
 {
 	char **temp;

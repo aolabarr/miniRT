@@ -6,38 +6,34 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/02/22 11:02:56 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/02/22 18:23:33 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCTIONS_H
 # define FUNCTIONS_H
 
-int		check_extension(char *str);
-
+/* libx.c */
 void	init_mlx(t_data *scene);
-void	set_initial_zoom(t_data *scene);
+void	init_canvas(t_data *scene);
 void	*new_window(t_data *scene, char *title);
 int		handle_close(t_data *scene);
 int		close_window(t_data *scene);
 
+/* render.c */
 int	    render_image(t_data *scene);
 int	    create_image(t_data *scene);
 void	put_color_pixel(t_data *scene, t_image img, int x, int y);
 
-void	ft_free_v(void *str);
-
+/* keys.c */
 int     handle_key_input(int key, t_data *scene);
 void	set_traslation_move(t_data *scene, int key);
 void	set_static_zoom(t_data *scene, int key);
-
 
 /* aux.c */
 int		    handle_error(int error);
 int		    is_space(char c);
 int	        valid_str(char *str);
-void	    ft_free_mat(char **mat);
-void		free_scene(t_data *scene);
 int			get_position(char *str, t_position *pos);
 int         get_vector(char *str, t_vector *vec);
 t_eltype	get_elem_type(char *str);
@@ -67,5 +63,22 @@ int     len_mat(char **str);
 int		get_sphere (char **str, t_element *elem);
 int		get_plane(char **str, t_element *elem);
 int		get_cylinder(char **str, t_element *elem);
+
+/* free.c */
+void    handle_free(t_data *scene);
+void    ft_free_mat(char **mat);
+void	free_scene(t_data *scene);
+void	ft_free_v(void *str);
+
+/* parse.c */
+int	parse(t_data *scene, char *map);
+
+/* raytracing.c */
+int raytracing(t_data *scene);
+
+/* math.c */
+t_position  new_lineal_point(t_position origin, t_vector vector, float t);
+t_vector cross_product(t_vector v1, t_vector v2);
+t_vector scalar_vec_product(t_vector vec, float scalar);
 
 #endif

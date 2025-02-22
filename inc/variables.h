@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:30:53 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/22 10:42:40 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/02/22 17:02:41 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,10 @@ typedef struct s_element
 {
 	t_eltype	type;
 	t_position	pos;
+	t_vector	vec;
 	int			color;
 	float		diam;
 	float		height;
-	t_vector	vec;
-	
 }			t_element;
 
 
@@ -77,7 +76,7 @@ typedef struct s_image
 	int			line_len;
 	int			endian;
 	int			update;
-	float		domain[4];
+	t_position		canvas[4];
 	float		zoom;
 }				t_image;
 

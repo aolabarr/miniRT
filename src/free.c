@@ -1,34 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/01 15:22:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/22 16:17:23 by aolabarr         ###   ########.fr       */
+/*   Created: 2025/02/22 16:11:25 by aolabarr          #+#    #+#             */
+/*   Updated: 2025/02/22 16:16:45 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-int	main(int argc, char **argv)
+void handle_free(t_data *scene)
 {
-	t_data	scene;
-	
-	if (argc != 2)
-		return(handle_error(ERR_ARG), EXIT_FAILURE);
-	if (check_extension(argv[1]))
-		return (handle_error(ERR_EXT), EXIT_FAILURE);
-
-	if (parse(&scene, argv[1]))
-		return(handle_free(&scene), EXIT_FAILURE);
-	
-	if (raytracing(&scene))
-		return(handle_free(&scene), EXIT_FAILURE);
-	
-	return(EXIT_SUCCESS);	
+	free_scene(scene);
 }
 
 
+void	ft_free_v(void *str)
+{
+	if (str)
+		free(str);
+	return ;
+}
 
+void	ft_free_mat(char **mat)
+{
+	int i;
+
+	i = 0;
+	if (!mat)
+		return ;
+	while(mat[i])
+	{
+		if (mat[i])
+			free(mat[i]);
+		i++;
+	}
+	free(mat);
+	mat = NULL;
+	return ;
+}
+
+void	free_scene(t_data *scene)
+{
+	if (scene->elem)
+	{
+		free(scene->elem);
+		scene->elem = NULL;
+	}
+	return ;
+}
