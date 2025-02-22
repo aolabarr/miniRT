@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:20:36 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/19 13:58:04 by binary           ###   ########.fr       */
+/*   Updated: 2025/02/22 10:43:08 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ int handle_error(int error)
 		ft_putendl_fd(ERR_MSG_SCENE, STDOUT_FILENO);
 	return (EXIT_FAILURE);
 }
+void	ft_free_v(void *str)
+{
+	if (str)
+		free(str);
+	return ;
+}
+
+
 
 int	is_space(char c)
 {

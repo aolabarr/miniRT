@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   variables.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:30:53 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/12 15:11:33 by binary           ###   ########.fr       */
+/*   Updated: 2025/02/22 10:42:40 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VARIABLES_H
-#define VARIABLES_H
+# define VARIABLES_H
 
 typedef struct s_ambient
 {
@@ -68,12 +68,38 @@ typedef struct s_element
 	
 }			t_element;
 
+
+typedef struct s_image
+{
+	void		*ptr;
+	void		*addr;
+	int			bpp;
+	int			line_len;
+	int			endian;
+	int			update;
+	float		domain[4];
+	float		zoom;
+}				t_image;
+
+typedef struct s_mouse
+{
+	float	x;
+	float	y;
+}			t_mouse;
+
 typedef struct s_data
 {
 	t_ambient	amb;
 	t_camera	cam;
 	t_light		lig;
 	t_element	*elem;
+	void		*mlx;
+	void		*win;
+	char		*name;
+	t_image		img;
+	int			close;
+	int			update;
+	t_mouse		mouse;
 	int			n_elem;
 }				t_data;
 

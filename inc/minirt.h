@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:24:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/19 13:58:24 by binary           ###   ########.fr       */
+/*   Updated: 2025/02/22 10:41:11 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 # include "variables.h"
 # include "macros.h"
+# include "functions.h"
+# include "../lib/libft/src/libft.h"
+# include "../lib/libmlx/mlx_int.h"
+# include "../lib/libmlx/mlx.h"
+
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>

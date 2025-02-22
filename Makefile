@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
+#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/01 15:23:12 by aolabarr          #+#    #+#              #
-#    Updated: 2025/02/17 15:26:55 by binary           ###   ########.fr        #
+#    Updated: 2025/02/22 10:42:06 by aolabarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = miniRT
 NO_LINK = -c
-CFLAGS = -Wall -Wextra -Werror -g3 -g
+CFLAGS = -Wall -Wextra -Werror -g3 -pedantic -g
 SFLAGS =  -fsanitize=address
 
 OBJ_DIR = ./obj
@@ -27,6 +27,10 @@ MATH_DIR = /usr/local/lib
 LIBFLAGS = -L$(LIBFT_DIR) -lft -L$(LIBIO_DIR) -lio -L$(LIBMLX_DIR) -lmlx_Linux -L$(MATH_DIR) -lm -lX11 -lXext
 
 SRC =	main.c \
+		aux.c \
+		libx.c \
+		render.c \
+		keys.c \
 		init.c \
 		aux.c \
 		get_data.c \
