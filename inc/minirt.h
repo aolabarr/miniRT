@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:24:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/22 10:41:11 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/01 11:39:39 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int		    is_space(char c);
 int	        valid_str(char *str);
 void	    ft_free_mat(char **mat);
 void		free_scene(t_data *scene);
-int			get_position(char *str, t_position *pos);
-int         get_vector(char *str, t_vector *vec);
+int			get_position(char *str, t_coord *pos);
+int         get_vector(char *str, t_coord *vec);
 t_eltype	get_elem_type(char *str);
 int         is_element(char *str);
 
@@ -62,7 +62,7 @@ int	    dec_to_hex(int dec);
 float	ft_atof(char *str);
 
 /* check_values.c */
-int     normalized_vector(t_vector vec);
+int     normalized_vector(t_coord vec);
 int     len_mat(char **str);
 int		get_sphere (char **str, t_element *elem);
 int		get_plane(char **str, t_element *elem);

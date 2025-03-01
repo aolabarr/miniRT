@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_values.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:21:22 by binary            #+#    #+#             */
-/*   Updated: 2025/02/22 11:09:39 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/01 11:41:17 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-int normalized_vector(t_vector vec)
+int normalized_vector(t_coord vec)
 {
     int norm;
 
@@ -44,7 +44,7 @@ int	get_sphere(char **str, t_element *elem)
 		if ((elem->color = rgb_to_hex(str[3])) == ERR_INT)
 			return (EXIT_FAILURE);
 		elem->height = 0;
-		elem->vec = (t_vector){0,0,0};
+		elem->vec = (t_coord){0,0,0, VECTOR};
 	}
 	else
 		return (EXIT_FAILURE);

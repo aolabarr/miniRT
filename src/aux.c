@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:20:36 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/22 16:15:20 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/01 11:35:52 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	valid_str(char *str)
 	return (0);
 }
 
-int	get_position(char *str, t_position *pos)
+int	get_position(char *str, t_coord *pos)
 {
 	char **temp;
 
@@ -68,11 +68,12 @@ int	get_position(char *str, t_position *pos)
 	pos->x = ft_atof(temp[0]);
 	pos->y = ft_atof(temp[1]);
 	pos->z = ft_atof(temp[2]);
+	pos->w = POINT;
 	ft_free_mat(temp);
 	return (EXIT_SUCCESS);
 }
 
-int	get_vector(char *str, t_vector *vec)
+int	get_vector(char *str, t_coord *vec)
 {
 	char		**temp;
 
@@ -80,6 +81,7 @@ int	get_vector(char *str, t_vector *vec)
 	vec->x = ft_atof(temp[0]);
 	vec->y = ft_atof(temp[1]);
 	vec->z = ft_atof(temp[2]);
+	vec->w = VECTOR;
 	ft_free_mat(temp);
 	if(!normalized_vector(*vec))
 		return (EXIT_FAILURE);

@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:30:53 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/01 11:30:30 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/01 12:24:00 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ typedef struct s_coord
 	float	y;
 	float	z;
 	int		w;
-}			t_coord;
+}			t_coord, t_pos, t_vec;
 
 typedef struct s_camera
 {
-	t_position	pos;
-	t_vector	vec;
+	t_coord 	pos;
+	t_coord 	vec;
 	int			fov;
 
 }			t_camera;
@@ -45,7 +45,7 @@ typedef struct s_camera
 
 typedef struct s_light
 {
-	t_position	pos;
+	t_coord		pos;
 	float		bright;
 	int			color;
 }				t_light;
@@ -61,8 +61,8 @@ typedef	enum e_eltype
 typedef struct s_element
 {
 	t_eltype	type;
-	t_position	pos;
-	t_vector	vec;
+	t_coord		pos;
+	t_coord		vec;
 	int			color;
 	float		diam;
 	float		height;
@@ -77,7 +77,7 @@ typedef struct s_image
 	int			line_len;
 	int			endian;
 	int			update;
-	t_position		canvas[4];
+	t_coord		canvas[4];
 	float		zoom;
 }				t_image;
 

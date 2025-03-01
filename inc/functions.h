@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/02/22 18:23:33 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/01 11:38:09 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	set_static_zoom(t_data *scene, int key);
 int		    handle_error(int error);
 int		    is_space(char c);
 int	        valid_str(char *str);
-int			get_position(char *str, t_position *pos);
-int         get_vector(char *str, t_vector *vec);
+int			get_position(char *str, t_coord  *pos);
+int         get_vector(char *str, t_coord  *vec);
 t_eltype	get_elem_type(char *str);
 int         is_element(char *str);
 
@@ -58,7 +58,7 @@ int	    dec_to_hex(int dec);
 float	ft_atof(char *str);
 
 /* check_values.c */
-int     normalized_vector(t_vector vec);
+int     normalized_vector(t_coord vec);
 int     len_mat(char **str);
 int		get_sphere (char **str, t_element *elem);
 int		get_plane(char **str, t_element *elem);
@@ -76,9 +76,9 @@ int	parse(t_data *scene, char *map);
 /* raytracing.c */
 int raytracing(t_data *scene);
 
-/* math.c */
-t_position  new_lineal_point(t_position origin, t_vector vector, float t);
-t_vector cross_product(t_vector v1, t_vector v2);
-t_vector scalar_vec_product(t_vector vec, float scalar);
+// /* math.c */
+// t_position  new_lineal_point(t_position origin, t_vector vector, float t);
+// t_vector cross_product(t_vector v1, t_vector v2);
+// t_vector scalar_vec_product(t_vector vec, float scalar);
 
 #endif

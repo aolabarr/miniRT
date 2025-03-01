@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:45:43 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/02/22 18:27:52 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/01 11:43:17 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	handle_key_input(int key, t_data *scene)
 {
 	if (key == XK_Escape || scene->close == 1)
 		close_window(scene);
-	else if (key == XK_Delete)
-		init_canvas(scene);
+	// else if (key == XK_Delete)
+		// init_canvas(scene);
 	else if (key == XK_Left || key == XK_Right)
 		set_traslation_move(scene, key);
 	else if (key == XK_Up || key == XK_Down)
