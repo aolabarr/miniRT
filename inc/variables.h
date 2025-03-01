@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variables.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:30:53 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/22 17:02:41 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/01 11:30:30 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,20 @@ typedef struct s_ambient
 	int		color;
 }			t_ambient;
 
-typedef struct s_position
-{
-	float	x;
-	float	y;
-	float	z;
-}			t_position;
+// typedef struct s_position
+// {
+// 	float	x;
+// 	float	y;
+// 	float	z;
+// }			t_position;
 
-typedef struct s_vector
+typedef struct s_coord
 {
 	float	x;
 	float	y;
 	float	z;
-}			t_vector;
+	int		w;
+}			t_coord;
 
 typedef struct s_camera
 {
