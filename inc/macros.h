@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/01 11:31:32 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/01 11:38:11 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@
 # define ASPECT_RATIO       (16.0 / 9.0)
 # define ZOOM_FACTOR 		0.1
 # define ARROW_MOVE 		0.05
+# define EPSILON 		    0.0001
+
 
 //Constant macros
 # define DOM_MIN		-2.0
