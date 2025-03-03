@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/01 11:43:47 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:15:24 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,13 +114,13 @@ int get_element(char *line, t_element *elem)
 			ft_free_mat(temp);
 			return (EXIT_FAILURE);
 		}
-		printf("SPHERE\n");
-		printf("Diam: %f\n", elem->diam);
-		printf("Color: %0X06\n", elem->color);
-		printf("Position x: %f\n", elem->pos.x);
-		printf("Position y: %f\n", elem->pos.y);
-		printf("Position z: %f\n", elem->pos.z);
-		printf("\n");
+		// printf("SPHERE\n");
+		// printf("Diam: %f\n", elem->diam);
+		// printf("Color: %0X06\n", elem->color);
+		// printf("Position x: %f\n", elem->pos.x);
+		// printf("Position y: %f\n", elem->pos.y);
+		// printf("Position z: %f\n", elem->pos.z);
+		// printf("\n");
 	}
 	else if (elem->type == PL)
 	{
@@ -129,15 +129,15 @@ int get_element(char *line, t_element *elem)
 			ft_free_mat(temp);
 			return (EXIT_FAILURE);
 		}
-		printf("PLANE\n");
-		printf("Vector x: %f\n", elem->vec.x);
-		printf("Vector y: %f\n", elem->vec.y);
-		printf("Vector z: %f\n", elem->vec.z);
-		printf("Color: %0X06\n", elem->color);
-		printf("Position x: %f\n", elem->pos.x);
-		printf("Position y: %f\n", elem->pos.y);
-		printf("Position z: %f\n", elem->pos.z);
-		printf("\n");
+		// printf("PLANE\n");
+		// printf("Vector x: %f\n", elem->vec.x);
+		// printf("Vector y: %f\n", elem->vec.y);
+		// printf("Vector z: %f\n", elem->vec.z);
+		// printf("Color: %0X06\n", elem->color);
+		// printf("Position x: %f\n", elem->pos.x);
+		// printf("Position y: %f\n", elem->pos.y);
+		// printf("Position z: %f\n", elem->pos.z);
+		// printf("\n");
 	}
 	else if (elem->type == CY)
 	{
@@ -146,17 +146,17 @@ int get_element(char *line, t_element *elem)
 			ft_free_mat(temp);
 			return (EXIT_FAILURE);
 		}
-		printf("CYLINDER\n");
-		printf("Diam: %f\n", elem->diam);
-		printf("Height: %f\n", elem->height);
-		printf("Color: %0X06\n", elem->color);
-		printf("Position x: %f\n", elem->pos.x);
-		printf("Position y: %f\n", elem->pos.y);
-		printf("Position z: %f\n", elem->pos.z);
-		printf("Vector x: %f\n", elem->vec.x);
-		printf("Vector y: %f\n", elem->vec.y);
-		printf("Vector z: %f\n", elem->vec.z);
-		printf("\n");
+		// printf("CYLINDER\n");
+		// printf("Diam: %f\n", elem->diam);
+		// printf("Height: %f\n", elem->height);
+		// printf("Color: %0X06\n", elem->color);
+		// printf("Position x: %f\n", elem->pos.x);
+		// printf("Position y: %f\n", elem->pos.y);
+		// printf("Position z: %f\n", elem->pos.z);
+		// printf("Vector x: %f\n", elem->vec.x);
+		// printf("Vector y: %f\n", elem->vec.y);
+		// printf("Vector z: %f\n", elem->vec.z);
+		// printf("\n");
 	}
 	ft_free_mat(temp);
 	return (EXIT_SUCCESS);
