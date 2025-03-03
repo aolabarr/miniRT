@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 17:21:53 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/01 12:36:28 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/01 13:01:00 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int is_coord_equal(t_coord a, t_coord b)
 	return (0);
 }
 
-t_coord sum_coord(t_coord a, t_coord b)
+t_vec sum_vector(t_vec a, t_vec b)
 {
- 	t_coord res;
+ 	t_vec res;
 
 	res.x = a.x + b.x;
 	res.y = a.y + b.y;
@@ -47,7 +47,7 @@ t_coord sum_coord(t_coord a, t_coord b)
 	return(res);
 }
 
-t_coord rest_coord(t_coord a, t_coord b)
+t_vec rest_coord(t_coord a, t_coord b)
 {
  	t_coord res;
 
@@ -57,6 +57,37 @@ t_coord rest_coord(t_coord a, t_coord b)
 	res.w = a.w - b.w;
 	
 	return(res);
+}
+t_vec opp_vector(t_vec vec)
+{
+	t_vec zero;
+
+	zero.x = 0;
+	zero.y = 0;
+	zero.z = 0;
+	zero.w = 0;
+	return(rest_coord(zero, vec));
+}
+
+t_vec scalar_product(t_vec vec, float scalar)
+{
+    t_vec res;
+
+    res.x = vec.x * scalar;
+    res.y = vec.y * scalar;
+    res.z = vec.z * scalar;
+	res.w = vec.w * scalar;
+    return (res);
+}
+t_vec cross_product(t_vec v1, t_vec v2)
+{
+    t_vec res;
+
+    res.x = v1.y * v2.z - v1.z * v2.y;
+    res.y = v1.z * v2.x - v1.x * v2.z;
+    res.z = v1.x * v2.y - v1.y * v2.x;
+	res.w = 0;
+    return (res);
 }
 /*
 t_position  new_lineal_point(t_position origin, t_vector vector, float t)
@@ -77,14 +108,6 @@ t_vector cross_product(t_vector v1, t_vector v2)
     res.z = v1.x * v2.y - v1.y * v2.x;
     return (res);
 }
-t_vector scalar_vec_product(t_vector vec, float scalar)
-{
-    t_vector res;
 
-    res.x = vec.x * scalar;
-    res.y = vec.y * scalar;
-    res.z = vec.z * scalar;
-    return (res);
-}
 */
 
