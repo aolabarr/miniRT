@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 10:46:45 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/22 11:09:27 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/10 09:34:19 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	init_scene(t_data *scene)
 void	init_ambient(t_ambient *amb)
 {
 	amb->ratio = 0;
-	amb->color = 0xFFFFFF;
+	init_color(&amb->color);
 }
 
 void	init_camera(t_camera *cam)
@@ -44,7 +44,14 @@ void	init_light(t_light *light)
 	light->pos.y = 0;
 	light->pos.z = 0;
 	light->bright = 0;
-	light->color = 0;
+	init_color(&light->color);
+}
+
+void	init_color(t_color *color)
+{
+	color->red = 0;
+	color->green = 0;
+	color->blue = 0;
 }
 
 int	check_extension(char *str)

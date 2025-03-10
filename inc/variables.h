@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variables.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:30:53 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/01 12:24:00 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/10 09:03:16 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ typedef struct s_color
 	int		red;
 	int		green;
 	int		blue;
-}				t_color;
+}			t_color;
 
 typedef struct s_ambient
 {
 	float	ratio;
-	int		color;
+	t_color	color;
 }			t_ambient;
 
 // typedef struct s_position
@@ -54,7 +54,7 @@ typedef struct s_light
 {
 	t_coord		pos;
 	float		bright;
-	int			color;
+	t_color		color;
 }				t_light;
 
 typedef	enum e_eltype
@@ -70,7 +70,7 @@ typedef struct s_element
 	t_eltype	type;
 	t_coord		pos;
 	t_coord		vec;
-	int			color;
+	t_color		color;
 	float		diam;
 	float		height;
 }			t_element;

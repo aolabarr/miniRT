@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/01 11:38:09 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:19:16 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	init_scene(t_data *scene);
 void    init_ambient(t_ambient *amb);
 void	init_camera(t_camera *cam);
 void	init_light(t_light *light);
+void	init_color(t_color *color);
 int		check_extension(char *str);
 
 /* get_data.c */
@@ -52,7 +53,9 @@ int     get_camera(char *line, t_camera *cam);
 int     get_light(char *line, t_light *lig);
 int		get_element(char *line, t_element *elem);
 int		add_element(t_data *scene, t_element *new_elem);
-int     rgb_to_hex(char *str);
+int     get_color(char *str, t_color *color);
+int     rgb_to_hex(t_color color);
+int     clamp_color(int color);
 int	    ft_atoi_hex(char *str);
 int	    dec_to_hex(int dec);
 float	ft_atof(char *str);
@@ -75,6 +78,10 @@ int	parse(t_data *scene, char *map);
 
 /* raytracing.c */
 int raytracing(t_data *scene);
+
+/* colors_test.c*/
+void testing_colors(t_data *scene);
+t_color blend_colors(t_color col1, t_color col2, float ratio);
 
 // /* math.c */
 // t_position  new_lineal_point(t_position origin, t_vector vector, float t);

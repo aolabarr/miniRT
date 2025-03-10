@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:24:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/01 11:39:39 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/10 09:37:31 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int     get_camera(char *line, t_camera *cam);
 int     get_light(char *line, t_light *lig);
 int		get_element(char *line, t_element *elem);
 int		add_element(t_data *scene, t_element *new_elem);
-int     rgb_to_hex(char *str);
 int	    ft_atoi_hex(char *str);
 int	    dec_to_hex(int dec);
 float	ft_atof(char *str);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/02/22 18:24:09 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:27:35 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,13 @@ void	put_color_pixel(t_data *data, t_image img, int x, int y)
 	int	offset;
 	(void)data;
 	offset = (img.line_len * y) + x * (img.bpp / 8);
+	int amb_color = rgb_to_hex(data->amb.color);
+	int lig_color = rgb_to_hex(data->lig.color);
 	
 	if (x > 200 && x < 400)
-		*(int *)((char *)img.addr + offset) = data->elem[0].color;
+		*(int *)((char *)img.addr + offset) = amb_color;
 	else
-		*(int *)((char *)img.addr + offset) = data->elem[1].color;
+		*(int *)((char *)img.addr + offset) = lig_color;
 	
 	return ;
 	

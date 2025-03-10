@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
+#    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/01 15:23:12 by aolabarr          #+#    #+#              #
-#    Updated: 2025/02/22 18:28:23 by aolabarr         ###   ########.fr        #
+#    Updated: 2025/03/10 15:26:50 by binary           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC =	main.c \
 		parse.c \
 		math_1.c \
 		math_2.c \
+		color.c \
 		
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 

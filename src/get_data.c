@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/03 16:15:24 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:26:50 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int get_ambient(char *line, t_ambient *amb)
 		amb->ratio = ft_atof(temp[1]);
 		if (amb->ratio >= 0.0 || amb->ratio <= 1.0)
 		{
-			if ((amb->color = rgb_to_hex(temp[2]) == ERR_INT))
+			if (get_color(temp[2], &(amb->color)) == ERR_INT)
 				status = EXIT_FAILURE;
 		}
 		else 
@@ -82,7 +82,7 @@ int	get_light(char *line, t_light *lig)
 			lig->bright = ft_atof(temp[2]);
 			if (lig->bright >= 0.0 || lig->bright <= 1.0)
 			{
-				if ((lig->color = rgb_to_hex(temp[3])) == ERR_INT)
+				if (get_color(temp[3], &lig->color) == ERR_SCENE)
 					status = EXIT_FAILURE;
 			}
 			else
@@ -185,62 +185,45 @@ int add_element(t_data *scene, t_element *new_elem)
 	return (EXIT_SUCCESS);
 }
 
-int	get_color(char *str)
+int	get_color(char *str, t_color *color)
 {
-	t_color color;
 	char	**temp;
 	
 	temp = ft_split(str, ',');
-	if (len_mat(temp) != 3)
-		return (ERR_SCENE);
-	color.red = ft_atoi(temp[0]);
-	if (color.red < 0 || color.red > 255)
-		return (ERR_SCENE);
-	color.green = ft_atoi(temp[1]);
-	if (color.green < 0 || color.green > 255)
-		return (ERR_SCENE);
-	color.blue = ft_atoi(temp[2]);
-	if (color.blue < 0 || color.blue > 255)
-		return (ERR_SCENE);
+	if (!temp || len_mat(temp) != 3)
+		return (ft_free_mat(temp), ERR_SCENE);
+	color->red = ft_atoi(temp[0]);
+	if (color->red < 0 || color->red > 255)
+		return (ft_free_mat(temp), ERR_SCENE);
+	color->green = ft_atoi(temp[1]);
+	if (color->green < 0 || color->green > 255)
+		return (ft_free_mat(temp), ERR_SCENE);
+	color->blue = ft_atoi(temp[2]);
+	if (color->blue < 0 || color->blue > 255)
+		return (ft_free_mat(temp), ERR_SCENE);
 	ft_free_mat(temp);
 	return (EXIT_SUCCESS);
 }
 
-
-
-int	rgb_to_hex(char *str)
+int rgb_to_hex(t_color color)
 {
-	int		r;
-	int		g;
-	int		b;
 	int		hex_color;
-	char	**rgb;
+	
+	color.red = clamp_color(color.red);
+	color.green = clamp_color(color.green);
+	color.blue = clamp_color(color.blue);
 
-	if (!str)
-		return (ERR_SCENE);
-	rgb = ft_split(str, ',');
-	if (len_mat(rgb) != 3)
-		return (ERR_SCENE);
-	r = ft_atoi(rgb[0]);
-	if (r == ERR_INT)
-		return (r);
-	// printf("R dec es %d\n",  ft_atoi(rgb[0]));
-	g = ft_atoi(rgb[1]);
-	// printf("G dec %d\n", ft_atoi(rgb[1]));
-	if (g == ERR_INT)
-		return (g);
-	b = ft_atoi(rgb[2]);
-	// printf("B dec %d\n", ft_atoi(rgb[2]));
-	if (b == ERR_INT)
-		return (b);
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		return (ERR_INT);
-
-	// Conversión correcta a hexadecimal con bit shifting
-	hex_color = (r << 16) | (g << 8) | b;
-
-	ft_free_mat(rgb);
+	hex_color = (color.red << 16) | (color.green << 8) | color.blue;
 	return (hex_color);
+}
+
+int clamp_color(int color)
+{
+	if (color < 0)
+		return (0);
+	if (color > 255)
+		return (255);
+	return (color);
 }
 
 int	ft_atoi_hex(char *str)

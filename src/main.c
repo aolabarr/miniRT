@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:22:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/02/22 16:17:23 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:27:18 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,11 @@ int	main(int argc, char **argv)
 
 	if (parse(&scene, argv[1]))
 		return(handle_free(&scene), EXIT_FAILURE);
-	printf("Figure: %d y color %0X\n", scene.elem[0].type, scene.elem[0].color);
-	printf("Figure: %d y color %0X\n", scene.elem[1].type, scene.elem[1].color);	
-
 	
 	if (raytracing(&scene))
 		return(handle_free(&scene), EXIT_FAILURE);
 	
 	return(EXIT_SUCCESS);	
 }
-
 
 
