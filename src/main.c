@@ -23,6 +23,9 @@ int	main(int argc, char **argv)
 
 	if (parse(&scene, argv[1]))
 		return(handle_free(&scene), EXIT_FAILURE);
+	printf("Figure: %d y color %0X\n", scene.elem[0].type, scene.elem[0].color);
+	printf("Figure: %d y color %0X\n", scene.elem[1].type, scene.elem[1].color);	
+
 	
 	if (raytracing(&scene))
 		return(handle_free(&scene), EXIT_FAILURE);

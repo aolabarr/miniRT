@@ -12,7 +12,7 @@
 
 #include "../inc/minirt.h"
 
-float abs(float num)
+float myabs(float num)
 {
 	if (num >= 0)
 		return (num);
@@ -21,7 +21,7 @@ float abs(float num)
 
 int is_equal(float a, float b)
 {
-    if (abs(a - b) < EPSILON)
+    if (myabs(a - b) < EPSILON)
 		return(1);
 	return (0);
 }

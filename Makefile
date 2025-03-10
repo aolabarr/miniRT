@@ -37,7 +37,8 @@ SRC =	main.c \
 		raytracing.c \
 		free.c \
 		parse.c \
-		math.c \
+		math_1.c \
+		math_2.c \
 		
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 

@@ -13,6 +13,13 @@
 #ifndef VARIABLES_H
 # define VARIABLES_H
 
+typedef struct s_color
+{
+	int		red;
+	int		green;
+	int		blue;
+}				t_color;
+
 typedef struct s_ambient
 {
 	float	ratio;

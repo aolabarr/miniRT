@@ -57,12 +57,12 @@ void	put_color_pixel(t_data *data, t_image img, int x, int y)
 	int	offset;
 	(void)data;
 	offset = (img.line_len * y) + x * (img.bpp / 8);
-	/*
+	
 	if (x > 200 && x < 400)
-		*(int *)((char *)img.addr + offset) = BLACK;
+		*(int *)((char *)img.addr + offset) = data->elem[0].color;
 	else
-		*(int *)((char *)img.addr + offset) = YELLOW;
-	*/
+		*(int *)((char *)img.addr + offset) = data->elem[1].color;
+	
 	return ;
 	
 }
