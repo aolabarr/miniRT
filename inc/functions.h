@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/10 15:19:16 by binary           ###   ########.fr       */
+/*   Updated: 2025/03/11 10:53:56 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,27 @@ int raytracing(t_data *scene);
 void testing_colors(t_data *scene);
 t_color blend_colors(t_color col1, t_color col2, float ratio);
 
+/* math_1.c */
+float myabs(float num);
+int is_equal(float a, float b);
+int is_coord_equal(t_coord a, t_coord b);
+t_vec sum_vector(t_vec a, t_vec b);
+t_vec rest_coord(t_coord a, t_coord b);
+t_vec opp_vector(t_vec vec);
+t_vec scalar_product(t_vec vec, float scalar);
+t_vec cross_product(t_vec v1, t_vec v2);
+
+/* math_2.c */
+float magnitude(t_vec vec);
+t_vec normalize(t_vec vec);
+float dot_product(t_vec a, t_vec b);
+
+/* intersection.c */
+t_pos    position(t_ray ray, float t);
+t_pos    new_lineal_point(t_pos point, t_vec vec);
+
+
+// /* math_1.c */
 // /* math.c */
 // t_position  new_lineal_point(t_position origin, t_vector vector, float t);
 // t_vector cross_product(t_vector v1, t_vector v2);

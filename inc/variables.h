@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:30:53 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/10 09:03:16 by binary           ###   ########.fr       */
+/*   Updated: 2025/03/11 08:38:53 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,12 @@ typedef struct s_mouse
 	float	x;
 	float	y;
 }			t_mouse;
+
+typedef struct s_ray
+{
+	t_pos	origin;
+	t_vec	vec;
+}			t_ray;
 
 typedef struct s_data
 {
