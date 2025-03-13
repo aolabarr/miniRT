@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 08:13:32 by binary            #+#    #+#             */
-/*   Updated: 2025/03/11 11:58:35 by binary           ###   ########.fr       */
+/*   Updated: 2025/03/12 12:46:29 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,46 @@ t_pos new_lineal_point(t_pos point, t_vec vec)
 /* 
 a ← dot(ray.direction, ray.direction)
 b ← 2 * dot(ray.direction, sphere_to_ray)
-c ← dot(sphere_to_ray, sphere_to_ray) - 1
+c ← dot(sphere_to_ray, sphere_to_ray) - radius^2
 discriminant ← b² - 4 * a * c 
 */
 
-t_hit	calculate_discriminant(t_ray ray, t_element elem)
+t_hit	calculate_hit(t_ray ray, t_element elem)
 {
 
 	float a;
 	float b;
 	float c;
 	float dis;
-	int		t[2];
-
-
+	t_hit res;
+	
 	a = dot_product(ray.vec, ray.vec);
 	b = 2 * dot_product(ray.vec, rest_coord(ray.origin, elem.pos));
-	c = dot(rest_coord(ray.origin, elem.pos), rest_coord(ray.origin, elem.pos)) - 1;
-	dis = b * b - 4 * a * c;
+	c = dot_product(rest_coord(ray.origin, elem.pos), rest_coord(ray.origin, elem.pos)) - ((elem.diam/2) * (elem.diam/2));
+	dis = (b * b) - (4 * a * c);
+	// printf("dis: %f\n", dis);
+	//if (dis < EPSILON)
 	if (dis < 0)
-		return ()
+	{
+		// printf("no hay hit\n");
+		res.hit = false;
+		res.t1 = res.t2 = 0;
+		return (res);
+	}
+	res.hit = true;
+	// printf("hay hit\n");
+	if (dis == 0)
+	{
+		res.t1 = -b / (2 * a);
+		res.t2 = res.t1;
+	}
+	else if (dis > 0)
+	{
+		res.t1 = (- b - sqrtf(dis)) / (2 * a);
+		res.t2 = (- b + sqrtf(dis)) / (2 * a);
 
+	}
+	//res.elem = elem.type;
+	return (res);
 }
+

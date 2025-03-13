@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 17:21:53 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/11 10:31:24 by binary           ###   ########.fr       */
+/*   Updated: 2025/03/12 08:40:05 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ t_vec sum_vector(t_vec a, t_vec b)
 	res.y = a.y + b.y;
 	res.z = a.z + b.z;
 	res.w = a.w + b.w;
-
 	return(res);
 }
 
@@ -55,7 +54,6 @@ t_vec rest_coord(t_coord a, t_coord b)
 	res.y = a.y - b.y;
 	res.z = a.z - b.z;
 	res.w = a.w - b.w;
-	
 	return(res);
 }
 t_vec opp_vector(t_vec vec)

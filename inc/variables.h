@@ -6,12 +6,14 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:30:53 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/11 08:38:53 by binary           ###   ########.fr       */
+/*   Updated: 2025/03/12 12:46:27 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VARIABLES_H
 # define VARIABLES_H
+
+# include <stdbool.h>
 
 typedef struct s_color
 {
@@ -44,7 +46,7 @@ typedef struct s_coord
 typedef struct s_camera
 {
 	t_coord 	pos;
-	t_coord 	vec;
+	t_vec		vec;
 	int			fov;
 
 }			t_camera;
@@ -96,9 +98,17 @@ typedef struct s_mouse
 
 typedef struct s_ray
 {
-	t_pos	origin;
+	t_coord	origin;
 	t_vec	vec;
 }			t_ray;
+
+typedef struct s_hit
+{
+	bool		hit;
+	float		t1;
+	float		t2;
+	t_element	elem;
+}				t_hit;
 
 typedef struct s_data
 {

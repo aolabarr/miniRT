@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/11 10:53:56 by binary           ###   ########.fr       */
+/*   Updated: 2025/03/12 07:53:59 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,9 @@ t_vec normalize(t_vec vec);
 float dot_product(t_vec a, t_vec b);
 
 /* intersection.c */
-t_pos    position(t_ray ray, float t);
-t_pos    new_lineal_point(t_pos point, t_vec vec);
+t_pos	position(t_ray ray, float t);
+t_pos	new_lineal_point(t_pos point, t_vec vec);
+t_hit	calculate_hit(t_ray ray, t_element elem);
 
 
 // /* math_1.c */
