@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/12 13:00:31 by binary           ###   ########.fr       */
+/*   Updated: 2025/03/14 08:28:41 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,39 +86,25 @@ void	put_color_pixel(t_data *data, t_image img, int x, int y)
 
 	float aspect_ratio = (float)WIDTH / (float)HEIGHT;
 	float fov_radians = (data->cam.fov * PI) / 180.0;
-	pixel_size = tanf(fov_radians / 2.0) * 2.0 / WIDTH;
+	pixel_size = tanf(fov_radians / 2.0) * 2.0 / WIDTH; // Tamaño de cada píxel en el espacio de la cámara
+	//cuanto espacio en el mundo 3D ocupa un solo píxel
 
-
-	t_color	bg_color = {0, 0, 0};        // Negro para el fondo
+	t_color	bg_color = {0, 0, 0};        
 	t_color color;
-
-	// Tamaño de cada píxel en el espacio de la cámara
-	//pixel_size = data->cam.fov / WIDTH; // cuanto espacio en el mundo 3D ocupa un solo píxel
-
-	// Convertir coordenadas del píxel a coordenadas en la "pared"
-	//printf("ANTES x: %d, half_width: %f, resultado: %f\n", x, half_width, (x - half_width));
-	// printf("x es: %d\n", x);
-	// printf("Dibujando píxel en x: %d, y: %d\n", x, y);
-	pixel_pos.x = (x - half_width) * pixel_size * aspect_ratio;
 	
+	pixel_pos.x = (x - half_width) * pixel_size * aspect_ratio;
 	pixel_pos.y = (half_height - y) * pixel_size;
 	pixel_pos.z = 1; // La pared está delante de la cámara
-	// printf("Pixel Pos X: %f, Y: %f, Z: %f\n", pixel_pos.x, pixel_pos.y, pixel_pos.z);
-	// printf(" DESPUES x: %d, half_width: %f, result: %f\n", x, half_width, (x - half_width));
-
-	// Crear rayo desde la cámara hacia el píxel
+	
+	// pixel_pos.x = x;
+	// pixel_pos.y = y;
+	// pixel_pos.z = 1; // La pared está delante de la cámara
+	
 	ray.origin = data->cam.pos;
 	ray.vec = normalize(rest_coord(pixel_pos, data->cam.pos));
-	// printf("ray normalized X: %f\n", ray.vec.x);
-	// printf("ray normalized Y: %f\n", ray.vec.y);
-	// printf("ray normalized Z: %f\n", ray.vec.z);
-	// printf("ray normalized W: %d\n", ray.vec.w);
 	
-
-	// Verificar intersección con la esfera
 	hit = calculate_hit(ray, data->elem[0]);
 	
-	// Calcular el color a pintar
 	if (hit.hit && (hit.t1 > EPSILON || hit.t2 > EPSILON))
 	{
 		if (hit.t1 < hit.t2)
@@ -128,7 +114,7 @@ void	put_color_pixel(t_data *data, t_image img, int x, int y)
 	}
 	else 
 		color = bg_color;
-	// Escribir el color en la imagen
+
 	offset = (img.line_len * y) + x * (img.bpp / 8);
 	*(int *)((char *)img.addr + offset) = rgb_to_hex(color);
 }
