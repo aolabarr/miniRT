@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/14 08:28:41 by binary           ###   ########.fr       */
+/*   Updated: 2025/03/16 13:40:48 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,28 +80,28 @@ void	put_color_pixel(t_data *data, t_image img, int x, int y)
 	t_ray	ray;
 	t_hit	hit;
 	t_coord	pixel_pos;
-	float	pixel_size;
-	float	half_width = WIDTH / 2;
-	float	half_height = HEIGHT / 2;
-
-	float aspect_ratio = (float)WIDTH / (float)HEIGHT;
-	float fov_radians = (data->cam.fov * PI) / 180.0;
-	pixel_size = tanf(fov_radians / 2.0) * 2.0 / WIDTH; // Tamaño de cada píxel en el espacio de la cámara
-	//cuanto espacio en el mundo 3D ocupa un solo píxel
-
 	t_color	bg_color = {0, 0, 0};        
 	t_color color;
-	
-	pixel_pos.x = (x - half_width) * pixel_size * aspect_ratio;
-	pixel_pos.y = (half_height - y) * pixel_size;
-	pixel_pos.z = 1; // La pared está delante de la cámara
-	
-	// pixel_pos.x = x;
-	// pixel_pos.y = y;
-	// pixel_pos.z = 1; // La pared está delante de la cámara
-	
+		
+
+	float u = x / (WIDTH - 1);
+	float v = y / (HEIGHT - 1);
+
+	// pixel_pos.x = (1 - u) * data->img.canvas[0].x + u * data->img.canvas[1].x + (1 - v) * data->img.canvas[0].x + v * data->img.canvas[2].x;
+	// pixel_pos.y = (1 - u) * data->img.canvas[0].y + u * data->img.canvas[1].y + (1 - v) * data->img.canvas[0].y + v * data->img.canvas[2].y;
+	// pixel_pos.z = (1 - u) * data->img.canvas[0].z + u * data->img.canvas[1].z + (1 - v) * data->img.canvas[0].z + v * data->img.canvas[2].z;
+
+	pixel_pos = sum_coord( \
+				sum_coord(mult_coord_float(data->img.canvas[0], (1 - u) * (1 - v)), mult_coord_float(data->img.canvas[1], u * (1 - v))), \
+				sum_coord(mult_coord_float(data->img.canvas[2], (1 - u) * v), mult_coord_float(data->img.canvas[3], u * v)));
+
+
+	// printf("Pixel pos: %f %f %f\n", pixel_pos.x, pixel_pos.y, pixel_pos.z);
+
 	ray.origin = data->cam.pos;
 	ray.vec = normalize(rest_coord(pixel_pos, data->cam.pos));
+	// printf("Ray origin: %f %f %f\n", ray.origin.x, ray.origin.y, ray.origin.z);
+	// printf("Ray vec: %f %f %f\n", ray.vec.x, ray.vec.y, ray.vec.z);
 	
 	hit = calculate_hit(ray, data->elem[0]);
 	

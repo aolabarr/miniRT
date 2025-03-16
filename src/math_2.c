@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 12:43:47 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/12 11:14:29 by binary           ###   ########.fr       */
+/*   Updated: 2025/03/16 13:32:33 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,24 @@ float dot_product(t_vec a, t_vec b)
 	return (res);
 }
 
+t_pos	sum_coord(t_pos coord1, t_pos coord2)
+{
+	t_pos	res;
+
+	res.x = coord1.x + coord2.x;
+	res.y = coord1.y + coord2.y;
+	res.z = coord1.z + coord2.z;
+	res.w = 1;
+	return (res);
+}
+
+t_pos	mult_coord_float(t_pos coord1, float t)
+{
+	t_pos	res;
+
+	res.x = coord1.x * t;
+	res.y = coord1.y * t;
+	res.z = coord1.z * t;
+	res.w = 1;
+	return (res);
+}

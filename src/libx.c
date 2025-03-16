@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:22:53 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/01 11:42:14 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/16 14:18:06 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,36 +23,57 @@ void	init_mlx(t_data *scene)
 	scene->img.line_len = 0;
 	scene->img.endian = 0;
 	scene->update = 1;
-	// init_canvas(scene);
+	init_canvas(scene);
 	scene->name = ft_strdup(MINI_RT);
 	return ;
 }
 
-// void	init_canvas(t_data *scene)
-// {
-// 	float hsize;
-// 	float vsize;
-// 	t_position	center;
-// 	t_vector	right;
-// 	t_vector	up;
-// 	t_position	aux;
+void	init_canvas(t_data *scene)
+{
+	float hsize;
+	float vsize;
+	t_pos	center;
+	t_vec	right;
+	t_vec	up;
+	t_pos	aux;
+	t_vec	world_up;
 
-// 	hsize = 2 * tan((scene->cam.fov * PI / 180) / 2);
-// 	vsize = hsize / ASPECT_RATIO;
-// 	center = new_lineal_point(scene->cam.pos, scene->cam.vec, 1);
-// 	right = cross_product(scene->cam.vec, (t_vector){0, 1, 0});
-// 	up = cross_product(scene->cam.vec, right);
+	hsize = 2 * tan((scene->cam.fov * PI / 180) / 2);
+	vsize = hsize / ASPECT_RATIO;
+	center = new_lineal_point(scene->cam.pos, scene->cam.vec, 1);
+	if (scene->cam.vec.y == 1 || scene->cam.vec.y == -1)
+		world_up = (t_vec){0, 0, 1, 0};
+	else
+		world_up = (t_vec){0, 1, 0, 0};
+		
+	right = normalize(cross_product(scene->cam.vec, world_up));
+	up = normalize(cross_product(right, scene->cam.vec));
+	//printf("Right: %f %f %f\n", right.x, right.y, right.z);
+	printf("Up: %f %f %f\n", up.x, up.y, up.z);
 
-// 	aux = new_lineal_point(center, right, - hsize / 2);
-// 	scene->img.canvas[0] = new_lineal_point(aux, up, - vsize / 2);
-// 	aux = new_lineal_point(center, right, hsize / 2);
-// 	scene->img.canvas[1] = new_lineal_point(aux, up, - vsize / 2);
-// 	aux = new_lineal_point(center, right, - hsize / 2);
-// 	scene->img.canvas[2] = new_lineal_point(aux, up, vsize / 2);
-// 	aux = new_lineal_point(center, right, hsize / 2);
-// 	scene->img.canvas[3] = new_lineal_point(aux, up, vsize / 2);
-// 	return ;
-// }
+	// Inferior Izquierda
+	aux = new_lineal_point(center, right, -hsize / 2);
+	scene->img.canvas[0] = new_lineal_point(aux, up, -vsize / 2);
+
+	// Inferior Derecha
+	aux = new_lineal_point(center, right, hsize / 2);
+	scene->img.canvas[1] = new_lineal_point(aux, up, -vsize / 2);
+
+	// Superior Izquierda
+	aux = new_lineal_point(center, right, -hsize / 2);
+	scene->img.canvas[2] = new_lineal_point(aux, up, vsize / 2);
+
+	// Superior Derecha
+	aux = new_lineal_point(center, right, hsize / 2);
+	scene->img.canvas[3] = new_lineal_point(aux, up, vsize / 2);
+
+	printf("Canvas 0: %f %f %f\n", scene->img.canvas[0].x, scene->img.canvas[0].y, scene->img.canvas[0].z);
+	printf("Canvas 1: %f %f %f\n", scene->img.canvas[1].x, scene->img.canvas[1].y, scene->img.canvas[1].z);
+	printf("Canvas 2: %f %f %f\n", scene->img.canvas[2].x, scene->img.canvas[2].y, scene->img.canvas[2].z);
+	printf("Canvas 3: %f %f %f\n", scene->img.canvas[3].x, scene->img.canvas[3].y, scene->img.canvas[3].z);
+
+	return ;
+}
 
 void	*new_window(t_data *scene, char *title)
 {

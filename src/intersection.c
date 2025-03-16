@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 08:13:32 by binary            #+#    #+#             */
-/*   Updated: 2025/03/12 12:46:29 by binary           ###   ########.fr       */
+/*   Updated: 2025/03/16 13:36:02 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,20 @@ t_pos	position(t_ray ray, float t)
 	t_pos res;
 
 	temp = scalar_product(ray.vec, t);
-	res = new_lineal_point(ray.origin, temp);
+	res = new_lineal_point(ray.origin, temp, 1);
 	return (res);
 }
 
-/* revisar esto para "unificar" t_vector sum y t_pos new_lineal_point con un t_coord sum*/
-
-t_pos new_lineal_point(t_pos point, t_vec vec)
-{
-	t_pos	res;
+// t_pos new_lineal_point(t_pos point, t_vec vec)
+// {
+// 	t_pos	res;
 	
-	res.x = point.x + vec.x;
-	res.y = point.y + vec.y;
-	res.z = point.z + vec.z;
-	res.w = point.w + vec.w;
-	return (res);
-}
+// 	res.x = point.x + vec.x;
+// 	res.y = point.y + vec.y;
+// 	res.z = point.z + vec.z;
+// 	res.w = point.w + vec.w;
+// 	return (res);
+// }
 
 /* 
 a ← dot(ray.direction, ray.direction)

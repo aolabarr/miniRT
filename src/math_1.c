@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 17:21:53 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/12 08:40:05 by binary           ###   ########.fr       */
+/*   Updated: 2025/03/16 11:44:46 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,25 +87,14 @@ t_vec cross_product(t_vec v1, t_vec v2)
 	res.w = 0;
     return (res);
 }
-/*
-t_position  new_lineal_point(t_position origin, t_vector vector, float t)
+
+t_pos  new_lineal_point(t_pos origin, t_vec vector, float t)
 {
-    t_position res;
+    t_pos res;
 
     res.x = origin.x + t * vector.x;
     res.y = origin.y + t * vector.y;
     res.z = origin.z + t * vector.z;
     return(res);
 }
-t_vector cross_product(t_vector v1, t_vector v2)
-{
-    t_vector res;
-
-    res.x = v1.y * v2.z - v1.z * v2.y;
-    res.y = v1.z * v2.x - v1.x * v2.z;
-    res.z = v1.x * v2.y - v1.y * v2.x;
-    return (res);
-}
-
-*/
 

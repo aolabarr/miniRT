@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/16 11:25:14 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/16 13:31:13 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,15 +92,18 @@ t_vec rest_coord(t_coord a, t_coord b);
 t_vec opp_vector(t_vec vec);
 t_vec scalar_product(t_vec vec, float scalar);
 t_vec cross_product(t_vec v1, t_vec v2);
+t_pos new_lineal_point(t_pos origin, t_vec vector, float t);
 
 /* math_2.c */
 float magnitude(t_vec vec);
 t_vec normalize(t_vec vec);
 float dot_product(t_vec a, t_vec b);
+t_pos	sum_coord(t_pos coord1, t_pos coord2);
+t_pos	mult_coord_float(t_pos coord1, float t);
 
 /* intersection.c */
 t_pos	position(t_ray ray, float t);
-t_pos	new_lineal_point(t_pos point, t_vec vec);
+// t_pos	new_lineal_point(t_pos point, t_vec vec);
 t_hit	calculate_hit(t_ray ray, t_element elem);
 
 /* matrix_1.c*/
