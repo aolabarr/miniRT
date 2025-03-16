@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:08:18 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/13 17:21:37 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/16 16:02:14 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,20 @@ float *create_matrix(float a1,float a2,float a3,float a4,
 
 void print_matrix(float *mat)
 {
-    printf("\n%.2f\t%.2f\t%.2f\t%.2f\n", mat[0], mat[1], mat[2], mat[3]);
+    printf("\n%.2f\t%.4f\t%.2f\t%.2f\n", mat[0], mat[1], mat[2], mat[3]);
     printf("%.2f\t%.2f\t%.2f\t%.2f\n", mat[4], mat[5], mat[6], mat[7]);
     printf("%.2f\t%.2f\t%.2f\t%.2f\n", mat[8], mat[9], mat[10], mat[11]);
     printf("%.2f\t%.2f\t%.2f\t%.2f\n", mat[12], mat[13], mat[14], mat[15]);
+}
+void print_matrix_4f(float *mat)
+{
+    printf("\n%.4f\t%.4f\t%.4f\t%.4f\n", mat[0], mat[1], mat[2], mat[3]);
+    printf("%.4f\t%.4f\t%.4f\t%.4f\n", mat[4], mat[5], mat[6], mat[7]);
+    printf("%.4f\t%.4f\t%.4f\t%.4f\n", mat[8], mat[9], mat[10], mat[11]);
+    printf("%.4f\t%.4f\t%.4f\t%.4f\n", mat[12], mat[13], mat[14], mat[15]);
+}
+
+void print_vector(float *vec)
+{
+    printf("\n%.2f\t%.2f\t%.2f\t%.2f\n", vec[0], vec[1], vec[2], vec[3]);
 }

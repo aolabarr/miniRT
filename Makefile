@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+         #
+#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/01 15:23:12 by aolabarr          #+#    #+#              #
-#    Updated: 2025/03/16 10:28:18 by beiglesi         ###   ########.fr        #
+#    Updated: 2025/03/16 15:46:49 by aolabarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRC =	main.c \
 		math_2.c \
 		color.c \
 		matrix_1.c \
+		matrix_2.c \
 		intersection.c \
 		
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))

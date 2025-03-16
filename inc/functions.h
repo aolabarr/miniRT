@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/16 11:25:14 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/16 17:06:42 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,16 @@ t_hit	calculate_hit(t_ray ray, t_element elem);
 /* matrix_1.c*/
 int is_equal_matrix(float *mat1, float *mat2);
 float *multiply_matrix(float *mat1, float *mat2);
+float *multiply_matrix_vector(float *mat, float *vec);
+float *identity_matrix();
+float *transpose_matrix(float *mat);
+
+/* matrix_2.c*/
+float determinant_matrix(float *mat);
+float *invert_matrix(float *mat);
+void minor_matrix(float *mat, float *minor, int row, int col);
+float cofactor(float *mat, int row, int col);
+float *cofactor_matrix(float *mat);
+void	calculate_minor_row(int col, float *minor, float *mat, int *aux);
 
 #endif

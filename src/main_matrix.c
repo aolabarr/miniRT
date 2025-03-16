@@ -5,11 +5,15 @@ float *create_matrix(float a1,float a2,float a3,float a4,
     float a9,float a10,float a11,float a12,
     float a13,float a14,float a15,float a16);
 void print_matrix(float *mat);
+void print_matrix_4f(float *mat);
+void print_vector(float *vec);
 
 int main(int argc, char **argv)
 {
     
-    float *mat, *mat2;
+    float *mat, *mat2, *mat3, *mat4;
+    float vector[4] = {1, 1, 2, 0};
+    float *vec;
 
     if (argc != 17)
         return (printf("introducir 17 numeros\n"), 1);
@@ -21,5 +25,15 @@ int main(int argc, char **argv)
     print_matrix(mat);
     mat2 = multiply_matrix(mat, mat);
     print_matrix(mat2);
+    mat3 = identity_matrix();
+    print_matrix(mat3);
+    mat4 = transpose_matrix(mat2);
+    print_matrix(mat4);
+    vec = multiply_matrix_vector(mat3, vector);
+    print_vector(vec);
+    mat3 = invert_matrix(mat);
+    print_matrix_4f(mat3);
+    mat4 = invert_matrix(mat3);
+    print_matrix_4f(mat4);
     return(0);
 }
