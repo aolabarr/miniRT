@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
+#    By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/01 15:23:12 by aolabarr          #+#    #+#              #
-#    Updated: 2025/03/12 07:56:24 by binary           ###   ########.fr        #
+#    Updated: 2025/03/16 10:28:18 by beiglesi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRC =	main.c \
 		math_1.c \
 		math_2.c \
 		color.c \
+		matrix_1.c \
 		intersection.c \
 		
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
@@ -68,7 +69,7 @@ lib:
 
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) a.out
 	make fclean -C $(LIBFT_DIR)
 	make fclean -C $(LIBIO_DIR)
 	make clean -C $(LIBMLX_DIR)

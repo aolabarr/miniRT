@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/03/12 07:53:59 by binary           ###   ########.fr       */
+=======
+/*   Updated: 2025/03/13 17:10:52 by aolabarr         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +106,10 @@ float dot_product(t_vec a, t_vec b);
 t_pos	position(t_ray ray, float t);
 t_pos	new_lineal_point(t_pos point, t_vec vec);
 t_hit	calculate_hit(t_ray ray, t_element elem);
+
+/* matrix_1.c*/
+int is_equal_matrix(float *mat1, float *mat2);
+float *multiply_matrix(float *mat1, float *mat2);
 
 
 // /* math_1.c */
