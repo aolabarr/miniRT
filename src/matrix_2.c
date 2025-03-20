@@ -6,26 +6,12 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 13:53:52 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/16 17:05:10 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/20 15:14:17 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-float determinant_matrix(float *mat)
-{
-    float	det;
-    int		i;
-
-	det = 0;
-	i = 0;
-    while (i < 4)
-    {
-        det += mat[i] * cofactor(mat, 0, i);
-        i++;
-    }
-    return (det);
-}
 
 float *invert_matrix(float *mat)
 {

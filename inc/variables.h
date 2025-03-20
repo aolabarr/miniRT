@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variables.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:30:53 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/12 12:46:27 by binary           ###   ########.fr       */
+/*   Updated: 2025/03/20 15:41:37 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,15 @@ typedef struct s_ambient
 	t_color	color;
 }			t_ambient;
 
-// typedef struct s_position
-// {
-// 	float	x;
-// 	float	y;
-// 	float	z;
-// }			t_position;
+typedef struct s_shear
+{
+ 	float	xy;
+ 	float	xz;
+ 	float	yx;
+	float	yz;
+	float	zx;
+	float	zy;
+}			t_shear;
 
 typedef struct s_coord
 {

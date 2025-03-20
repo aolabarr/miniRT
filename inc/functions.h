@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/16 17:06:42 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/20 15:50:37 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,16 @@ void minor_matrix(float *mat, float *minor, int row, int col);
 float cofactor(float *mat, int row, int col);
 float *cofactor_matrix(float *mat);
 void	calculate_minor_row(int col, float *minor, float *mat, int *aux);
+
+/* matrix_3.c*/
+float *translation_matrix(float x, float y, float z);
+float *scale_matrix(float x, float y, float z);
+float *rotation_x_matrix(float angle);
+float *rotation_y_matrix(float angle);
+float *rotation_z_matrix(float angle);
+
+/* matrix_4.c*/
+float determinant_matrix(float *mat);
+float *shearing_matrix(t_shear shear);
 
 #endif

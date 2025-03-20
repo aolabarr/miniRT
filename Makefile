@@ -6,7 +6,7 @@
 #    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/01 15:23:12 by aolabarr          #+#    #+#              #
-#    Updated: 2025/03/16 15:46:49 by aolabarr         ###   ########.fr        #
+#    Updated: 2025/03/20 15:50:17 by aolabarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,8 @@ SRC =	main.c \
 		color.c \
 		matrix_1.c \
 		matrix_2.c \
+		matrix_3.c \
+		matrix_4.c \
 		intersection.c \
 		
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
