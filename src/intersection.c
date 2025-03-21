@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 08:13:32 by binary            #+#    #+#             */
-/*   Updated: 2025/03/16 13:36:02 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/21 12:56:47 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,14 @@ t_hit	calculate_hit(t_ray ray, t_element elem)
 	b = 2 * dot_product(ray.vec, rest_coord(ray.origin, elem.pos));
 	c = dot_product(rest_coord(ray.origin, elem.pos), rest_coord(ray.origin, elem.pos)) - ((elem.diam/2) * (elem.diam/2));
 	dis = (b * b) - (4 * a * c);
-	// printf("dis: %f\n", dis);
-	//if (dis < EPSILON)
 	if (dis < 0)
 	{
-		// printf("no hay hit\n");
+		//printf("no hay hit\n");
 		res.hit = false;
 		res.t1 = res.t2 = 0;
 		return (res);
 	}
 	res.hit = true;
-	// printf("hay hit\n");
 	if (dis == 0)
 	{
 		res.t1 = -b / (2 * a);
@@ -75,7 +72,6 @@ t_hit	calculate_hit(t_ray ray, t_element elem)
 		res.t2 = (- b + sqrtf(dis)) / (2 * a);
 
 	}
-	//res.elem = elem.type;
 	return (res);
 }
 

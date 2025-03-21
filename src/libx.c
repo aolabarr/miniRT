@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libx.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:22:53 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/16 14:18:06 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/21 12:53:24 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,7 @@ void	init_canvas(t_data *scene)
 		
 	right = normalize(cross_product(scene->cam.vec, world_up));
 	up = normalize(cross_product(right, scene->cam.vec));
-	//printf("Right: %f %f %f\n", right.x, right.y, right.z);
-	printf("Up: %f %f %f\n", up.x, up.y, up.z);
-
+	
 	// Inferior Izquierda
 	aux = new_lineal_point(center, right, -hsize / 2);
 	scene->img.canvas[0] = new_lineal_point(aux, up, -vsize / 2);
@@ -66,11 +64,6 @@ void	init_canvas(t_data *scene)
 	// Superior Derecha
 	aux = new_lineal_point(center, right, hsize / 2);
 	scene->img.canvas[3] = new_lineal_point(aux, up, vsize / 2);
-
-	printf("Canvas 0: %f %f %f\n", scene->img.canvas[0].x, scene->img.canvas[0].y, scene->img.canvas[0].z);
-	printf("Canvas 1: %f %f %f\n", scene->img.canvas[1].x, scene->img.canvas[1].y, scene->img.canvas[1].z);
-	printf("Canvas 2: %f %f %f\n", scene->img.canvas[2].x, scene->img.canvas[2].y, scene->img.canvas[2].z);
-	printf("Canvas 3: %f %f %f\n", scene->img.canvas[3].x, scene->img.canvas[3].y, scene->img.canvas[3].z);
 
 	return ;
 }
