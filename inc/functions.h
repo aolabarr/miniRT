@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/22 11:59:29 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/22 21:10:17 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ int		handle_close(t_data *scene);
 int		close_window(t_data *scene);
 
 /* render.c */
+int     create_scene(t_data *scene);
 int	    render_image(t_data *scene);
 int	    create_image(t_data *scene);
 void	put_color_pixel(t_data *scene, t_image img, int x, int y);
+
 
 /* keys.c */
 int     handle_key_input(int key, t_data *scene);
@@ -78,7 +80,8 @@ void	ft_free_v(void *str);
 int	parse(t_data *scene, char *map);
 
 /* raytracing.c */
-int raytracing(t_data *scene);
+t_pos   calc_pixel_position(int x, int y, t_pos *canvas);
+t_pos	zero_pos(void);
 
 /* colors_test.c*/
 void testing_colors(t_data *scene);
@@ -109,28 +112,31 @@ t_hit	calculate_hit(t_ray ray, t_element elem);
 
 /* matrix_1.c*/
 int is_equal_matrix(float *mat1, float *mat2);
-float *multiply_matrix(float *mat1, float *mat2);
-float *multiply_matrix_vector(float *mat, float *vec);
-float *identity_matrix();
-float *transpose_matrix(float *mat);
+void	multiply_matrix(float *mat1, float *mat2, float *res);
+void	multiply_matrix_vector(float *mat, float *vec, float *res);
+void	identity_matrix(float *mat);
+void	transpose_matrix(float *mat, float *res);
 
 /* matrix_2.c*/
 float determinant_matrix(float *mat);
-float *invert_matrix(float *mat);
+int	invert_matrix(float *mat, float *inv);
 void minor_matrix(float *mat, float *minor, int row, int col);
 float cofactor(float *mat, int row, int col);
-float *cofactor_matrix(float *mat);
+void	cofactor_matrix(float *mat, float *res);
 void	calculate_minor_row(int col, float *minor, float *mat, int *aux);
 
 /* matrix_3.c*/
-float *translation_matrix(float x, float y, float z);
-float *scale_matrix(float x, float y, float z);
-float *rotation_x_matrix(float angle);
-float *rotation_y_matrix(float angle);
-float *rotation_z_matrix(float angle);
+void    rotation_x_matrix(float angle, float *mat);
+void    rotation_y_matrix(float angle, float *mat);
+void    rotation_z_matrix(float angle, float *mat);
+void    rotation_matrix(float ax, float ay, float az, float *mat);
+void    rotation_inv_matrix(float ax, float ay, float az, float *mat);
 
 /* matrix_4.c*/
-float determinant_matrix(float *mat);
-float *shearing_matrix(t_shear shear);
+float   determinant_matrix(float *mat);
+void    shearing_matrix(t_shear shear,  float *mat);
+void    translation_matrix(t_pos point, float *mat);
+void    scale_matrix(float x, float y, float z, float *mat);
+void    rotation_angles(t_vec vec, float theta[3]);
 
 #endif

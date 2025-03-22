@@ -6,7 +6,7 @@
 #    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/01 15:23:12 by aolabarr          #+#    #+#              #
-#    Updated: 2025/03/20 15:50:17 by aolabarr         ###   ########.fr        #
+#    Updated: 2025/03/22 19:08:47 by aolabarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRC =	main.c \
 		math_1.c \
 		math_2.c \
 		color.c \
+		matrix_0.c \
 		matrix_1.c \
 		matrix_2.c \
 		matrix_3.c \

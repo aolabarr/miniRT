@@ -6,83 +6,75 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 15:06:55 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/20 15:33:41 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/22 20:34:38 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-float *translation_matrix(float x, float y, float z)
+void    rotation_x_matrix(float angle, float *mat)
 {
-    float *mat;
-
-    mat = identity_matrix();
-    if (!mat)
-        return (NULL);
-    mat[3] = x;
-    mat[7] = y;
-    mat[11] = z;
-    return (mat);
-}
-
-float *scale_matrix(float x, float y, float z)
-{
-    float *mat;
-
-    mat = identity_matrix();
-    if (!mat)
-        return (NULL);
-    mat[0] = x;
-    mat[5] = y;
-    mat[10] = z;
-    return (mat);
-}
-
-float *rotation_x_matrix(float angle)
-{
-    float *mat;
-
+   
 	angle = PI / 180 * angle;
-
-    mat = identity_matrix();
-    if (!mat)
-        return (NULL);
+    identity_matrix(mat);
     mat[5] = cos(angle);
     mat[6] = - sin(angle);
     mat[9] = sin(angle);
 	mat[10] = cos(angle);
-    return (mat);
+    return;
 }
 
-float *rotation_y_matrix(float angle)
+void    rotation_y_matrix(float angle, float *mat)
 {
-    float *mat;
-
 	angle = PI / 180 * angle;
-
-    mat = identity_matrix();
-    if (!mat)
-        return (NULL);
+    identity_matrix(mat);
     mat[0] = cos(angle);
     mat[2] = sin(angle);
     mat[8] = - sin(angle);
 	mat[10] = cos(angle);
-    return (mat);
+    return;
 }
 
-float *rotation_z_matrix(float angle)
+void    rotation_z_matrix(float angle, float *mat)
 {
-    float *mat;
-
 	angle = PI / 180 * angle;
-
-    mat = identity_matrix();
-    if (!mat)
-        return (NULL);
+    identity_matrix(mat);
     mat[0] = cos(angle);
     mat[1] = - sin(angle);
     mat[4] = sin(angle);
 	mat[5] = cos(angle);
-    return (mat);
+    return;
+}
+
+void    rotation_matrix(float ax, float ay, float az, float *mat)
+{
+    float mat1[16];
+    float mat2[16];
+    float aux[16];
+    
+    rotation_z_matrix(az, mat1);
+    rotation_y_matrix(ay, mat2);
+    multiply_matrix(mat2, mat1, aux);
+    rotation_z_matrix(ax, mat1);
+    multiply_matrix(mat1, aux, mat);
+    return;
+}
+
+void    rotation_inv_matrix(float ax, float ay, float az, float *mat)
+{
+    float mat1[16];
+    float mat2[16];
+    float mat3[16];
+    float aux[16];
+
+    rotation_z_matrix(az, mat1);
+    transpose_matrix(mat1, mat2);
+    rotation_y_matrix(ay, mat1);
+    transpose_matrix(mat1, mat3);
+    multiply_matrix(mat3, mat2, aux);
+    rotation_z_matrix(ax, mat1);
+    transpose_matrix(mat1, mat2);
+    multiply_matrix(mat2, aux, mat);
+    return;
 }
 

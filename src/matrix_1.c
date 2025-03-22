@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 16:50:20 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/16 13:15:36 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/22 21:08:38 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,17 @@ int is_equal_matrix(float *mat1, float *mat2)
 	return(1);
 }
 
-float *multiply_matrix(float *mat1, float *mat2)
+void	multiply_matrix(float *mat1, float *mat2, float *res)
 {
 	int i;
 	int j;
 	int k;
-	int size;
-	float *res;
 
-	size = 4;
-	res = ft_calloc(size * size, sizeof(float));
 	i = 0;
-	while (i < size)
+	while (i < 4)
 	{
 		j = 0;
-		while (j < size)
+		while (j < 4)
 		{
 			k = 0;
 			while (k < 4)
@@ -52,63 +48,46 @@ float *multiply_matrix(float *mat1, float *mat2)
 		}
 		i++;
 	}
-	return (res);
+	return;
 }
 
-float *multiply_matrix_vector(float *mat, float *vec)
+void	multiply_matrix_vector(float *mat, float *vec, float *res)
 {
     int		i;
 	int		j;
-	int		size;
-    float	*res;
 
-	size = 4;
-    res = (float *)calloc(size, sizeof(float));
-    if (!res)
-		return (NULL);
 	i = 0;
-	while (i < size)
+	while (i < 4)
     {
 		j = 0;
-		while(j < size)
+		while(j < 4)
         {
             res[i] += mat[i * 4 + j] * vec[j];
 			j++;
         }
 		i++;
     }
-    return (res);
+    return;
 }
 
-float *identity_matrix()
+void	identity_matrix(float *mat)
 {
     int i;
-    float *mat;
 
-    mat = (float *)calloc(16, sizeof(float));
-    if (!mat)
-	{
-		return (NULL);
-	}   
 	i = 0;
 	while(i < 4)
 	{
 		mat[i * 4 + i] = 1;
 		i++;
-	}
-        
-    return (mat);
+	} 
+    return;
 }
-float *transpose_matrix(float *mat)
+void	transpose_matrix(float *mat, float *res)
 {
     int		i;
 	int		j;
-    float	*res;
-
-    res = (float *)calloc(16, sizeof(float));
+   
 	i = 0;
-    if (!res)
-        return (NULL);
     while (i < 4)
     {
         j = 0;
@@ -119,5 +98,5 @@ float *transpose_matrix(float *mat)
         }
         i++;
     }
-    return (res);
+    return;
 }

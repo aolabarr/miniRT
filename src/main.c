@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:22:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/22 12:01:38 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/22 17:18:55 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ int	main(int argc, char **argv)
 	if (parse(&scene, argv[1]))
 		return(handle_free(&scene), EXIT_FAILURE);
 	
-	if (raytracing(&scene))
+	if (create_scene(&scene))
 		return(handle_free(&scene), EXIT_FAILURE);
 	
 	return(EXIT_SUCCESS);	
 }
 
 
-/* main para checkear hit */
+/* main para checkear hit
 // int	main(int argc, char **argv)
 // {
 // 	t_data	scene;
@@ -54,5 +54,5 @@ int	main(int argc, char **argv)
 // 	if (raytracing(&scene))
 // 		return(handle_free(&scene), EXIT_FAILURE);
 	
-	return(EXIT_SUCCESS);	
-}*/
+	//return(EXIT_SUCCESS);
+*/

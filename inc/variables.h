@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:30:53 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/20 15:41:37 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/22 20:43:40 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,10 @@ typedef struct s_element
 	t_coord		pos;
 	t_coord		vec;
 	t_color		color;
-	float		diam;
+	float		radio;
 	float		height;
+	float		*tr_mat;
+	float		*tri_mat;
 }			t_element;
 
 

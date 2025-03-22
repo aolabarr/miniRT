@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 08:13:32 by binary            #+#    #+#             */
-/*   Updated: 2025/03/22 11:16:02 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/22 18:35:14 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,11 @@ t_hit	calculate_hit(t_ray ray, t_element elem)
 	float dis;
 	t_hit res;
 	
+	(void)elem;
+	
 	a = dot_product(ray.vec, ray.vec);
-	b = 2 * dot_product(ray.vec, rest_coord(ray.origin, elem.pos));
-	c = dot_product(rest_coord(ray.origin, elem.pos), rest_coord(ray.origin, elem.pos)) - ((elem.diam/2) * (elem.diam/2));
+	b = 2 * dot_product(ray.vec, rest_coord(ray.origin, zero_pos()));
+	c = dot_product(rest_coord(ray.origin, zero_pos()), rest_coord(ray.origin, zero_pos())) - 1;
 	dis = (b * b) - (4 * a * c);
 	if (dis < 0)
 	{
@@ -61,7 +63,7 @@ t_hit	calculate_hit(t_ray ray, t_element elem)
 		return (res);
 	}
 	res.hit = true;
-	if (dis == 0)
+	if (dis < 0)
 	{
 		res.t1 = -b / (2 * a);
 		res.t2 = res.t1;
@@ -74,4 +76,16 @@ t_hit	calculate_hit(t_ray ray, t_element elem)
 	}
 	return (res);
 }
+
+t_pos	zero_pos(void)
+{
+	t_pos zero;
+
+	zero.x = 0;
+	zero.y = 0;
+	zero.z = 0;
+	zero.w = 1;
+	return(zero);
+}
+
 
