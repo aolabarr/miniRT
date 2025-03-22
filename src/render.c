@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/21 12:53:10 by binary           ###   ########.fr       */
+/*   Updated: 2025/03/22 11:54:00 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,16 +101,25 @@ void	put_color_pixel(t_data *data, t_image img, int x, int y)
 	t_color color;
 		
 
-	float u = (float)x / (float)(WIDTH - 1);
-	float v = (float)y / (float)(HEIGHT - 1);
+	float u = 1.0 - ((float)x / (float)(WIDTH - 1));
+	float v = 1.0 - ((float)y / (float)(HEIGHT - 1));
 
-	
+	t_pos aux1 = scalar_product(data->img.canvas[1], (1 - u) * (1 - v));
+	t_pos aux2 = scalar_product(data->img.canvas[0], u * (1 - v));
+	t_pos aux3 = scalar_product(data->img.canvas[3], (1 - u) * v);
+	t_pos aux4 = scalar_product(data->img.canvas[2], u * v);
 
-	pixel_pos = sum_coord( \
-				sum_coord(mult_coord_float(data->img.canvas[0], (1 - u) * (1 - v)), \
-						mult_coord_float(data->img.canvas[1], u * (1 - v))), \
-				sum_coord(mult_coord_float(data->img.canvas[2], (1 - u) * v), \
-						mult_coord_float(data->img.canvas[3], u * v)));
+	pixel_pos.x = aux1.x + aux2.x + aux3.x + aux4.x;
+	pixel_pos.y = aux1.y + aux2.y + aux3.y + aux4.y;
+	pixel_pos.z = aux1.z + aux2.z + aux3.z + aux4.z;
+	pixel_pos.w = 1;
+
+
+	// pixel_pos = sum_coord( \
+	// 			sum_coord(mult_coord_float(data->img.canvas[0], (1 - u) * (1 - v)), \
+	// 					mult_coord_float(data->img.canvas[1], u * (1 - v))), \
+	// 			sum_coord(mult_coord_float(data->img.canvas[2], (1 - u) * v), \
+	// 					mult_coord_float(data->img.canvas[3], u * v)));
 
 	ray.origin = data->cam.pos;
 	ray.vec = normalize(rest_coord(pixel_pos, data->cam.pos));
