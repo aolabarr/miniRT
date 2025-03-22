@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 08:13:32 by binary            #+#    #+#             */
-/*   Updated: 2025/03/12 12:46:29 by binary           ###   ########.fr       */
+/*   Updated: 2025/03/22 11:16:02 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,20 @@ t_pos	position(t_ray ray, float t)
 	t_pos res;
 
 	temp = scalar_product(ray.vec, t);
-	res = new_lineal_point(ray.origin, temp);
+	res = new_lineal_point(ray.origin, temp, 1);
 	return (res);
 }
 
-/* revisar esto para "unificar" t_vector sum y t_pos new_lineal_point con un t_coord sum*/
-
-t_pos new_lineal_point(t_pos point, t_vec vec)
-{
-	t_pos	res;
+// t_pos new_lineal_point(t_pos point, t_vec vec)
+// {
+// 	t_pos	res;
 	
-	res.x = point.x + vec.x;
-	res.y = point.y + vec.y;
-	res.z = point.z + vec.z;
-	res.w = point.w + vec.w;
-	return (res);
-}
+// 	res.x = point.x + vec.x;
+// 	res.y = point.y + vec.y;
+// 	res.z = point.z + vec.z;
+// 	res.w = point.w + vec.w;
+// 	return (res);
+// }
 
 /* 
 a ← dot(ray.direction, ray.direction)
@@ -55,17 +53,14 @@ t_hit	calculate_hit(t_ray ray, t_element elem)
 	b = 2 * dot_product(ray.vec, rest_coord(ray.origin, elem.pos));
 	c = dot_product(rest_coord(ray.origin, elem.pos), rest_coord(ray.origin, elem.pos)) - ((elem.diam/2) * (elem.diam/2));
 	dis = (b * b) - (4 * a * c);
-	// printf("dis: %f\n", dis);
-	//if (dis < EPSILON)
 	if (dis < 0)
 	{
-		// printf("no hay hit\n");
+		//printf("no hay hit\n");
 		res.hit = false;
 		res.t1 = res.t2 = 0;
 		return (res);
 	}
 	res.hit = true;
-	// printf("hay hit\n");
 	if (dis == 0)
 	{
 		res.t1 = -b / (2 * a);
@@ -77,7 +72,6 @@ t_hit	calculate_hit(t_ray ray, t_element elem)
 		res.t2 = (- b + sqrtf(dis)) / (2 * a);
 
 	}
-	//res.elem = elem.type;
 	return (res);
 }
 

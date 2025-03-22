@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/14 08:28:41 by binary           ###   ########.fr       */
+/*   Updated: 2025/03/22 11:54:00 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,32 +74,53 @@ int	create_image(t_data *data)
 	
 // }
 
+/* 
+INTERPOLACIÓN BILINEAL DE PUNTO EN EL CANVAS
+pixel_pos.x = (1 - u) * (1 - v) * canvas[0].x +
+              u * (1 - v) * canvas[1].x +
+              (1 - u) * v * canvas[2].x +
+              u * v * canvas[3].x;
+
+pixel_pos.y = (1 - u) * (1 - v) * canvas[0].y +
+              u * (1 - v) * canvas[1].y +
+              (1 - u) * v * canvas[2].y +
+              u * v * canvas[3].y;
+
+pixel_pos.z = (1 - u) * (1 - v) * canvas[0].z +
+              u * (1 - v) * canvas[1].z +
+              (1 - u) * v * canvas[2].z +
+              u * v * canvas[3].z; */
+
 void	put_color_pixel(t_data *data, t_image img, int x, int y)
 {
 	int	offset;
 	t_ray	ray;
 	t_hit	hit;
 	t_coord	pixel_pos;
-	float	pixel_size;
-	float	half_width = WIDTH / 2;
-	float	half_height = HEIGHT / 2;
-
-	float aspect_ratio = (float)WIDTH / (float)HEIGHT;
-	float fov_radians = (data->cam.fov * PI) / 180.0;
-	pixel_size = tanf(fov_radians / 2.0) * 2.0 / WIDTH; // Tamaño de cada píxel en el espacio de la cámara
-	//cuanto espacio en el mundo 3D ocupa un solo píxel
-
 	t_color	bg_color = {0, 0, 0};        
 	t_color color;
-	
-	pixel_pos.x = (x - half_width) * pixel_size * aspect_ratio;
-	pixel_pos.y = (half_height - y) * pixel_size;
-	pixel_pos.z = 1; // La pared está delante de la cámara
-	
-	// pixel_pos.x = x;
-	// pixel_pos.y = y;
-	// pixel_pos.z = 1; // La pared está delante de la cámara
-	
+		
+
+	float u = 1.0 - ((float)x / (float)(WIDTH - 1));
+	float v = 1.0 - ((float)y / (float)(HEIGHT - 1));
+
+	t_pos aux1 = scalar_product(data->img.canvas[1], (1 - u) * (1 - v));
+	t_pos aux2 = scalar_product(data->img.canvas[0], u * (1 - v));
+	t_pos aux3 = scalar_product(data->img.canvas[3], (1 - u) * v);
+	t_pos aux4 = scalar_product(data->img.canvas[2], u * v);
+
+	pixel_pos.x = aux1.x + aux2.x + aux3.x + aux4.x;
+	pixel_pos.y = aux1.y + aux2.y + aux3.y + aux4.y;
+	pixel_pos.z = aux1.z + aux2.z + aux3.z + aux4.z;
+	pixel_pos.w = 1;
+
+
+	// pixel_pos = sum_coord( \
+	// 			sum_coord(mult_coord_float(data->img.canvas[0], (1 - u) * (1 - v)), \
+	// 					mult_coord_float(data->img.canvas[1], u * (1 - v))), \
+	// 			sum_coord(mult_coord_float(data->img.canvas[2], (1 - u) * v), \
+	// 					mult_coord_float(data->img.canvas[3], u * v)));
+
 	ray.origin = data->cam.pos;
 	ray.vec = normalize(rest_coord(pixel_pos, data->cam.pos));
 	
@@ -107,7 +128,7 @@ void	put_color_pixel(t_data *data, t_image img, int x, int y)
 	
 	if (hit.hit && (hit.t1 > EPSILON || hit.t2 > EPSILON))
 	{
-		if (hit.t1 < hit.t2)
+		if (hit.t1 < hit.t2 || hit.t2 < hit.t1)
 			color = data->elem[0].color;
 		else
 			color = bg_color;

@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 09:19:40 by binary            #+#    #+#             */
-/*   Updated: 2025/03/16 12:50:38 by aolabarr         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2025/03/22 12:00:14 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../inc/minirt.h"
 
@@ -61,3 +62,4 @@ t_color mult_color_scalar(t_color col, float scalar)
     mult.blue = col.blue * scalar;
     return(mult);
 }
+
