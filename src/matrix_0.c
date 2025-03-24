@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:08:18 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/22 21:07:51 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:06:39 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,13 @@ void print_matrix_4f(float *mat)
 void print_vector(float *vec)
 {
     printf("\n%.2f\t%.2f\t%.2f\t%.2f\n", vec[0], vec[1], vec[2], vec[3]);
+}
+void print_ray(t_ray ray)
+{
+    printf("ray pos: %.2f\t%.2f\t%.2f\t(%d)\n", ray.origin.x, ray.origin.y, ray.origin.z, ray.origin.w);
+    printf("ray vec: %.2f\t%.2f\t%.2f\t(%d)\n", ray.vec.x, ray.vec.y, ray.vec.z, ray.vec.w);
+}
+void print_pos(t_pos pos)
+{
+    printf("%.2f\t%.2f\t%.2f\t(%d)\n", pos.x, pos.y, pos.z, pos.w);
 }

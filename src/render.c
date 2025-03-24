@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/22 17:57:50 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:44:24 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,49 +55,50 @@ int	create_image(t_data *data)
 	int	x;
 	int	y;
 
-	//x = 1;
+	if (init_trans_matrix(data))
+		return (EXIT_FAILURE);
+	print_matrix(data->elem->tr_mat), printf("\n");
+	print_matrix(data->elem->tri_mat), printf("\n");
 	x = 0;
 	while (x < WIDTH)
 	{
-		//y = 1;
 		y = 0;
-		// printf("x = %d, y = %d\n", x, y);
 		while (y < HEIGHT)
 		{
 			put_color_pixel(data, data->img, x, y);
-			// printf("Dibujando píxel en x: %d, y: %d\n", x, y);
 			y++;
 		}
 		x++;
-		// printf("Nuevo x: %d\n", x);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
-void	put_color_pixel(t_data *data, t_image img, int x, int y)
+void	put_color_pixel(t_data *scene, t_image img, int x, int y)
 {
 	int	offset;
 	t_pos	pixel_pos;
 	t_ray	ray;
-	//t_ray	local_ray;
+	t_ray	local_ray;
 	t_hit	hit;
 	t_color color;
 	
 	t_color	bg_color = {0, 0, 0};        
 	
 	pixel_pos = calc_pixel_position(x, y, img.canvas);
-	ray.origin = data->cam.pos;
-	ray.vec = normalize(rest_coord(pixel_pos, data->cam.pos));
-	//local_ray = ray_transform(ray, data->elem[0]);
+	ray.origin = scene->cam.pos;
+	ray.vec = normalize(rest_coord(pixel_pos, scene->cam.pos));
 
+	//printf(" cam pos: "), print_pos(scene->cam.pos);
+	print_ray(ray);
 
-
-	hit = calculate_hit(ray, data->elem[0]);
+	ray_transform_to_local(&scene->elem[0], ray, &local_ray);
+	printf("l"), print_ray(local_ray);
+	hit = calculate_hit(local_ray, scene->elem[0]);
 	
 	if (hit.hit && (hit.t1 > EPSILON || hit.t2 > EPSILON))
 	{
 		if (hit.t1 < hit.t2 || hit.t2 < hit.t1)
-			color = data->elem[0].color;
+			color = scene->elem[0].color;
 		else
 			color = bg_color;
 	}
@@ -107,6 +108,41 @@ void	put_color_pixel(t_data *data, t_image img, int x, int y)
 	offset = (img.line_len * y) + x * (img.bpp / 8);
 	*(int *)((char *)img.addr + offset) = rgb_to_hex(color);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // void	put_color_pixel(t_data *data, t_image img, int x, int y)
 // {

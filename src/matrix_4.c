@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 15:33:20 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/22 21:12:52 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/24 19:36:04 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,18 +75,4 @@ void rotation_angles(t_vec vec, float theta[3])
     // Ángulo alrededor del eje X (proyección sobre el plano YZ)
     theta[2] = atan2(vec.y, vec.z);
 	return;
-}
-float *trans_matrix(t_element elem)
-{
-    float *res;
-	//float	mat1[16];
-	//float	mat2[16];
-    (void)elem;
-
-    res = ft_calloc(16, sizeof(float));
-    if(!res)
-        return (NULL);
-	// Realizar las transiformaciones en orden correcto
-
-    return (res);
 }

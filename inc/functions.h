@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/22 21:10:17 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/24 19:56:42 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,10 @@ void	ft_free_v(void *str);
 /* parse.c */
 int	parse(t_data *scene, char *map);
 
+
 /* raytracing.c */
 t_pos   calc_pixel_position(int x, int y, t_pos *canvas);
-t_pos	zero_pos(void);
+void	ray_transform_to_local(t_element *elem, t_ray ray, t_ray *ray_local);
 
 /* colors_test.c*/
 void testing_colors(t_data *scene);
@@ -107,13 +108,14 @@ t_pos	mult_coord_float(t_pos coord1, float t);
 
 /* intersection.c */
 t_pos	position(t_ray ray, float t);
+t_pos	zero_pos(void);
 // t_pos	new_lineal_point(t_pos point, t_vec vec);
 t_hit	calculate_hit(t_ray ray, t_element elem);
 
 /* matrix_1.c*/
-int is_equal_matrix(float *mat1, float *mat2);
+int     is_equal_matrix(float *mat1, float *mat2);
 void	multiply_matrix(float *mat1, float *mat2, float *res);
-void	multiply_matrix_vector(float *mat, float *vec, float *res);
+void	multiply_matrix_vector(float *mat, t_vec vector, t_vec *res);
 void	identity_matrix(float *mat);
 void	transpose_matrix(float *mat, float *res);
 
@@ -138,5 +140,16 @@ void    shearing_matrix(t_shear shear,  float *mat);
 void    translation_matrix(t_pos point, float *mat);
 void    scale_matrix(float x, float y, float z, float *mat);
 void    rotation_angles(t_vec vec, float theta[3]);
+
+/* trans.c*/
+int   init_trans_matrix(t_data *scene);
+int    get_trans_matrix(t_element *elem);
+int    get_trans_inv_matrix(t_element *elem);
+
+/* PARA PRUEBAS*/
+void print_matrix(float *mat);
+void print_vector(float *vec);
+void print_ray(t_ray ray);
+void print_pos(t_pos pos);
 
 #endif

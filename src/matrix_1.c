@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 16:50:20 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/22 21:08:38 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:38:34 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,34 @@ void	multiply_matrix(float *mat1, float *mat2, float *res)
 	return;
 }
 
-void	multiply_matrix_vector(float *mat, float *vec, float *res)
+void	multiply_matrix_vector(float *mat, t_vec vector, t_vec *res)
 {
     int		i;
 	int		j;
+	float   vec[3];
+	float   result[3];
 
+	result[0] = 0;
+	result[1] = 0;
+	result[2] = 0;
+	vec[0] = vector.x;
+	vec[1] = vector.y;
+	vec[2] = vector.z;
 	i = 0;
 	while (i < 4)
     {
 		j = 0;
 		while(j < 4)
         {
-            res[i] += mat[i * 4 + j] * vec[j];
+            result[i] += mat[i * 4 + j] * vec[j];
 			j++;
         }
 		i++;
     }
+	res->x = result[0];
+	res->y = result[1];
+	res->z = result[2];
+	res->w = VECTOR;
     return;
 }
 

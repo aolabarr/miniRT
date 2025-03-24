@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:05:48 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/22 21:07:33 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:39:53 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,11 @@ t_pos calc_pixel_position(int x, int y, t_pos *canvas)
 	pixel_pos.w = 1;
 	return (pixel_pos);
 }
-void	ray_transform_to_local(t_element elem, t_ray ray, t_ray ray_local)
+void	ray_transform_to_local(t_element *elem, t_ray ray, t_ray *ray_local)
 {
-	(void)ray;
-	(void)ray_local;
-	(void)elem;
-	/*
-	// traslación inversa + rotación inversa + escalado inverso
-
-	t_ray local_ray;
-	float mat1[16], *mat2, mat3[16];
-
-	translation_matrix(elem.pos, mat1);
-	invert_matrix(mat1, mat2);
-	mat2 = scale_matrix(1 / elem.radio, 1 / elem.radio, 1 / elem.radio);
-	mat3 = multiply_matrix()
-	*/
+	multiply_matrix_vector(elem->tri_mat, ray.vec, &ray_local->vec);
+	//ray_local->vec = ray.vec;
+	ray_local->origin = rest_coord(ray.origin, elem->pos);
+	return ;
 }
 

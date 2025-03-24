@@ -6,15 +6,15 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/22 17:52:20 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:05:28 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MACROS_H
 # define MACROS_H
 
-# define POINT 0
-# define VECTOR 1
+# define POINT 1
+# define VECTOR 0
 
 # define ERR_ARG   	0
 # define ERR_EXT   	1
