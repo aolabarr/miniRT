@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:24:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/11 21:03:30 by binary           ###   ########.fr       */
+/*   Updated: 2025/03/25 19:59:54 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # include <fcntl.h>
 # include <string.h>
 # include <stdbool.h>
-
 
 # include "../lib/libio/gnl/get_next_line.h"
 # include "../lib/libio/ftprintf/ft_printf.h"

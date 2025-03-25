@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/24 19:56:42 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/25 21:09:27 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int			get_position(char *str, t_coord  *pos);
 int         get_vector(char *str, t_coord  *vec);
 t_eltype	get_elem_type(char *str);
 int         is_element(char *str);
+void	*ft_memsetf(void *b, float c, int len);
+void	*ft_callocf(int count, int size);
 
 /* init.c */
 void	init_scene(t_data *scene);
@@ -118,6 +120,8 @@ void	multiply_matrix(float *mat1, float *mat2, float *res);
 void	multiply_matrix_vector(float *mat, t_vec vector, t_vec *res);
 void	identity_matrix(float *mat);
 void	transpose_matrix(float *mat, float *res);
+void    init_coordf(float *coord);
+void	multiply_matrix_pos(float *mat, t_pos point, t_pos *res);
 
 /* matrix_2.c*/
 float determinant_matrix(float *mat);

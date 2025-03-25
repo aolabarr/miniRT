@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/24 20:44:24 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/25 21:32:02 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int	create_image(t_data *data)
 
 	if (init_trans_matrix(data))
 		return (EXIT_FAILURE);
-	print_matrix(data->elem->tr_mat), printf("\n");
-	print_matrix(data->elem->tri_mat), printf("\n");
+	printf("\ntr_mat"), print_matrix(data->elem->tr_mat), printf("\n");
+	printf("\ntri_mat"), print_matrix(data->elem->tri_mat), printf("\n");
 	x = 0;
 	while (x < WIDTH)
 	{
@@ -89,10 +89,10 @@ void	put_color_pixel(t_data *scene, t_image img, int x, int y)
 	ray.vec = normalize(rest_coord(pixel_pos, scene->cam.pos));
 
 	//printf(" cam pos: "), print_pos(scene->cam.pos);
-	print_ray(ray);
+	//print_ray(ray);
 
 	ray_transform_to_local(&scene->elem[0], ray, &local_ray);
-	printf("l"), print_ray(local_ray);
+	//printf("l"), print_ray(local_ray);
 	hit = calculate_hit(local_ray, scene->elem[0]);
 	
 	if (hit.hit && (hit.t1 > EPSILON || hit.t2 > EPSILON))

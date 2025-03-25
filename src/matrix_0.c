@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:08:18 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/24 20:06:39 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/25 20:05:18 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ float *create_matrix(float a1,float a2,float a3,float a4,
 
 void print_matrix(float *mat)
 {
-    printf("\n%.2f\t%.4f\t%.2f\t%.2f\n", mat[0], mat[1], mat[2], mat[3]);
+    printf("\n%.2f\t%.2f\t%.2f\t%.2f\n", mat[0], mat[1], mat[2], mat[3]);
     printf("%.2f\t%.2f\t%.2f\t%.2f\n", mat[4], mat[5], mat[6], mat[7]);
     printf("%.2f\t%.2f\t%.2f\t%.2f\n", mat[8], mat[9], mat[10], mat[11]);
     printf("%.2f\t%.2f\t%.2f\t%.2f\n", mat[12], mat[13], mat[14], mat[15]);

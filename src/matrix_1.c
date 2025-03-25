@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 16:50:20 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/24 20:38:34 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/25 21:31:30 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	multiply_matrix(float *mat1, float *mat2, float *res)
 	int j;
 	int k;
 
+	ft_memsetf(res, 0, 16);
 	i = 0;
 	while (i < 4)
 	{
@@ -55,15 +56,14 @@ void	multiply_matrix_vector(float *mat, t_vec vector, t_vec *res)
 {
     int		i;
 	int		j;
-	float   vec[3];
-	float   result[3];
+	float   vec[4];
+	float   result[4];
 
-	result[0] = 0;
-	result[1] = 0;
-	result[2] = 0;
+	init_coordf(result);
 	vec[0] = vector.x;
 	vec[1] = vector.y;
 	vec[2] = vector.z;
+	vec[3] = vector.w;
 	i = 0;
 	while (i < 4)
     {
@@ -80,6 +80,45 @@ void	multiply_matrix_vector(float *mat, t_vec vector, t_vec *res)
 	res->z = result[2];
 	res->w = VECTOR;
     return;
+}
+
+void	multiply_matrix_pos(float *mat, t_pos point, t_pos *res)
+{
+    int		i;
+	int		j;
+	float   pos[4];
+	float   result[4];
+
+	init_coordf(result);
+	pos[0] = point.x;
+	pos[1] = point.y;
+	pos[2] = point.z;
+	pos[3] = point.w;
+	i = 0;
+	while (i < 4)
+    {
+		j = 0;
+		while(j < 4)
+        {
+            result[i] += mat[i * 4 + j] * pos[j];
+			j++;
+        }
+		i++;
+    }
+	res->x = result[0];
+	res->y = result[1];
+	res->z = result[2];
+	res->w = POINT;
+    return;
+}
+
+void init_coordf(float *coord)
+{
+	coord[0] = 0;
+	coord[1] = 0;
+	coord[2] = 0;
+	coord[3] = 0;
+	return ;
 }
 
 void	identity_matrix(float *mat)
