@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 08:13:32 by binary            #+#    #+#             */
-/*   Updated: 2025/03/22 11:16:02 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:27:32 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,3 +75,38 @@ t_hit	calculate_hit(t_ray ray, t_element elem)
 	return (res);
 }
 
+/*
+intersección en el plano
+
+t = (punto en el plano - origen del rayo) * normal del plano / (dirección del rayo * normal del plano)
+
+*/
+
+t_hit plane_intersection(t_ray ray, t_element elem)
+{
+	t_hit	hit;
+	t_vec	vec1;
+	float	numerator;
+	float	denominator;
+	float	t;
+	
+	vec1 = rest_coord(elem.pos, ray.origin);
+	numerator = dot_product(vec1, elem.vec);
+	denominator = dot_product (ray.vec, elem.vec);
+	if (myabs(denominator) < EPSILON) // rayo y plano son paralelos?
+	{
+		hit.hit = false;
+		hit.t1 = hit.t2 = 0;
+		return (hit);
+	}
+	t = numerator / denominator;
+	if (t < EPSILON)
+	{
+		hit.hit = false;
+		hit.t1 = hit.t2 = 0;
+		return (hit);
+	}
+	hit.hit = true;
+	hit.t1 = hit.t2 = t;
+	return (hit);
+}

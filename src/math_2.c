@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 12:43:47 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/16 13:32:33 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/26 12:58:13 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,11 @@ t_pos	mult_coord_float(t_pos coord1, float t)
 	res.z = coord1.z * t;
 	res.w = 1;
 	return (res);
+}
+
+int is_zerovector(t_vec vec)
+{
+	if(vec.x == 0 && vec.y == 0 && vec.z == 0 && vec.z == 0)
+		return (1);
+	return (0);
 }

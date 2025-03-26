@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/22 11:59:29 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:27:53 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,14 @@ t_vec normalize(t_vec vec);
 float dot_product(t_vec a, t_vec b);
 t_pos	sum_coord(t_pos coord1, t_pos coord2);
 t_pos	mult_coord_float(t_pos coord1, float t);
+int		is_zerovector(t_vec vec);
 
 /* intersection.c */
 t_pos	position(t_ray ray, float t);
 // t_pos	new_lineal_point(t_pos point, t_vec vec);
 t_hit	calculate_hit(t_ray ray, t_element elem);
+t_hit	plane_intersection(t_ray ray, t_element elem);
+
 
 /* matrix_1.c*/
 int is_equal_matrix(float *mat1, float *mat2);

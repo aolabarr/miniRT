@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/22 11:54:00 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:28:03 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,22 +57,6 @@ int	create_image(t_data *data)
 	return (0);
 }
 
-// void	put_color_pixel(t_data *data, t_image img, int x, int y)
-// {
-// 	int	offset;
-// 	(void)data;
-// 	offset = (img.line_len * y) + x * (img.bpp / 8);
-// 	int amb_color = rgb_to_hex(data->amb.color);
-// 	int lig_color = rgb_to_hex(data->lig.color);
-	
-// 	if (x > 200 && x < 400)
-// 		*(int *)((char *)img.addr + offset) = amb_color;
-// 	else
-// 		*(int *)((char *)img.addr + offset) = lig_color;
-	
-// 	return ;
-	
-// }
 
 /* 
 INTERPOLACIÓN BILINEAL DE PUNTO EN EL CANVAS
@@ -96,6 +80,7 @@ void	put_color_pixel(t_data *data, t_image img, int x, int y)
 	int	offset;
 	t_ray	ray;
 	t_hit	hit;
+	t_hit	hitplane;
 	t_coord	pixel_pos;
 	t_color	bg_color = {0, 0, 0};        
 	t_color color;
@@ -126,15 +111,27 @@ void	put_color_pixel(t_data *data, t_image img, int x, int y)
 	
 	hit = calculate_hit(ray, data->elem[0]);
 	
-	if (hit.hit && (hit.t1 > EPSILON || hit.t2 > EPSILON))
-	{
-		if (hit.t1 < hit.t2 || hit.t2 < hit.t1)
-			color = data->elem[0].color;
-		else
-			color = bg_color;
-	}
-	else 
-		color = bg_color;
+	hitplane = plane_intersection(ray, data->elem[1]);
+	// if (hitplane.hit == true)
+	// {
+	// 	color = data->elem[1].color;
+	// }
+	if (hit.hit && (!hitplane.hit || hit.t1 < hitplane.t1))
+		color = data->elem[0].color; // esfera está más cerca
+	else if (hitplane.hit)
+		color = data->elem[1].color; // plano está más cerca (o solo plano)
+	else
+		color = bg_color; // nada
+	// if (hit.hit && (hit.t1 > EPSILON || hit.t2 > EPSILON))
+	// {
+	// 	if (hit.t1 < hit.t2 || hit.t2 < hit.t1)
+	// 		color = data->elem[0].color;
+	
+	// 	else
+	// 		color = bg_color;
+	// }
+	// else 
+	// 	color = bg_color;
 
 	offset = (img.line_len * y) + x * (img.bpp / 8);
 	*(int *)((char *)img.addr + offset) = rgb_to_hex(color);
