@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/25 21:09:27 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/26 11:19:16 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,9 @@ int	parse(t_data *scene, char *map);
 /* raytracing.c */
 t_pos   calc_pixel_position(int x, int y, t_pos *canvas);
 void	ray_transform_to_local(t_element *elem, t_ray ray, t_ray *ray_local);
+t_pos	get_hit_point(t_ray ray, t_hit hit);
+float	hit_t(t_hit hit);
+void	normal_at(t_element elem, t_pos hit_point);
 
 /* colors_test.c*/
 void testing_colors(t_data *scene);

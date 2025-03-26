@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/24 20:05:28 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/26 11:05:43 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # define ZOOM_FACTOR 		0.1
 # define ARROW_MOVE 		0.05
 # define EPSILON 		    0.0001
+# define NO_HIT             -1
 
 
 //Constant macros

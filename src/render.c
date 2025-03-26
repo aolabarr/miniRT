@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/25 21:32:02 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/26 10:48:09 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	put_color_pixel(t_data *scene, t_image img, int x, int y)
 	//print_ray(ray);
 
 	ray_transform_to_local(&scene->elem[0], ray, &local_ray);
-	//printf("l"), print_ray(local_ray);
+	
 	hit = calculate_hit(local_ray, scene->elem[0]);
 	
 	if (hit.hit && (hit.t1 > EPSILON || hit.t2 > EPSILON))

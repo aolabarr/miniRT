@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:05:48 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/25 21:11:46 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/26 11:19:52 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,28 @@ void	ray_transform_to_local(t_element *elem, t_ray ray, t_ray *ray_local)
 	multiply_matrix_pos(elem->tri_mat, ray.origin, &ray_local->origin);
 	return ;
 }
+t_pos	get_hit_point(t_ray ray, t_hit hit)
+{
+	float	t;
+	t_pos	point;
+	
+	t = hit_t(hit);
+	point = new_lineal_point(ray.origin, ray.vec, t);
+	return (point);
+}
 
+float	hit_t(t_hit hit)
+{	
+	if (hit.t1 > 0 && hit.t1 < hit.t2)
+		return(hit.t1);
+	else if (hit.t2 > 0 && hit.t2 < hit.t1)
+		return(hit.t2);
+	else
+		return (NO_HIT);
+}
+
+void	normal_at(t_element elem, t_pos hit_point)
+{
+	(void)elem;
+	(void)hit_point;
+}
