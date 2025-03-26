@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/26 10:48:09 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/26 17:55:15 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void	put_color_pixel(t_data *scene, t_image img, int x, int y)
 	t_ray	ray;
 	t_ray	local_ray;
 	t_hit	hit;
+	t_pos	hit_point;
+	t_vec	normal, reflect;
 	t_color color;
 	
 	t_color	bg_color = {0, 0, 0};        
@@ -92,9 +94,14 @@ void	put_color_pixel(t_data *scene, t_image img, int x, int y)
 	//print_ray(ray);
 
 	ray_transform_to_local(&scene->elem[0], ray, &local_ray);
-	
 	hit = calculate_hit(local_ray, scene->elem[0]);
-	
+	hit_point =	get_hit_point(ray, hit);
+	normal = normal_at(scene->elem[0], hit_point);
+	reflect = reflect_at(ray.vec, normal);
+	//printf("Normal\n"), print_vector(normal);
+	//printf("Reflec\n"), print_vector(reflect);
+
+
 	if (hit.hit && (hit.t1 > EPSILON || hit.t2 > EPSILON))
 	{
 		if (hit.t1 < hit.t2 || hit.t2 < hit.t1)
@@ -108,6 +115,7 @@ void	put_color_pixel(t_data *scene, t_image img, int x, int y)
 	offset = (img.line_len * y) + x * (img.bpp / 8);
 	*(int *)((char *)img.addr + offset) = rgb_to_hex(color);
 }
+
 
 
 

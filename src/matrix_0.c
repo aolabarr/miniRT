@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:08:18 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/25 20:05:18 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/26 16:54:57 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void print_matrix_4f(float *mat)
     printf("%.4f\t%.4f\t%.4f\t%.4f\n", mat[12], mat[13], mat[14], mat[15]);
 }
 
-void print_vector(float *vec)
+void print_vector(t_vec vec)
 {
-    printf("\n%.2f\t%.2f\t%.2f\t%.2f\n", vec[0], vec[1], vec[2], vec[3]);
+    printf("\n%.2f\t%.2f\t%.2f\t(%d)\n", vec.x, vec.y, vec.z, vec.w);
 }
 void print_ray(t_ray ray)
 {

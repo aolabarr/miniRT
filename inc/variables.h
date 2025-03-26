@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:30:53 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/22 20:43:40 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/26 19:48:47 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 typedef struct s_color
 {
-	int		red;
-	int		green;
-	int		blue;
+	double		red;
+	double		green;
+	double		blue;
 }			t_color;
 
 typedef struct s_ambient
@@ -70,17 +70,30 @@ typedef	enum e_eltype
 	UNKOWN
 }			t_eltype;
 
+typedef struct s_material
+{
+	t_color	color;
+	float	ambient;		// valores entre 0 y 1
+	float	diffuse;		// valores entre 0 y 1
+	float	specular;		// valores entre 0 y 1
+	float	shini;			// valores entre 10 y 200
+
+}			t_material;
+
 typedef struct s_element
 {
 	t_eltype	type;
 	t_coord		pos;
 	t_coord		vec;
 	t_color		color;
+	t_material	material;
 	float		radio;
 	float		height;
 	float		*tr_mat;
 	float		*tri_mat;
 }			t_element;
+
+
 
 
 typedef struct s_image
@@ -130,5 +143,7 @@ typedef struct s_data
 	t_mouse		mouse;
 	int			n_elem;
 }				t_data;
+
+
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/10 15:26:50 by binary           ###   ########.fr       */
+/*   Updated: 2025/03/26 19:50:52 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,7 @@ int rgb_to_hex(t_color color)
 	color.green = clamp_color(color.green);
 	color.blue = clamp_color(color.blue);
 
-	hex_color = (color.red << 16) | (color.green << 8) | color.blue;
+	hex_color = ((int)color.red << 16) | ((int)color.green << 8) | (int)color.blue;
 	return (hex_color);
 }
 

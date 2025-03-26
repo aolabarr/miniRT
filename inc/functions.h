@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/26 11:19:16 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/26 18:15:40 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,19 +82,22 @@ void	ft_free_v(void *str);
 int	parse(t_data *scene, char *map);
 
 
-/* raytracing.c */
+/* raytracing 1.c */
 t_pos   calc_pixel_position(int x, int y, t_pos *canvas);
 void	ray_transform_to_local(t_element *elem, t_ray ray, t_ray *ray_local);
 t_pos	get_hit_point(t_ray ray, t_hit hit);
 float	hit_t(t_hit hit);
-void	normal_at(t_element elem, t_pos hit_point);
+
+/* raytracing 2.c */
+t_vec	normal_at(t_element elem, t_pos hit_wd_point);
+t_vec	reflect_at(t_vec in, t_vec normal);
 
 /* colors_test.c*/
 void testing_colors(t_data *scene);
 t_color blend_colors(t_color col1, t_color col2, float ratio);
 
 /* math_1.c */
-float myabs(float num);
+float ft_abs(float num);
 int is_equal(float a, float b);
 int is_coord_equal(t_coord a, t_coord b);
 t_vec sum_vector(t_vec a, t_vec b);
@@ -155,7 +158,7 @@ int    get_trans_inv_matrix(t_element *elem);
 
 /* PARA PRUEBAS*/
 void print_matrix(float *mat);
-void print_vector(float *vec);
+void print_vector(t_vec vec);
 void print_ray(t_ray ray);
 void print_pos(t_pos pos);
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raytracing.c                                       :+:      :+:    :+:   */
+/*   raytracing_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:05:48 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/26 11:19:52 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/26 18:13:14 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ t_pos calc_pixel_position(int x, int y, t_pos *canvas)
 void	ray_transform_to_local(t_element *elem, t_ray ray, t_ray *ray_local)
 {
 	multiply_matrix_vector(elem->tri_mat, ray.vec, &ray_local->vec);
-	//ray_local->vec = ray.vec;
-	//ray_local->origin = rest_coord(ray.origin, elem->pos);
 	multiply_matrix_pos(elem->tri_mat, ray.origin, &ray_local->origin);
 	return ;
 }
@@ -59,8 +57,6 @@ float	hit_t(t_hit hit)
 		return (NO_HIT);
 }
 
-void	normal_at(t_element elem, t_pos hit_point)
-{
-	(void)elem;
-	(void)hit_point;
-}
+
+
+

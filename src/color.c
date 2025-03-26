@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/03/22 12:00:14 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/26 19:53:27 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 void testing_colors(t_data *scene)
 {
     printf("AMBIENTE\n");
-    printf("Color red: %d\n", scene->amb.color.red);
-    printf("Color green: %d\n", scene->amb.color.green);
-    printf("Color blue: %d\n", scene->amb.color.blue);
+    printf("Color red: %d\n", (int)scene->amb.color.red);
+    printf("Color green: %d\n", (int)scene->amb.color.green);
+    printf("Color blue: %d\n", (int)scene->amb.color.blue);
     printf("Color HEX: 0X%0X\n", rgb_to_hex(scene->amb.color));
     printf("LIGHT\n");
-    printf("Color red: %d\n", scene->lig.color.red);
-    printf("Color green: %d\n", scene->lig.color.green);
-    printf("Color blue: %d\n", scene->lig.color.blue);
+    printf("Color red: %d\n", (int)scene->lig.color.red);
+    printf("Color green: %d\n", (int)scene->lig.color.green);
+    printf("Color blue: %d\n", (int)scene->lig.color.blue);
     printf("Color HEX: 0X%0X\n", rgb_to_hex(scene->lig.color));
 }
 

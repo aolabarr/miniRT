@@ -6,13 +6,13 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 17:21:53 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/26 11:14:22 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/26 18:16:01 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-float myabs(float num)
+float ft_abs(float num)
 {
 	if (num >= 0)
 		return (num);
@@ -21,7 +21,7 @@ float myabs(float num)
 
 int is_equal(float a, float b)
 {
-    if (myabs(a - b) < EPSILON)
+    if (ft_abs(a - b) < EPSILON)
 		return(1);
 	return (0);
 }
