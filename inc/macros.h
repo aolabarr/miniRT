@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/16 13:21:59 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/26 11:05:43 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MACROS_H
 # define MACROS_H
 
-# define POINT 0
-# define VECTOR 1
-
+# define POINT 1
+# define VECTOR 0
 
 # define ERR_ARG   	0
 # define ERR_EXT   	1
@@ -45,6 +44,7 @@
 # define ZOOM_FACTOR 		0.1
 # define ARROW_MOVE 		0.05
 # define EPSILON 		    0.0001
+# define NO_HIT             -1
 
 
 //Constant macros

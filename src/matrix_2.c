@@ -6,38 +6,64 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 13:53:52 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/20 15:14:17 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/22 21:11:04 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-
-float *invert_matrix(float *mat)
+int	invert_matrix(float *mat, float *inv)
 {
-    float det;
-    float *inv;
-	float *cofactor_mat;
-	float *aux;
-    
-    det = determinant_matrix(mat);
-    if (det == 0)
-        return (NULL);
-    inv = (float *)calloc(16, sizeof(float));
-    if (!inv)
+	float det;
+	float aux[16];
+	int i;
+
+	det = determinant_matrix(mat);
+	if (det < EPSILON)
+		return (1);
+	cofactor_matrix(mat, aux);
+	transpose_matrix(aux, inv);
+	i = 0;
+	while (i < 16)
 	{
-		return (NULL);
-	}   
-	aux = cofactor_matrix(mat);
-    cofactor_mat = transpose_matrix(aux);
-	free(aux);
-    int i = 0;
-    while (i < 16)
+		inv[i] = inv[i] / det;
+		i++;
+	}
+	return (0);
+}
+
+void	cofactor_matrix(float *mat, float *res)
+{
+	int 	i;
+    int 	j;
+
+	i = 0;
+    while (i < 4)
     {
-        inv[i] = cofactor_mat[i] / det;
+        j = 0;
+        while (j < 4)
+        {
+            res[i * 4 + j] = cofactor(mat, i, j);
+            j++;
+        }
         i++;
     }
-    return inv;
+    return;
+}
+
+float cofactor(float *mat, int row, int col)
+{
+    float	minor[9];
+	float	det;
+    
+	minor_matrix(mat, minor, row, col);
+	det = minor[0] * (minor[4] * minor[8] - minor[5] * minor[7])
+        - minor[1] * (minor[3] * minor[8] - minor[5] * minor[6])
+        + minor[2] * (minor[3] * minor[7] - minor[4] * minor[6]);
+	if ((row + col) % 2 == 0)
+		return(det);
+	else
+		return (-det);
 }
 
 void minor_matrix(float *mat, float *minor, int row, int col)
@@ -61,6 +87,7 @@ void minor_matrix(float *mat, float *minor, int row, int col)
         mi++;
         i++;
     }
+	return;
 }
 
 void	calculate_minor_row(int col, float *minor, float *mat, int *aux)
@@ -85,42 +112,5 @@ void	calculate_minor_row(int col, float *minor, float *mat, int *aux)
 		mj++;
 		j++;
 	}
-}
-
-float cofactor(float *mat, int row, int col)
-{
-    float	minor[9];
-	float	det;
-    
-	minor_matrix(mat, minor, row, col);
-	det = minor[0] * (minor[4] * minor[8] - minor[5] * minor[7])
-        - minor[1] * (minor[3] * minor[8] - minor[5] * minor[6])
-        + minor[2] * (minor[3] * minor[7] - minor[4] * minor[6]);
-	if ((row + col) % 2 == 0)
-		return(det);
-	else
-		return (-det);
-}
-
-float *cofactor_matrix(float *mat)
-{
-	float	*res;
-	int 	i;
-    int 	j;
-
-	i = 0;
-	res = (float *)calloc(16, sizeof(float));
-	if(!res)
-		return (NULL);
-    while (i < 4)
-    {
-        j = 0;
-        while (j < 4)
-        {
-            res[i * 4 + j] = cofactor(mat, i, j);
-            j++;
-        }
-        i++;
-    }
-    return (res);
+	return;
 }

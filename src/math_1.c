@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   math_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 17:21:53 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/16 11:44:46 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/26 18:16:01 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-float myabs(float num)
+float ft_abs(float num)
 {
 	if (num >= 0)
 		return (num);
@@ -21,7 +21,7 @@ float myabs(float num)
 
 int is_equal(float a, float b)
 {
-    if (myabs(a - b) < EPSILON)
+    if (ft_abs(a - b) < EPSILON)
 		return(1);
 	return (0);
 }
@@ -63,7 +63,7 @@ t_vec opp_vector(t_vec vec)
 	zero.x = 0;
 	zero.y = 0;
 	zero.z = 0;
-	zero.w = 0;
+	zero.w = VECTOR;
 	return(rest_coord(zero, vec));
 }
 
@@ -84,7 +84,7 @@ t_vec cross_product(t_vec v1, t_vec v2)
     res.x = v1.y * v2.z - v1.z * v2.y;
     res.y = v1.z * v2.x - v1.x * v2.z;
     res.z = v1.x * v2.y - v1.y * v2.x;
-	res.w = 0;
+	res.w = VECTOR;
     return (res);
 }
 
@@ -95,6 +95,7 @@ t_pos  new_lineal_point(t_pos origin, t_vec vector, float t)
     res.x = origin.x + t * vector.x;
     res.y = origin.y + t * vector.y;
     res.z = origin.z + t * vector.z;
+	res.w = POINT;
     return(res);
 }
 

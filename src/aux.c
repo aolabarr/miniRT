@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:20:36 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/01 11:35:52 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/25 20:50:54 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,28 @@ int is_element(char *str)
 		return (1);
 	else
 		return (0);
+}
+void	*ft_memsetf(void *b, float c, int len)
+{
+	float	*str;
+	int	i;
+
+	str = b;
+	i = 0;
+	while (i < len)
+	{
+		str[i] = c;
+		i++;
+	}
+	return (b);
+}
+void	*ft_callocf(int count, int size)
+{
+	void	*ptr;
+
+	ptr = malloc(count * size);
+	if (!ptr)
+		return (NULL);
+	ft_memsetf(ptr, 0.0, size);
+	return (ptr);
 }

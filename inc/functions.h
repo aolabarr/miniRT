@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/29 09:58:38 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/29 11:05:49 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ int		handle_close(t_data *scene);
 int		close_window(t_data *scene);
 
 /* render.c */
+int     create_scene(t_data *scene);
 int	    render_image(t_data *scene);
 int	    create_image(t_data *scene);
 void	put_color_pixel(t_data *scene, t_image img, int x, int y);
+
 
 /* keys.c */
 int     handle_key_input(int key, t_data *scene);
@@ -39,6 +41,8 @@ int			get_position(char *str, t_coord  *pos);
 int         get_vector(char *str, t_coord  *vec);
 t_eltype	get_elem_type(char *str);
 int         is_element(char *str);
+void	*ft_memsetf(void *b, float c, int len);
+void	*ft_callocf(int count, int size);
 
 /* init.c */
 void	init_scene(t_data *scene);
@@ -77,15 +81,23 @@ void	ft_free_v(void *str);
 /* parse.c */
 int	parse(t_data *scene, char *map);
 
-/* raytracing.c */
-int raytracing(t_data *scene);
+
+/* raytracing 1.c */
+t_pos   calc_pixel_position(int x, int y, t_pos *canvas);
+void	ray_transform_to_local(t_element *elem, t_ray ray, t_ray *ray_local);
+t_pos	get_hit_point(t_ray ray, t_hit hit);
+float	hit_t(t_hit hit);
+
+/* raytracing 2.c */
+t_vec	normal_at(t_element elem, t_pos hit_wd_point);
+t_vec	reflect_at(t_vec in, t_vec normal);
 
 /* colors_test.c*/
 void testing_colors(t_data *scene);
 t_color blend_colors(t_color col1, t_color col2, float ratio);
 
 /* math_1.c */
-float myabs(float num);
+float ft_abs(float num);
 int is_equal(float a, float b);
 int is_coord_equal(t_coord a, t_coord b);
 t_vec sum_vector(t_vec a, t_vec b);
@@ -105,35 +117,52 @@ int		is_zerovector(t_vec vec);
 
 /* intersection.c */
 t_pos	position(t_ray ray, float t);
+t_pos	zero_pos(void);
 // t_pos	new_lineal_point(t_pos point, t_vec vec);
 t_hit	sphere_intersection(t_ray ray, t_element elem);
 t_hit	plane_intersection(t_ray ray, t_element elem);
 
 
 /* matrix_1.c*/
-int is_equal_matrix(float *mat1, float *mat2);
-float *multiply_matrix(float *mat1, float *mat2);
-float *multiply_matrix_vector(float *mat, float *vec);
-float *identity_matrix();
-float *transpose_matrix(float *mat);
+int     is_equal_matrix(float *mat1, float *mat2);
+void	multiply_matrix(float *mat1, float *mat2, float *res);
+void	multiply_matrix_vector(float *mat, t_vec vector, t_vec *res);
+void	identity_matrix(float *mat);
+void	transpose_matrix(float *mat, float *res);
+void    init_coordf(float *coord);
+void	multiply_matrix_pos(float *mat, t_pos point, t_pos *res);
 
 /* matrix_2.c*/
 float determinant_matrix(float *mat);
-float *invert_matrix(float *mat);
+int	invert_matrix(float *mat, float *inv);
 void minor_matrix(float *mat, float *minor, int row, int col);
 float cofactor(float *mat, int row, int col);
-float *cofactor_matrix(float *mat);
+void	cofactor_matrix(float *mat, float *res);
 void	calculate_minor_row(int col, float *minor, float *mat, int *aux);
 
 /* matrix_3.c*/
-float *translation_matrix(float x, float y, float z);
-float *scale_matrix(float x, float y, float z);
-float *rotation_x_matrix(float angle);
-float *rotation_y_matrix(float angle);
-float *rotation_z_matrix(float angle);
+void    rotation_x_matrix(float angle, float *mat);
+void    rotation_y_matrix(float angle, float *mat);
+void    rotation_z_matrix(float angle, float *mat);
+void    rotation_matrix(float ax, float ay, float az, float *mat);
+void    rotation_inv_matrix(float ax, float ay, float az, float *mat);
 
 /* matrix_4.c*/
-float determinant_matrix(float *mat);
-float *shearing_matrix(t_shear shear);
+float   determinant_matrix(float *mat);
+void    shearing_matrix(t_shear shear,  float *mat);
+void    translation_matrix(t_pos point, float *mat);
+void    scale_matrix(float x, float y, float z, float *mat);
+void    rotation_angles(t_vec vec, float theta[3]);
+
+/* trans.c*/
+int   init_trans_matrix(t_data *scene);
+int    get_trans_matrix(t_element *elem);
+int    get_trans_inv_matrix(t_element *elem);
+
+/* PARA PRUEBAS*/
+void print_matrix(float *mat);
+void print_vector(t_vec vec);
+void print_ray(t_ray ray);
+void print_pos(t_pos pos);
 
 #endif

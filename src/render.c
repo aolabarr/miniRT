@@ -6,11 +6,28 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/29 10:04:27 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/29 11:03:38 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+
+int create_scene(t_data *scene)
+{
+	init_mlx(scene);
+	scene->mlx = mlx_init();
+	if (!scene->mlx)
+		return (handle_error(ERR_MALL),EXIT_FAILURE);
+	if (!new_window(scene, scene->name))
+		return (handle_error(ERR_MALL),EXIT_FAILURE);
+	mlx_loop_hook(scene->mlx, render_image, scene);
+	mlx_hook(scene->win, DestroyNotify, NoEventMask, handle_close, scene);
+	mlx_hook(scene->win, KeyPress, KeyPressMask, handle_key_input, scene);
+	//mlx_hook(scene->win, ButtonPress, ButtonPressMask, handle_scroll, scene);
+	//mlx_hook(scene->win, MotionNotify, PointerMotionMask, mouse_move, scene);
+	mlx_loop(scene->mlx);
+	return (EXIT_SUCCESS);
+}
 
 int	render_image(t_data *data)
 {
@@ -38,11 +55,13 @@ int	create_image(t_data *data)
 	int	x;
 	int	y;
 
-	//x = 1;
+	if (init_trans_matrix(data))
+		return (EXIT_FAILURE);
+	printf("\ntr_mat"), print_matrix(data->elem->tr_mat), printf("\n");
+	printf("\ntri_mat"), print_matrix(data->elem->tri_mat), printf("\n");
 	x = 0;
 	while (x < WIDTH)
 	{
-		//y = 1;
 		y = 0;
 		while (y < HEIGHT)
 		{
@@ -51,8 +70,87 @@ int	create_image(t_data *data)
 		}
 		x++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
+
+void	put_color_pixel(t_data *scene, t_image img, int x, int y)
+{
+	int	offset;
+	t_pos	pixel_pos;
+	t_ray	ray;
+	t_ray	local_ray;
+	t_hit	hit;
+	t_pos	hit_point;
+	t_vec	normal, reflect;
+	t_color color;
+	
+	t_color	bg_color = {0, 0, 0};        
+	
+	pixel_pos = calc_pixel_position(x, y, img.canvas);
+	ray.origin = scene->cam.pos;
+	ray.vec = normalize(rest_coord(pixel_pos, scene->cam.pos));
+
+	//printf(" cam pos: "), print_pos(scene->cam.pos);
+	//print_ray(ray);
+
+	ray_transform_to_local(&scene->elem[0], ray, &local_ray);
+	hit = calculate_hit(local_ray, scene->elem[0]);
+	hit_point =	get_hit_point(ray, hit);
+	normal = normal_at(scene->elem[0], hit_point);
+	reflect = reflect_at(ray.vec, normal);
+	//printf("Normal\n"), print_vector(normal);
+	//printf("Reflec\n"), print_vector(reflect);
+
+
+	if (hit.hit && (hit.t1 > EPSILON || hit.t2 > EPSILON))
+	{
+		if (hit.t1 < hit.t2 || hit.t2 < hit.t1)
+			color = scene->elem[0].color;
+		else
+			color = bg_color;
+	}
+	else 
+		color = bg_color;
+
+	offset = (img.line_len * y) + x * (img.bpp / 8);
+	*(int *)((char *)img.addr + offset) = rgb_to_hex(color);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* 
@@ -133,3 +231,5 @@ void	put_color_pixel(t_data *data, t_image img, int x, int y)
 	offset = (img.line_len * y) + x * (img.bpp / 8);
 	*(int *)((char *)img.addr + offset) = rgb_to_hex(color);
 }
+              u * v * canvas[3].z;
+*/

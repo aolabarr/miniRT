@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 08:13:32 by binary            #+#    #+#             */
-/*   Updated: 2025/03/29 10:24:28 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/29 11:05:34 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,14 @@ t_hit	sphere_intersection(t_ray ray, t_element elem)
 	float b;
 	float c;
 	float dis;
+	t_hit res;
+	
+	(void)elem;
 	t_hit hit;
 	
 	a = dot_product(ray.vec, ray.vec);
-	b = 2 * dot_product(ray.vec, rest_coord(ray.origin, elem.pos));
-	c = dot_product(rest_coord(ray.origin, elem.pos), rest_coord(ray.origin, elem.pos)) - ((elem.diam/2) * (elem.diam/2));
+	b = 2 * dot_product(ray.vec, rest_coord(ray.origin, zero_pos()));
+	c = dot_product(rest_coord(ray.origin, zero_pos()), rest_coord(ray.origin, zero_pos())) - 1;
 	dis = (b * b) - (4 * a * c);
 	if (dis < 0)
 	{
@@ -61,7 +64,7 @@ t_hit	sphere_intersection(t_ray ray, t_element elem)
 		return (hit);
 	}
 	hit.hit = true;
-	if (dis == 0)
+	if (dis < 0)
 	{
 		hit.t1 = -b / (2 * a);
 		hit.t2 = hit.t1;
@@ -144,3 +147,16 @@ t_hit cylinder_intersection(t_ray ray, t_element elem)
 	}
 	return (hit);
 }
+
+t_pos	zero_pos(void)
+{
+	t_pos zero;
+
+	zero.x = 0;
+	zero.y = 0;
+	zero.z = 0;
+	zero.w = 1;
+	return(zero);
+}
+
+

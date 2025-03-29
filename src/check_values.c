@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_values.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:21:22 by binary            #+#    #+#             */
-/*   Updated: 2025/03/10 09:40:18 by binary           ###   ########.fr       */
+/*   Updated: 2025/03/22 21:06:02 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	get_sphere(char **str, t_element *elem)
 		return (EXIT_FAILURE);
 	if (len_mat(str) == 4)
 	{
-		elem->diam = ft_atof(str[2]);
+		elem->radio = ft_atof(str[2]) / (float)2.0;
 		if (get_color(str[3], &(elem->color)) == ERR_INT)
 			return (EXIT_FAILURE);
 		elem->height = 0;
@@ -62,7 +62,7 @@ int	get_plane(char **str, t_element *elem)
 		if (get_color(str[3], &(elem->color)) == ERR_INT)
 			return (EXIT_FAILURE);
 		elem->height = 0;
-		elem->diam = 0;
+		elem->radio = 0;
 	}
 	else
 		return (EXIT_FAILURE);
@@ -77,7 +77,7 @@ int	get_cylinder(char **str, t_element *elem)
 	{
 		if(get_vector(str[2], &(elem->vec)))
 			return (EXIT_FAILURE);
-		elem->diam = ft_atof(str[3]);
+		elem->radio = ft_atof(str[3]) / (float)2.0;
 		elem->height = ft_atof(str[4]);
 		if (get_color(str[3], &(elem->color)) == ERR_INT)
 			return (EXIT_FAILURE);
