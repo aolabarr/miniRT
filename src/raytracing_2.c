@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:12:28 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/29 13:42:36 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/29 18:08:14 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,54 @@ t_vec	reflect_at(t_vec in, t_vec normal)
 
 float	lightning(t_data *scene, t_element elem, t_pos point, t_vec normal)
 {
-	t_color effective_color;
-	t_vec	light_vec;
+	t_vec	lightv;
 	t_vec	eyev;
+	float	colors[3];
+	float	light_dot_normal;
+	t_vec	reflectv;
+	float	reflect_dot_eye;
+	float	factor;
 
-	eyev = rest_coord(scene->cam.pos, point);
-	effective_color = add_color_intensity(elem.color, scene->lig.bright);
-
+	eyev = normalize(rest_coord(scene->cam.pos, point));
+	lightv = normalize(rest_coord(scene->lig.pos, point));
+	colors[0] = scene->lig.bright * elem.material.ambient;
+	light_dot_normal = dot_product(lightv, normal);
+	if (light_dot_normal < -EPSILON)
+	{
+		colors[1] = 0;
+		colors[2] = 0;
+	}
+	else
+	{
+		colors[1] = scene->lig.bright * elem.material.diffuse * light_dot_normal;
+		reflectv = reflect_at(opp_vector(lightv), normal);
+		reflect_dot_eye = dot_product(reflectv, eyev);
+		if (reflect_dot_eye < -EPSILON || ft_abs(reflect_dot_eye) < EPSILON)
+			colors[2] = 0;
+		else
+		{
+			factor = ft_pow(reflect_dot_eye, elem.material.shini);
+			colors[2] = scene->lig.bright * elem.material.specular * factor;
+		}	
+	}
+	return (colors[0] + colors[1] + colors[2]);
 }
 
 t_color	add_color_intensity(t_color color, float intensity)
 {
 	t_color res_color;
 
-	res_color.red = color.red * intensity;
-	res_color.green = color.green * intensity;
-	res_color.blue = color.blue * intensity;
+	res_color.red = clamp_color(color.red * intensity);
+	res_color.green = clamp_color(color.green * intensity);
+	res_color.blue = clamp_color(color.blue * intensity);
 	return (res_color);
+}
+t_color	create_color(float r, float g, float b)
+{
+	t_color color;
+
+	color.red = r;
+	color.green = g;
+	color.blue = b;
+	return (color);
 }

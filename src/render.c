@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/29 11:17:30 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/29 18:04:03 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,14 @@ void	put_color_pixel(t_data *scene, t_image img, int x, int y)
 	t_pos	hit_point;
 	t_vec	normal, reflect;
 	t_color color;
+	float	pong;
 	
-	t_color	bg_color = {0, 0, 0};        
+	t_color	bg_color = {0, 0, 255};
+	scene->elem[0].material.ambient = 0.1;
+	scene->elem[0].material.diffuse = 0.9;
+	scene->elem[0].material.specular = 0.9; 
+	scene->elem[0].material.shini = 8;
+	pong = 0.0;      
 	
 	pixel_pos = calc_pixel_position(x, y, img.canvas);
 	ray.origin = scene->cam.pos;
@@ -100,12 +106,11 @@ void	put_color_pixel(t_data *scene, t_image img, int x, int y)
 	reflect = reflect_at(ray.vec, normal);
 	//printf("Normal\n"), print_vector(normal);
 	//printf("Reflec\n"), print_vector(reflect);
-
-
+	pong = lightning(scene, scene->elem[0], hit_point, normal);
 	if (hit.hit && (hit.t1 > EPSILON || hit.t2 > EPSILON))
 	{
 		if (hit.t1 < hit.t2 || hit.t2 < hit.t1)
-			color = scene->elem[0].color;
+			color = add_color_intensity(scene->elem[0].color, pong);
 		else
 			color = bg_color;
 	}
@@ -114,6 +119,7 @@ void	put_color_pixel(t_data *scene, t_image img, int x, int y)
 
 	offset = (img.line_len * y) + x * (img.bpp / 8);
 	*(int *)((char *)img.addr + offset) = rgb_to_hex(color);
+	//printf("color R: %f G: %f B: %f\n", color.red, color.green, color.blue);
 }
 
 /* PARA BORRAR ES SOLO CHECKEO DEL PLANO*/

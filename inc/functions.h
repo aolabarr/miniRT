@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/29 11:05:49 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/29 16:53:39 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		get_element(char *line, t_element *elem);
 int		add_element(t_data *scene, t_element *new_elem);
 int     get_color(char *str, t_color *color);
 int     rgb_to_hex(t_color color);
-int     clamp_color(int color);
+float   clamp_color(float color);
 int	    ft_atoi_hex(char *str);
 int	    dec_to_hex(int dec);
 float	ft_atof(char *str);
@@ -91,6 +91,9 @@ float	hit_t(t_hit hit);
 /* raytracing 2.c */
 t_vec	normal_at(t_element elem, t_pos hit_wd_point);
 t_vec	reflect_at(t_vec in, t_vec normal);
+t_color	add_color_intensity(t_color color, float intensity);
+t_color	create_color(float r, float g, float b);
+float	lightning(t_data *scene, t_element elem, t_pos point, t_vec normal);
 
 /* colors_test.c*/
 void testing_colors(t_data *scene);
@@ -114,6 +117,9 @@ float dot_product(t_vec a, t_vec b);
 t_pos	sum_coord(t_pos coord1, t_pos coord2);
 t_pos	mult_coord_float(t_pos coord1, float t);
 int		is_zerovector(t_vec vec);
+
+/* math_3.c */
+float	ft_pow(float num, int pow);
 
 /* intersection.c */
 t_pos	position(t_ray ray, float t);

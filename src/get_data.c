@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/26 19:50:52 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/03/29 16:53:15 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,7 +217,7 @@ int rgb_to_hex(t_color color)
 	return (hex_color);
 }
 
-int clamp_color(int color)
+float clamp_color(float color)
 {
 	if (color < 0)
 		return (0);
