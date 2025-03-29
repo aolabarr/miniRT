@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/26 15:27:53 by binary           ###   ########.fr       */
+/*   Updated: 2025/03/29 09:58:38 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int		is_zerovector(t_vec vec);
 /* intersection.c */
 t_pos	position(t_ray ray, float t);
 // t_pos	new_lineal_point(t_pos point, t_vec vec);
-t_hit	calculate_hit(t_ray ray, t_element elem);
+t_hit	sphere_intersection(t_ray ray, t_element elem);
 t_hit	plane_intersection(t_ray ray, t_element elem);
 
 

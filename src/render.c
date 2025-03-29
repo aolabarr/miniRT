@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/26 15:28:03 by binary           ###   ########.fr       */
+/*   Updated: 2025/03/29 10:04:27 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,12 @@ int	create_image(t_data *data)
 	{
 		//y = 1;
 		y = 0;
-		// printf("x = %d, y = %d\n", x, y);
 		while (y < HEIGHT)
 		{
 			put_color_pixel(data, data->img, x, y);
-			// printf("Dibujando píxel en x: %d, y: %d\n", x, y);
 			y++;
 		}
 		x++;
-		// printf("Nuevo x: %d\n", x);
 	}
 	return (0);
 }
@@ -109,7 +106,7 @@ void	put_color_pixel(t_data *data, t_image img, int x, int y)
 	ray.origin = data->cam.pos;
 	ray.vec = normalize(rest_coord(pixel_pos, data->cam.pos));
 	
-	hit = calculate_hit(ray, data->elem[0]);
+	hit = sphere_intersection(ray, data->elem[0]);
 	
 	hitplane = plane_intersection(ray, data->elem[1]);
 	// if (hitplane.hit == true)
@@ -117,11 +114,11 @@ void	put_color_pixel(t_data *data, t_image img, int x, int y)
 	// 	color = data->elem[1].color;
 	// }
 	if (hit.hit && (!hitplane.hit || hit.t1 < hitplane.t1))
-		color = data->elem[0].color; // esfera está más cerca
+		color = data->elem[0].color;
 	else if (hitplane.hit)
-		color = data->elem[1].color; // plano está más cerca (o solo plano)
+		color = data->elem[1].color; 
 	else
-		color = bg_color; // nada
+		color = bg_color;
 	// if (hit.hit && (hit.t1 > EPSILON || hit.t2 > EPSILON))
 	// {
 	// 	if (hit.t1 < hit.t2 || hit.t2 < hit.t1)
