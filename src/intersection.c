@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 08:13:32 by binary            #+#    #+#             */
-/*   Updated: 2025/03/29 11:05:34 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/29 12:13:22 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ t_hit	sphere_intersection(t_ray ray, t_element elem)
 	float b;
 	float c;
 	float dis;
-	t_hit res;
-	
 	(void)elem;
 	t_hit hit;
 	
@@ -56,15 +54,14 @@ t_hit	sphere_intersection(t_ray ray, t_element elem)
 	b = 2 * dot_product(ray.vec, rest_coord(ray.origin, zero_pos()));
 	c = dot_product(rest_coord(ray.origin, zero_pos()), rest_coord(ray.origin, zero_pos())) - 1;
 	dis = (b * b) - (4 * a * c);
-	if (dis < 0)
+	if (dis < -EPSILON)
 	{
-		//printf("no hay hit\n");
 		hit.hit = false;
 		hit.t1 = hit.t2 = 0;
 		return (hit);
 	}
 	hit.hit = true;
-	if (dis < 0)
+	if (ft_abs(dis) < EPSILON)
 	{
 		hit.t1 = -b / (2 * a);
 		hit.t2 = hit.t1;
@@ -80,9 +77,7 @@ t_hit	sphere_intersection(t_ray ray, t_element elem)
 
 /*
 intersección en el plano
-
 t = (punto en el plano - origen del rayo) * normal del plano / (dirección del rayo * normal del plano)
-
 */
 
 t_hit plane_intersection(t_ray ray, t_element elem)
@@ -96,14 +91,17 @@ t_hit plane_intersection(t_ray ray, t_element elem)
 	vec1 = rest_coord(elem.pos, ray.origin);
 	numerator = dot_product(vec1, elem.vec);
 	denominator = dot_product (ray.vec, elem.vec);
-	if (myabs(denominator) < EPSILON) // rayo y plano son paralelos?
+
+	t_vec aux = cross_product(vec1, ray.vec);
+	
+	if (is_zerovector(aux)) // rayo y plano son paralelos
 	{
 		hit.hit = false;
 		hit.t1 = hit.t2 = 0;
 		return (hit);
 	}
 	t = numerator / denominator;
-	if (t < EPSILON)
+	if (t < -EPSILON)
 	{
 		hit.hit = false;
 		hit.t1 = hit.t2 = 0;
@@ -122,6 +120,7 @@ t_hit cylinder_intersection(t_ray ray, t_element elem)
 	float	b;
 	float	c;
 	float	dis;
+	(void)elem;
 
 	a = ray.vec.x * ray.vec.x + ray.vec.z * ray.vec.z;
 	if (a < EPSILON) //rayo paralelo al cilindro 

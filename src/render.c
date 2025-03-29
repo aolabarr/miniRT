@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/29 11:03:38 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/03/29 11:17:30 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	put_color_pixel(t_data *scene, t_image img, int x, int y)
 	//print_ray(ray);
 
 	ray_transform_to_local(&scene->elem[0], ray, &local_ray);
-	hit = calculate_hit(local_ray, scene->elem[0]);
+	hit = sphere_intersection(local_ray, scene->elem[0]);
 	hit_point =	get_hit_point(ray, hit);
 	normal = normal_at(scene->elem[0], hit_point);
 	reflect = reflect_at(ray.vec, normal);
@@ -116,120 +116,66 @@ void	put_color_pixel(t_data *scene, t_image img, int x, int y)
 	*(int *)((char *)img.addr + offset) = rgb_to_hex(color);
 }
 
+/* PARA BORRAR ES SOLO CHECKEO DEL PLANO*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-INTERPOLACIÓN BILINEAL DE PUNTO EN EL CANVAS
-pixel_pos.x = (1 - u) * (1 - v) * canvas[0].x +
-              u * (1 - v) * canvas[1].x +
-              (1 - u) * v * canvas[2].x +
-              u * v * canvas[3].x;
-
-pixel_pos.y = (1 - u) * (1 - v) * canvas[0].y +
-              u * (1 - v) * canvas[1].y +
-              (1 - u) * v * canvas[2].y +
-              u * v * canvas[3].y;
-
-pixel_pos.z = (1 - u) * (1 - v) * canvas[0].z +
-              u * (1 - v) * canvas[1].z +
-              (1 - u) * v * canvas[2].z +
-              u * v * canvas[3].z; */
-
-void	put_color_pixel(t_data *data, t_image img, int x, int y)
-{
-	int	offset;
-	t_ray	ray;
-	t_hit	hit;
-	t_hit	hitplane;
-	t_coord	pixel_pos;
-	t_color	bg_color = {0, 0, 0};        
-	t_color color;
+// void	put_color_pixel(t_data *data, t_image img, int x, int y)
+// {
+// 	int	offset;
+// 	t_ray	ray;
+// 	t_hit	hit;
+// 	t_hit	hitplane;
+// 	t_coord	pixel_pos;
+// 	t_color	bg_color = {0, 0, 0};        
+// 	t_color color;
 		
 
-	float u = 1.0 - ((float)x / (float)(WIDTH - 1));
-	float v = 1.0 - ((float)y / (float)(HEIGHT - 1));
+// 	float u = 1.0 - ((float)x / (float)(WIDTH - 1));
+// 	float v = 1.0 - ((float)y / (float)(HEIGHT - 1));
 
-	t_pos aux1 = scalar_product(data->img.canvas[1], (1 - u) * (1 - v));
-	t_pos aux2 = scalar_product(data->img.canvas[0], u * (1 - v));
-	t_pos aux3 = scalar_product(data->img.canvas[3], (1 - u) * v);
-	t_pos aux4 = scalar_product(data->img.canvas[2], u * v);
+// 	t_pos aux1 = scalar_product(data->img.canvas[1], (1 - u) * (1 - v));
+// 	t_pos aux2 = scalar_product(data->img.canvas[0], u * (1 - v));
+// 	t_pos aux3 = scalar_product(data->img.canvas[3], (1 - u) * v);
+// 	t_pos aux4 = scalar_product(data->img.canvas[2], u * v);
 
-	pixel_pos.x = aux1.x + aux2.x + aux3.x + aux4.x;
-	pixel_pos.y = aux1.y + aux2.y + aux3.y + aux4.y;
-	pixel_pos.z = aux1.z + aux2.z + aux3.z + aux4.z;
-	pixel_pos.w = 1;
+// 	pixel_pos.x = aux1.x + aux2.x + aux3.x + aux4.x;
+// 	pixel_pos.y = aux1.y + aux2.y + aux3.y + aux4.y;
+// 	pixel_pos.z = aux1.z + aux2.z + aux3.z + aux4.z;
+// 	pixel_pos.w = 1;
 
 
-	// pixel_pos = sum_coord( \
-	// 			sum_coord(mult_coord_float(data->img.canvas[0], (1 - u) * (1 - v)), \
-	// 					mult_coord_float(data->img.canvas[1], u * (1 - v))), \
-	// 			sum_coord(mult_coord_float(data->img.canvas[2], (1 - u) * v), \
-	// 					mult_coord_float(data->img.canvas[3], u * v)));
+// 	// pixel_pos = sum_coord( \
+// 	// 			sum_coord(mult_coord_float(data->img.canvas[0], (1 - u) * (1 - v)), \
+// 	// 					mult_coord_float(data->img.canvas[1], u * (1 - v))), \
+// 	// 			sum_coord(mult_coord_float(data->img.canvas[2], (1 - u) * v), \
+// 	// 					mult_coord_float(data->img.canvas[3], u * v)));
 
-	ray.origin = data->cam.pos;
-	ray.vec = normalize(rest_coord(pixel_pos, data->cam.pos));
+// 	ray.origin = data->cam.pos;
+// 	ray.vec = normalize(rest_coord(pixel_pos, data->cam.pos));
 	
-	hit = sphere_intersection(ray, data->elem[0]);
+// 	hit = sphere_intersection(ray, data->elem[0]);
 	
-	hitplane = plane_intersection(ray, data->elem[1]);
-	// if (hitplane.hit == true)
-	// {
-	// 	color = data->elem[1].color;
-	// }
-	if (hit.hit && (!hitplane.hit || hit.t1 < hitplane.t1))
-		color = data->elem[0].color;
-	else if (hitplane.hit)
-		color = data->elem[1].color; 
-	else
-		color = bg_color;
-	// if (hit.hit && (hit.t1 > EPSILON || hit.t2 > EPSILON))
-	// {
-	// 	if (hit.t1 < hit.t2 || hit.t2 < hit.t1)
-	// 		color = data->elem[0].color;
+// 	hitplane = plane_intersection(ray, data->elem[1]);
+// 	// if (hitplane.hit == true)
+// 	// {
+// 	// 	color = data->elem[1].color;
+// 	// }
+// 	if (hit.hit && (!hitplane.hit || hit.t1 < hitplane.t1))
+// 		color = data->elem[0].color;
+// 	else if (hitplane.hit)
+// 		color = data->elem[1].color; 
+// 	else
+// 		color = bg_color;
+// 	// if (hit.hit && (hit.t1 > EPSILON || hit.t2 > EPSILON))
+// 	// {
+// 	// 	if (hit.t1 < hit.t2 || hit.t2 < hit.t1)
+// 	// 		color = data->elem[0].color;
 	
-	// 	else
-	// 		color = bg_color;
-	// }
-	// else 
-	// 	color = bg_color;
+// 	// 	else
+// 	// 		color = bg_color;
+// 	// }
+// 	// else 
+// 	// 	color = bg_color;
 
-	offset = (img.line_len * y) + x * (img.bpp / 8);
-	*(int *)((char *)img.addr + offset) = rgb_to_hex(color);
-}
-              u * v * canvas[3].z;
-*/
+// 	offset = (img.line_len * y) + x * (img.bpp / 8);
+// 	*(int *)((char *)img.addr + offset) = rgb_to_hex(color);
+// }
