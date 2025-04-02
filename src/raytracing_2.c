@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:12:28 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/02 19:31:56 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/02 19:42:13 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ t_vec	normal_at(t_element elem, t_pos hit_wd_point)
 	wd_normal.w = 0;
 	return (normalize(wd_normal));
 }
+
 t_vec	reflect_at(t_vec in, t_vec normal)
 {
 	return (rest_coord(in, scalar_product(normal, 2.0 * dot_product(in, normal))));
 }
-
 
 t_color	add_color_intensity(t_color color, float intensity)
 {

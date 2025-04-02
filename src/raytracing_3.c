@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:38:58 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/02 18:41:45 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/02 19:44:39 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_hit   *intersect_world(t_ray ray, t_data *scene)
     }
     return (inters);
 }
+
 t_comps prepare_computations(t_hit hit, t_ray ray)
 {
    t_comps comps;
@@ -57,6 +58,7 @@ void    calc_inside(t_comps *comps)
         comps->inside = false;
     return ;
 }
+
 float shade_hit(t_data *scene, t_comps comps)
 {
     return (lightning(scene, comps));

@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:05:48 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/26 18:13:14 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/02 19:42:00 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@ t_pos calc_pixel_position(int x, int y, t_pos *canvas)
 	pixel_pos.w = 1;
 	return (pixel_pos);
 }
+
 void	ray_transform_to_local(t_element *elem, t_ray ray, t_ray *ray_local)
 {
 	multiply_matrix_vector(elem->tri_mat, ray.vec, &ray_local->vec);
 	multiply_matrix_pos(elem->tri_mat, ray.origin, &ray_local->origin);
 	return ;
 }
+
 t_pos	get_hit_point(t_ray ray, t_hit hit)
 {
 	float	t;
