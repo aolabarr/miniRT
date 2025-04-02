@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/29 18:04:03 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/02 19:39:31 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ int	create_image(t_data *data)
 
 	if (init_trans_matrix(data))
 		return (EXIT_FAILURE);
-	printf("\ntr_mat"), print_matrix(data->elem->tr_mat), printf("\n");
-	printf("\ntri_mat"), print_matrix(data->elem->tri_mat), printf("\n");
+	printf("\ntr_mat"), print_matrix(data->elem[0].tr_mat), printf("\n");
+	printf("\ntri_mat"), print_matrix(data->elem[0].tri_mat), printf("\n");
+	printf("\ntr_mat"), print_matrix(data->elem[1].tr_mat), printf("\n");
+	printf("\ntri_mat"), print_matrix(data->elem[1].tri_mat), printf("\n");
 	x = 0;
 	while (x < WIDTH)
 	{
@@ -76,51 +78,32 @@ int	create_image(t_data *data)
 void	put_color_pixel(t_data *scene, t_image img, int x, int y)
 {
 	int	offset;
-	t_pos	pixel_pos;
+	
 	t_ray	ray;
-	t_ray	local_ray;
 	t_hit	hit;
-	t_pos	hit_point;
-	t_vec	normal, reflect;
+	t_hit	*inters;
 	t_color color;
-	float	pong;
-	
-	t_color	bg_color = {0, 0, 255};
-	scene->elem[0].material.ambient = 0.1;
-	scene->elem[0].material.diffuse = 0.9;
-	scene->elem[0].material.specular = 0.9; 
-	scene->elem[0].material.shini = 8;
-	pong = 0.0;      
-	
-	pixel_pos = calc_pixel_position(x, y, img.canvas);
-	ray.origin = scene->cam.pos;
-	ray.vec = normalize(rest_coord(pixel_pos, scene->cam.pos));
+	t_comps comps;
 
-	//printf(" cam pos: "), print_pos(scene->cam.pos);
-	//print_ray(ray);
-
-	ray_transform_to_local(&scene->elem[0], ray, &local_ray);
-	hit = sphere_intersection(local_ray, scene->elem[0]);
-	hit_point =	get_hit_point(ray, hit);
-	normal = normal_at(scene->elem[0], hit_point);
-	reflect = reflect_at(ray.vec, normal);
-	//printf("Normal\n"), print_vector(normal);
-	//printf("Reflec\n"), print_vector(reflect);
-	pong = lightning(scene, scene->elem[0], hit_point, normal);
-	if (hit.hit && (hit.t1 > EPSILON || hit.t2 > EPSILON))
+	init_pong_parameters(scene);
+	ray = create_ray(scene, img, x, y);
+	inters = intersect_world(ray, scene);
+	hit = find_hit(scene, inters);
+	if (hit.hit == false)
+		color = SKY_BLUE;
+	else
 	{
-		if (hit.t1 < hit.t2 || hit.t2 < hit.t1)
-			color = add_color_intensity(scene->elem[0].color, pong);
-		else
-			color = bg_color;
+		comps = prepare_computations(hit, ray);
+		color = add_color_intensity(comps.elem.color, shade_hit(scene, comps));
 	}
-	else 
-		color = bg_color;
-
 	offset = (img.line_len * y) + x * (img.bpp / 8);
 	*(int *)((char *)img.addr + offset) = rgb_to_hex(color);
-	//printf("color R: %f G: %f B: %f\n", color.red, color.green, color.blue);
 }
+
+
+
+
+
 
 /* PARA BORRAR ES SOLO CHECKEO DEL PLANO*/
 

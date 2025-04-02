@@ -6,7 +6,7 @@
 #    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/01 15:23:12 by aolabarr          #+#    #+#              #
-#    Updated: 2025/03/29 15:35:35 by aolabarr         ###   ########.fr        #
+#    Updated: 2025/04/02 19:33:57 by aolabarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,8 +34,11 @@ SRC =	main.c \
 		init.c \
 		get_data.c \
 		check_values.c \
+		lightning.c \
 		raytracing_1.c \
 		raytracing_2.c \
+		raytracing_3.c \
+		raytracing_4.c \
 		free.c \
 		parse.c \
 		math_1.c \

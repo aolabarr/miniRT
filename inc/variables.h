@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:30:53 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/26 19:48:47 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/02 13:21:58 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,6 @@ typedef struct s_element
 	float		*tri_mat;
 }			t_element;
 
-
-
-
 typedef struct s_image
 {
 	void		*ptr;
@@ -143,6 +140,16 @@ typedef struct s_data
 	t_mouse		mouse;
 	int			n_elem;
 }				t_data;
+
+typedef struct s_comps
+{
+	float		t;
+	t_element 	elem;
+	t_pos		point;
+	t_vec		eyev;
+	t_vec		normal;
+	bool		inside;
+}				t_comps;
 
 
 

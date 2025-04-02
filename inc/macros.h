@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/26 11:05:43 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/02 18:51:55 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,15 @@
 # define ARROW_MOVE 		0.05
 # define EPSILON 		    0.0001
 # define NO_HIT             -1
+# define DIFFUSE            0.7
+# define SPECULAR           0.7
+# define SHININESS          200
+
+//Color palette
+# define BLACK              (t_color){0, 0, 0}
+# define BLUE               (t_color){0, 0, 255}
+# define SKY_BLUE           (t_color){135, 206, 235}
+
 
 
 //Constant macros
@@ -55,13 +64,15 @@
 # define PI				3.14159265358979323846
 # define TOL			0.00001
 
-//Color palette
+
+/*
 #define GREEN       0x00FF00 // Verde
 #define YELLOW      0xFFFF00 // Amarillo
 #define ORANGE      0xFFA500 // Naranja
 #define PINK        0xFFC0CB // Rosa
 #define TEAL        0x008080 // Verde azulado
 #define BLACK       0x000000 // Negro
+*/
 
 #endif
 

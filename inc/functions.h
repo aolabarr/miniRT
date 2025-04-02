@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/29 16:53:39 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/02 19:33:22 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int     create_scene(t_data *scene);
 int	    render_image(t_data *scene);
 int	    create_image(t_data *scene);
 void	put_color_pixel(t_data *scene, t_image img, int x, int y);
+void	update_hit(t_hit *hit, t_hit inter);
 
 
 /* keys.c */
@@ -93,7 +94,23 @@ t_vec	normal_at(t_element elem, t_pos hit_wd_point);
 t_vec	reflect_at(t_vec in, t_vec normal);
 t_color	add_color_intensity(t_color color, float intensity);
 t_color	create_color(float r, float g, float b);
-float	lightning(t_data *scene, t_element elem, t_pos point, t_vec normal);
+void	init_pong_parameters(t_data *scene);
+
+/* raytracing 3.c */
+t_hit   *intersect_world(t_ray ray, t_data *scene);
+t_comps prepare_computations(t_hit hit, t_ray ray);
+void    calc_inside(t_comps *comps);
+float   shade_hit(t_data *scene, t_comps comps);
+
+/* raytracing 4.c */
+t_ray	create_ray(t_data *scene, t_image img, int x, int y);
+t_hit	find_hit(t_data *scene, t_hit *inters);
+void	update_hit(t_hit *hit, t_hit inter);
+
+/* ligthning.c */
+float	lightning(t_data *scene, t_comps comps);
+void	diffuse_specular_zero(float *colors);
+float	calculate_specular(t_data *scene, t_comps comps, float reflect_dot_eye);
 
 /* colors_test.c*/
 void testing_colors(t_data *scene);
@@ -127,7 +144,6 @@ t_pos	zero_pos(void);
 // t_pos	new_lineal_point(t_pos point, t_vec vec);
 t_hit	sphere_intersection(t_ray ray, t_element elem);
 t_hit	plane_intersection(t_ray ray, t_element elem);
-
 
 /* matrix_1.c*/
 int     is_equal_matrix(float *mat1, float *mat2);

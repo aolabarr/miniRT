@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 08:13:32 by binary            #+#    #+#             */
-/*   Updated: 2025/03/29 12:13:22 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:59:34 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ t_hit	sphere_intersection(t_ray ray, t_element elem)
 	{
 		hit.hit = false;
 		hit.t1 = hit.t2 = 0;
+		hit.elem = elem;
 		return (hit);
 	}
 	hit.hit = true;
@@ -65,12 +66,13 @@ t_hit	sphere_intersection(t_ray ray, t_element elem)
 	{
 		hit.t1 = -b / (2 * a);
 		hit.t2 = hit.t1;
+		hit.elem = elem;
 	}
 	else // dis > 0
 	{
 		hit.t1 = (- b - sqrtf(dis)) / (2 * a);
 		hit.t2 = (- b + sqrtf(dis)) / (2 * a);
-
+		hit.elem = elem;
 	}
 	return (hit);
 }
