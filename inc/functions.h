@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/02 19:33:22 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/05 12:10:54 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,10 @@ void    rotation_angles(t_vec vec, float theta[3]);
 int   init_trans_matrix(t_data *scene);
 int    get_trans_matrix(t_element *elem);
 int    get_trans_inv_matrix(t_element *elem);
+
+/* trans_view.c*/
+void    view_transform(t_pos from, t_pos to, t_vec up, float *mat);
+void    transform_cam(t_pos from, t_pos to, t_vec up, t_data *scene);
 
 /* PARA PRUEBAS*/
 void print_matrix(float *mat);

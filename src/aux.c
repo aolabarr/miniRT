@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:20:36 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/25 20:50:54 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/05 12:47:34 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,9 @@ int	get_vector(char *str, t_coord *vec)
 	vec->z = ft_atof(temp[2]);
 	vec->w = VECTOR;
 	ft_free_mat(temp);
-	if(!normalized_vector(*vec))
-		return (EXIT_FAILURE);
+	*vec = normalize(*vec);
+	// if(!normalized_vector(*vec))
+	// 	return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 

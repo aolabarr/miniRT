@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:45:43 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/01 11:43:17 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/04/05 13:20:28 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,38 @@ int	handle_key_input(int key, t_data *scene)
 
 void	set_traslation_move(t_data *scene, int key)
 {
-	(void)scene;
+	t_pos from;
+	t_pos to;
+	t_vec world_up;
+	t_vec rigth_up[2];
+
+	from = scene->cam.pos;
+	to = new_lineal_point(scene->cam.pos, scene->cam.vec, 1);
+	if(is_equal(scene->cam.vec.y, 1.0) || is_equal(scene->cam.vec.y, -1.0))
+		world_up = WORLD_Z;
+	else
+		world_up = WORLD_Y;
+	rigth_up[0] = normalize(cross_product(scene->cam.vec, world_up));
+	rigth_up[1] = normalize(cross_product(rigth_up[0], scene->cam.vec));
+
 	if (key == XK_Left)
 	{
 		printf("press left\n");
+		scene->cam.pos = new_lineal_point(scene->cam.pos, rigth_up[0], -DELTA_TRANS);
 	}
 	else if (key == XK_Right)
 	{
+		scene->cam.pos = new_lineal_point(scene->cam.pos, rigth_up[0], DELTA_TRANS);
 		printf("press right\n");
 	}
 	else if (key == XK_Up)
 	{
+		scene->cam.pos = new_lineal_point(scene->cam.pos, rigth_up[1], DELTA_TRANS);
 		printf("press up\n");
 	}
 	else if (key == XK_Down)
 	{
+		scene->cam.pos = new_lineal_point(scene->cam.pos, rigth_up[1], -DELTA_TRANS);
 		printf("press down\n");
 	}
 	return ;
@@ -53,13 +70,14 @@ void	set_traslation_move(t_data *scene, int key)
 
 void	set_static_zoom(t_data *scene, int key)
 {
-	(void)scene;
 	if (key == MINUS_KEY)
 	{
+		scene->cam.pos = new_lineal_point(scene->cam.pos, scene->cam.vec, DELTA_TRANS);
 		printf("press minus\n");
 	}
 	else if (key == PLUS_KEY)
 	{
+		scene->cam.pos = new_lineal_point(scene->cam.pos, scene->cam.vec, -DELTA_TRANS);
 		printf("press plus\n");
 	}
 	return ;

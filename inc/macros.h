@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/02 18:51:55 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/05 13:21:11 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,13 @@
 # define DIFFUSE            0.7
 # define SPECULAR           0.7
 # define SHININESS          200
+
+// Coordate systems and relative moves
+# define WORLD_X            (t_vec){1, 0, 0, 0}
+# define WORLD_Y            (t_vec){0, 1, 0, 0}
+# define WORLD_Z            (t_vec){0, 0, 1, 0}
+# define DELTA_TRANS        0.1
+# define DELTA_TRANS_FRONT  0.5
 
 //Color palette
 # define BLACK              (t_color){0, 0, 0}
