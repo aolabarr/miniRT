@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:38:58 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/02 19:44:39 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/05 20:15:00 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ t_comps prepare_computations(t_hit hit, t_ray ray)
    comps.eyev = opp_vector(ray.vec);
    comps.normal = normal_at(comps.elem, comps.point);
    calc_inside(&comps);
+   comps.over_point = new_lineal_point(comps.point, comps.normal, EPSILON);
    return (comps);
 }
 
@@ -61,6 +62,9 @@ void    calc_inside(t_comps *comps)
 
 float shade_hit(t_data *scene, t_comps comps)
 {
-    return (lightning(scene, comps));
+    int shadowed;
+
+    shadowed = is_shadowed(scene, comps.over_point);
+    return (lightning(scene, comps, shadowed));
 }
 

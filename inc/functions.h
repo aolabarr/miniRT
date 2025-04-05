@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/05 12:10:54 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/05 19:43:18 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,10 @@ t_hit	find_hit(t_data *scene, t_hit *inters);
 void	update_hit(t_hit *hit, t_hit inter);
 
 /* ligthning.c */
-float	lightning(t_data *scene, t_comps comps);
+float	lightning(t_data *scene, t_comps comps, int in_shadow);
 void	diffuse_specular_zero(float *colors);
 float	calculate_specular(t_data *scene, t_comps comps, float reflect_dot_eye);
+int	is_shadowed(t_data *scene, t_pos point);
 
 /* colors_test.c*/
 void testing_colors(t_data *scene);

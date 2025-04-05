@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/05 13:21:11 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/05 20:01:56 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,55 +31,43 @@
 # define ERR_MSG_SCENE      "Error: invalid data in scene"
 # define ERR_MSG_ELEM       "Error: invalid element"
 
-
 # define ESC_MSG 			"ESC key pressed"
 # define MINI_RT    		"miniRT"
 
-//Variable macros
+//Canvas values
 # define WIDTH				800
 # define ASPECT_RATIO       (16.0 / 9.0)
 # define HEIGHT				(WIDTH / ASPECT_RATIO)
 # define CANVAS_DISTANCE    1
 
-# define ZOOM_FACTOR 		0.1
-# define ARROW_MOVE 		0.05
+// Pong model values
 # define EPSILON 		    0.0001
-# define NO_HIT             -1
 # define DIFFUSE            0.7
 # define SPECULAR           0.7
 # define SHININESS          200
+
+# define NO_HIT             -1
+# define SHADOW             1 
+# define NO_SHADOW          0 
+# define ZOOM_FACTOR 		0.1
+# define MOVE_FACTOR 		0.1            
 
 // Coordate systems and relative moves
 # define WORLD_X            (t_vec){1, 0, 0, 0}
 # define WORLD_Y            (t_vec){0, 1, 0, 0}
 # define WORLD_Z            (t_vec){0, 0, 1, 0}
 # define DELTA_TRANS        0.1
-# define DELTA_TRANS_FRONT  0.5
 
 //Color palette
 # define BLACK              (t_color){0, 0, 0}
 # define BLUE               (t_color){0, 0, 255}
 # define SKY_BLUE           (t_color){135, 206, 235}
 
-
-
 //Constant macros
-# define DOM_MIN		-2.0
-# define DOM_MAX		2.0
 # define PLUS_KEY		65453
 # define MINUS_KEY		65451
 # define PI				3.14159265358979323846
-# define TOL			0.00001
 
-
-/*
-#define GREEN       0x00FF00 // Verde
-#define YELLOW      0xFFFF00 // Amarillo
-#define ORANGE      0xFFA500 // Naranja
-#define PINK        0xFFC0CB // Rosa
-#define TEAL        0x008080 // Verde azulado
-#define BLACK       0x000000 // Negro
-*/
 
 #endif
 

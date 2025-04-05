@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:30:53 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/02 13:21:58 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/05 19:36:59 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ typedef struct s_comps
 	t_vec		eyev;
 	t_vec		normal;
 	bool		inside;
+	t_pos		over_point;
 }				t_comps;
 
 

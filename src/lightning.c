@@ -6,13 +6,13 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 19:28:06 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/02 19:31:52 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/05 20:02:56 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-float	lightning(t_data *scene, t_comps comps)
+float	lightning(t_data *scene, t_comps comps, int in_shadow)
 {
 	t_vec	lightv;
 	float	colors[3];
@@ -20,8 +20,11 @@ float	lightning(t_data *scene, t_comps comps)
 	t_vec	reflectv;
 	float	reflect_dot_eye;
 
+	ft_memsetf(colors, 0.0, 3);
 	lightv = normalize(rest_coord(scene->lig.pos, comps.point));
 	colors[0] = scene->lig.bright * comps.elem.material.ambient;
+	if (in_shadow == SHADOW)
+		return(colors[0]);
 	light_dot_normal = dot_product(lightv, comps.normal);
 	if (light_dot_normal < -EPSILON)
 		diffuse_specular_zero(colors);
@@ -51,4 +54,22 @@ float	calculate_specular(t_data *scene, t_comps comps, float reflect_dot_eye)
 
 	factor = ft_pow(reflect_dot_eye, comps.elem.material.shini);
 	return (scene->lig.bright * comps.elem.material.specular * factor);
+}
+int	is_shadowed(t_data *scene, t_pos point)
+{
+	t_vec	v;
+	t_ray	ray;
+	t_hit	*inters;
+	t_hit	hit;
+
+	v = rest_coord(scene->lig.pos, point);
+	ray.origin = point;
+	ray.vec = normalize(v);
+	inters = intersect_world(ray, scene);
+	hit = find_hit(scene, inters);
+	if (hit.hit == true && !is_equal(hit_t(hit), magnitude(v)) && hit_t(hit) < magnitude(v)) 
+		return(SHADOW);
+	return (NO_SHADOW);
+
+
 }
