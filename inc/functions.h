@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/05 19:43:18 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:35:34 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,20 +167,25 @@ void	calculate_minor_row(int col, float *minor, float *mat, int *aux);
 void    rotation_x_matrix(float angle, float *mat);
 void    rotation_y_matrix(float angle, float *mat);
 void    rotation_z_matrix(float angle, float *mat);
-void    rotation_matrix(float ax, float ay, float az, float *mat);
-void    rotation_inv_matrix(float ax, float ay, float az, float *mat);
+void    rotation_matrix(t_ang angles, float *mat);
+void    rotation_inv_matrix(t_ang angles, float *mat);
 
 /* matrix_4.c*/
 float   determinant_matrix(float *mat);
 void    shearing_matrix(t_shear shear,  float *mat);
 void    translation_matrix(t_pos point, float *mat);
 void    scale_matrix(float x, float y, float z, float *mat);
-void    rotation_angles(t_vec vec, float theta[3]);
+t_ang   rotation_angles(t_vec vec);
 
-/* trans.c*/
+/* trans_1.c*/
 int   init_trans_matrix(t_data *scene);
 int    get_trans_matrix(t_element *elem);
 int    get_trans_inv_matrix(t_element *elem);
+
+/* trans_2.c*/
+float   *init_zero(float *mat_s, float *mat_t, float *mat_r, float *aux);
+void	handle_scale(t_element *elem, float *mat_s, int dir);
+void	handle_rotation(t_element *elem, float *mat_r, int dir);
 
 /* trans_view.c*/
 void    view_transform(t_pos from, t_pos to, t_vec up, float *mat);

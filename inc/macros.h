@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/12 14:36:08 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:24:52 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@
 # define NO_HIT             -1
 # define SHADOW             1 
 # define NO_SHADOW          0 
+# define NORMAL             0 
+# define INVERSE            1 
 # define ZOOM_FACTOR 		0.1
 # define MOVE_FACTOR 		0.1            
 

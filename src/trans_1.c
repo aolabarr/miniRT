@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   trans.c                                            :+:      :+:    :+:   */
+/*   trans_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 11:17:46 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/12 14:26:04 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:41:36 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,48 +29,40 @@ int   init_trans_matrix(t_data *scene)
 }
 int    get_trans_matrix(t_element *elem)
 {
-    float mat1[16];
-    float mat2[16];
+    float mat_s[16];
+    float mat_t[16];
+    float mat_r[16];
+    float aux[16];
 
-    ft_memsetf(&mat1, 0, 16);
-    ft_memsetf(&mat2, 0, 16);
-    elem->tr_mat = ft_callocf(16, sizeof(float));
+    elem->tr_mat = init_zero(mat_s, mat_t, mat_r, aux);
     if(!elem->tr_mat)
         return (EXIT_FAILURE);
-    if (elem->type == SP)
-        scale_matrix(elem->radio, elem->radio, elem->radio, mat1);
-    else
-    {
-        identity_matrix(mat1); 
-    }   
-	translation_matrix(elem->pos, mat2);
-	multiply_matrix(mat2, mat1, elem->tr_mat);
+    handle_scale(elem, mat_s, NORMAL);
+	translation_matrix(elem->pos, mat_t);
+    handle_rotation(elem, mat_r, NORMAL);
+	multiply_matrix(mat_r, mat_s, aux);
+    multiply_matrix(mat_t, aux, elem->tr_mat);
     return (EXIT_SUCCESS);
 }
 
 int    get_trans_inv_matrix(t_element *elem)
 {
-    float mat1[16];
-    float mat2[16];
 
+    float mat_s[16];
+    float mat_t[16];
+    float mat_r[16];
+    float aux[16];
     
-    ft_memsetf(&mat1, 0, 16);
-    ft_memsetf(&mat2, 0, 16);
-    elem->tri_mat = ft_callocf(16, sizeof(float));
+    elem->tri_mat = init_zero(mat_s, mat_t, mat_r, aux);
     if(!elem->tri_mat)
         return (EXIT_FAILURE);
-    //printf("center\n"), print_pos(elem->pos);
-    if (elem->type == SP)
-        scale_matrix(1 / elem->radio, 1 / elem->radio, 1 / elem->radio, mat1);
-    else
-    {
-        identity_matrix(mat1); 
-    }   
-	translation_matrix(scalar_product(elem->pos, -1), mat2);
-    //printf("\ntraslacion"), print_matrix(elem->tri_mat);
-	multiply_matrix(mat1, mat2, elem->tri_mat);
+    handle_scale(elem, mat_s, INVERSE);
+    handle_rotation(elem, mat_r, INVERSE);  
+	translation_matrix(scalar_product(elem->pos, -1), mat_t);
+	multiply_matrix(mat_r, mat_t, aux);
+    multiply_matrix(mat_s, aux, elem->tri_mat);
     
-   /*
+    /*
     identity_matrix(elem->tr_mat);
     if(invert_matrix(elem->tr_mat, elem->tri_mat))
         elem->tri_mat = NULL;

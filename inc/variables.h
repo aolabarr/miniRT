@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:30:53 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/05 19:36:59 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 15:27:05 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@ typedef struct s_coord
 	float	z;
 	int		w;
 }			t_coord, t_pos, t_vec;
+
+typedef struct s_ang
+{
+	float		x;
+	float		y;
+	float		z;
+}			t_ang;
 
 typedef struct s_camera
 {

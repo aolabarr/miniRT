@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 15:06:55 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/22 20:34:38 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 15:28:56 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,33 +46,33 @@ void    rotation_z_matrix(float angle, float *mat)
     return;
 }
 
-void    rotation_matrix(float ax, float ay, float az, float *mat)
+void    rotation_matrix(t_ang angles, float *mat)
 {
     float mat1[16];
     float mat2[16];
     float aux[16];
     
-    rotation_z_matrix(az, mat1);
-    rotation_y_matrix(ay, mat2);
+    rotation_z_matrix(angles.z, mat1);
+    rotation_y_matrix(angles.y, mat2);
     multiply_matrix(mat2, mat1, aux);
-    rotation_z_matrix(ax, mat1);
+    rotation_x_matrix(angles.x, mat1);
     multiply_matrix(mat1, aux, mat);
     return;
 }
 
-void    rotation_inv_matrix(float ax, float ay, float az, float *mat)
+void    rotation_inv_matrix(t_ang angles, float *mat)
 {
     float mat1[16];
     float mat2[16];
     float mat3[16];
     float aux[16];
 
-    rotation_z_matrix(az, mat1);
+    rotation_z_matrix(angles.z, mat1);
     transpose_matrix(mat1, mat2);
-    rotation_y_matrix(ay, mat1);
+    rotation_y_matrix(angles.y, mat1);
     transpose_matrix(mat1, mat3);
     multiply_matrix(mat3, mat2, aux);
-    rotation_z_matrix(ax, mat1);
+    rotation_x_matrix(angles.x, mat1);
     transpose_matrix(mat1, mat2);
     multiply_matrix(mat2, aux, mat);
     return;
