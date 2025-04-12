@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:12:28 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/12 15:34:16 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/04/12 19:06:20 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,12 @@ t_vec	normal_at(t_element elem, t_pos hit_wd_point)
 		wd_normal = elem.vec;
 	else if (elem.type == CY)
 	{
-		wd_normal.x = hit_wd_point.x;
-		wd_normal.y = 0; 
-		wd_normal.z = hit_wd_point.z;
+		multiply_matrix_pos(elem.tri_mat, hit_wd_point, &hit_ob_point);
+		ob_normal.x = hit_ob_point.x;
+		ob_normal.y = 0;
+		ob_normal.z = hit_ob_point.z;
+		transpose_matrix(elem.tri_mat, aux_mat);
+		multiply_matrix_vector(aux_mat, ob_normal, &wd_normal);
 	}
 	wd_normal.w = 0;
 	return (normalize(wd_normal));

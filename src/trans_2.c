@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   trans_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 16:07:46 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/12 16:40:50 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 17:45:54 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ void	handle_scale(t_element *elem, float *mat_s, int dir)
 	if (elem->type == SP && dir == NORMAL)
 		scale_matrix(elem->radio, elem->radio, elem->radio, mat_s);
 	else if (elem->type == SP && dir == INVERSE)
+		scale_matrix(1 / elem->radio, 1 / elem->radio, 1 / elem->radio, mat_s);
+	else if (elem->type == CY && dir == NORMAL)
+		scale_matrix(elem->radio, elem->radio, elem->radio, mat_s);
+	else if (elem->type == CY && dir == INVERSE)
 		scale_matrix(1 / elem->radio, 1 / elem->radio, 1 / elem->radio, mat_s);
 	else
 		identity_matrix(mat_s);
