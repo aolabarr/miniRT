@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:05:48 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/02 19:42:00 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 12:07:03 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,25 @@ t_pos	get_hit_point(t_ray ray, t_hit hit)
 
 float	hit_t(t_hit hit)
 {	
-	if (hit.t1 > 0 && hit.t1 < hit.t2)
-		return(hit.t1);
-	else if (hit.t2 > 0 && hit.t2 < hit.t1)
-		return(hit.t2);
+	if (hit.t1 < -EPSILON && hit.t2 < -EPSILON)
+	{
+		//printf("AQUI: %d\tt1: %f\tt2: %f\n", hit.hit, hit.t1, hit.t2);
+		return (NO_HIT);	
+	}
+	if (hit.t1 > EPSILON && hit.t2 > EPSILON)
+	{
+		if (!is_equal(hit.t1, hit.t2) && hit.t1 < hit.t2)
+			return(hit.t1);
+		else
+			return(hit.t2);
+	}
 	else
-		return (NO_HIT);
+	{
+		if (hit.t1 > EPSILON)
+			return(hit.t1);
+		else
+			return(hit.t2);
+	}
 }
 
 

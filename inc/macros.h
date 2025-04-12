@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/05 20:01:56 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 12:04:21 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define CANVAS_DISTANCE    1
 
 // Pong model values
-# define EPSILON 		    0.0001
+# define EPSILON 		    0.01
 # define DIFFUSE            0.7
 # define SPECULAR           0.7
 # define SHININESS          200

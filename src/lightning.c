@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 19:28:06 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/05 20:02:56 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 12:15:33 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ float	lightning(t_data *scene, t_comps comps, int in_shadow)
 	t_vec	reflectv;
 	float	reflect_dot_eye;
 
+	(void)in_shadow;
 	ft_memsetf(colors, 0.0, 3);
 	lightv = normalize(rest_coord(scene->lig.pos, comps.point));
 	colors[0] = scene->lig.bright * comps.elem.material.ambient;
-	if (in_shadow == SHADOW)
-		return(colors[0]);
+	//if (in_shadow == SHADOW)
+	//	return(colors[0]);
 	light_dot_normal = dot_product(lightv, comps.normal);
 	if (light_dot_normal < -EPSILON)
 		diffuse_specular_zero(colors);
@@ -66,10 +67,20 @@ int	is_shadowed(t_data *scene, t_pos point)
 	ray.origin = point;
 	ray.vec = normalize(v);
 	inters = intersect_world(ray, scene);
+	{
+		//int i = 0;
+		//while(i++ < 3)
+			//printf("is_shadow %d: %d %f %f\n", i, inters->hit, inters->t1, inters->t2);
+	}
 	hit = find_hit(scene, inters);
-	if (hit.hit == true && !is_equal(hit_t(hit), magnitude(v)) && hit_t(hit) < magnitude(v)) 
+	free(inters);
+	if (hit.hit == true && !is_equal(hit_t(hit), magnitude(v)) && hit_t(hit) < magnitude(v))
+	{
+		//printf("hit: %d\tt: %f\tmag: %f\n",hit.hit, hit_t(hit), magnitude(v));
 		return(SHADOW);
+	}
 	return (NO_SHADOW);
+		
 
 
 }

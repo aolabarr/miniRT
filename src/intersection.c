@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 08:13:32 by binary            #+#    #+#             */
-/*   Updated: 2025/04/02 17:59:34 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 12:14:39 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +59,24 @@ t_hit	sphere_intersection(t_ray ray, t_element elem)
 		hit.hit = false;
 		hit.t1 = hit.t2 = 0;
 		hit.elem = elem;
-		return (hit);
+		//return (hit);
 	}
-	hit.hit = true;
-	if (ft_abs(dis) < EPSILON)
-	{
-		hit.t1 = -b / (2 * a);
-		hit.t2 = hit.t1;
-		hit.elem = elem;
-	}
+	
+	// if (ft_abs(dis) < EPSILON)
+	// {
+	// 	hit.t1 = -b / (2 * a);
+	// 	hit.t2 = hit.t1;
+	// 	hit.elem = elem;
+	// }
 	else // dis > 0
 	{
 		hit.t1 = (- b - sqrtf(dis)) / (2 * a);
 		hit.t2 = (- b + sqrtf(dis)) / (2 * a);
 		hit.elem = elem;
+		if ((hit.t1 < -EPSILON && hit.t2 < -EPSILON) || (ft_abs(hit.t1) < EPSILON && ft_abs(hit.t2) < EPSILON))
+			hit.hit = false;
+		else
+			hit.hit = true;
 	}
 	return (hit);
 }
