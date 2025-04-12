@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 08:13:32 by binary            #+#    #+#             */
-/*   Updated: 2025/04/12 12:48:16 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 15:23:12 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_hit	sphere_intersection(t_ray ray, t_element elem)
 	float c;
 	float dis;
 	(void)elem;
-	t_hit hit;
+	t_hit inters;
 	
 	a = dot_product(ray.vec, ray.vec);
 	b = 2 * dot_product(ray.vec, rest_coord(ray.origin, zero_pos()));
@@ -56,9 +56,9 @@ t_hit	sphere_intersection(t_ray ray, t_element elem)
 	dis = (b * b) - (4 * a * c);
 	if (dis < -EPSILON)
 	{
-		hit.hit = false;
-		hit.t1 = hit.t2 = 0;
-		hit.elem = elem;
+		inters.hit = false;
+		inters.t1 = inters.t2 = 0;
+		inters.elem = elem;
 		//return (hit);
 	}
 	
@@ -70,15 +70,15 @@ t_hit	sphere_intersection(t_ray ray, t_element elem)
 	// }
 	else // dis > 0
 	{
-		hit.t1 = (- b - sqrtf(dis)) / (2 * a);
-		hit.t2 = (- b + sqrtf(dis)) / (2 * a);
-		hit.elem = elem;
-		if ((hit.t1 < -EPSILON && hit.t2 < -EPSILON) || (ft_abs(hit.t1) < EPSILON && ft_abs(hit.t2) < EPSILON))
-			hit.hit = false;
+		inters.t1 = (- b - sqrtf(dis)) / (2 * a);
+		inters.t2 = (- b + sqrtf(dis)) / (2 * a);
+		inters.elem = elem;
+		if ((inters.t1 < -EPSILON && inters.t2 < -EPSILON) || (ft_abs(inters.t1) < EPSILON && ft_abs(inters.t2) < EPSILON))
+			inters.hit = false;
 		else
-			hit.hit = true;
+			inters.hit = true;
 	}
-	return (hit);
+	return (inters);
 }
 
 /*
@@ -112,36 +112,30 @@ t_hit plane_intersection(t_ray ray, t_element elem)
 
 t_hit cylinder_intersection(t_ray ray, t_element elem)
 {
-	t_hit	hit;
+	t_hit	inters;
 	float	a;
 	float	b;
 	float	c;
 	float	dis;
 	(void)elem;
 
+	inters.hit = false;
 	a = ray.vec.x * ray.vec.x + ray.vec.z * ray.vec.z;
-	if (a < EPSILON) //rayo paralelo al cilindro 
-	{
-		hit.hit = false;
-		hit.t1 = hit.t2 = 0;
-		return (hit);
-	}
+	if (a < -EPSILON) //rayo paralelo al cilindro 
+		return (inters);
 	b = 2 * ray.origin.x * ray.vec.x + 2 * ray.origin.z * ray.vec.z;
 	c = ray.origin.x * ray.origin.x + ray.origin.z * ray.origin.z - 1;
 	dis = (b * b) - 4 * a *c;
-	if (dis < EPSILON) //no hay intersección
-	{
-		hit.hit = false;
-		hit.t1 = hit.t2 = 0;
-		return (hit);
-	}
-	else // dis > 0 y hay intersesccion
-	{
-		hit.t1 = (- b - sqrtf(dis)) / (2 * a);
-		hit.t2 = (- b + sqrtf(dis)) / (2 * a);
-
-	}
-	return (hit);
+	if (dis < -EPSILON) //no hay intersección
+		return (inters);
+	inters.t1 = (- b - sqrtf(dis)) / (2 * a); // dis > 0 y hay intersesccion
+	inters.t2 = (- b + sqrtf(dis)) / (2 * a);
+	inters.elem = elem;
+	if ((inters.t1 < -EPSILON && inters.t2 < -EPSILON) || (ft_abs(inters.t1) < EPSILON && ft_abs(inters.t2) < EPSILON))
+		inters.hit = false;
+	else
+		inters.hit = true;
+	return (inters);
 }
 
 t_pos	zero_pos(void)
