@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/05 19:43:18 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 15:38:24 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ t_pos	zero_pos(void);
 // t_pos	new_lineal_point(t_pos point, t_vec vec);
 t_hit	sphere_intersection(t_ray ray, t_element elem);
 t_hit	plane_intersection(t_ray ray, t_element elem);
+t_hit cylinder_intersection(t_ray ray, t_element elem);
 
 /* matrix_1.c*/
 int     is_equal_matrix(float *mat1, float *mat2);

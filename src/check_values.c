@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_values.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:21:22 by binary            #+#    #+#             */
-/*   Updated: 2025/04/12 14:39:12 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 15:50:01 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,9 @@ int	get_cylinder(char **str, t_element *elem)
 			return (EXIT_FAILURE);
 		elem->radio = ft_atof(str[3]) / (float)2.0;
 		elem->height = ft_atof(str[4]);
-		if (get_color(str[3], &(elem->color)) == ERR_INT)
+		if (get_color(str[5], &(elem->color)) == ERR_INT)
 			return (EXIT_FAILURE);
+		
 	}
 	else
 		return (EXIT_FAILURE);

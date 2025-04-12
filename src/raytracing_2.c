@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:12:28 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/12 14:48:33 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 15:34:16 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ t_vec	normal_at(t_element elem, t_pos hit_wd_point)
 	}
 	else if (elem.type == PL)
 		wd_normal = elem.vec;
+	else if (elem.type == CY)
+	{
+		wd_normal.x = hit_wd_point.x;
+		wd_normal.y = 0; 
+		wd_normal.z = hit_wd_point.z;
+	}
 	wd_normal.w = 0;
 	return (normalize(wd_normal));
 }

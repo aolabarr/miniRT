@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:38:58 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/12 14:48:39 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 15:39:06 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ t_hit   *intersect_world(t_ray ray, t_data *scene)
             inters[i] = sphere_intersection(local_ray, scene->elem[i]);
         else if (scene->elem[i].type == PL)
 			inters[i] = plane_intersection(local_ray, scene->elem[i]);
+        else if (scene->elem[i].type == CY)
+			inters[i] = cylinder_intersection(local_ray, scene->elem[i]);
 		i++;
     }
     return (inters);

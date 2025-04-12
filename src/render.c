@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/12 12:55:22 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 15:39:11 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ int	create_image(t_data *data)
 
 	if (init_trans_matrix(data))
 		return (EXIT_FAILURE);
-	printf("\ntr_mat"), print_matrix(data->elem[0].tr_mat), printf("\n");
-	printf("\ntri_mat"), print_matrix(data->elem[0].tri_mat), printf("\n");
-	printf("\ntr_mat"), print_matrix(data->elem[1].tr_mat), printf("\n");
-	printf("\ntri_mat"), print_matrix(data->elem[1].tri_mat), printf("\n");
-	printf("\ntr_mat"), print_matrix(data->elem[2].tr_mat), printf("\n");
-	printf("\ntri_mat"), print_matrix(data->elem[2].tri_mat), printf("\n");
+	// printf("\ntr_mat"), print_matrix(data->elem[0].tr_mat), printf("\n");
+	// printf("\ntri_mat"), print_matrix(data->elem[0].tri_mat), printf("\n");
+	// printf("\ntr_mat"), print_matrix(data->elem[1].tr_mat), printf("\n");
+	// printf("\ntri_mat"), print_matrix(data->elem[1].tri_mat), printf("\n");
+	// printf("\ntr_mat"), print_matrix(data->elem[2].tr_mat), printf("\n");
+	// printf("\ntri_mat"), print_matrix(data->elem[2].tri_mat), printf("\n");
 	x = 0;
 	while (x < WIDTH)
 	{
