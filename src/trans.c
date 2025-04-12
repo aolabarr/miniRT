@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 11:17:46 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/05 11:17:52 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 14:26:04 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,12 @@ int    get_trans_matrix(t_element *elem)
     elem->tr_mat = ft_callocf(16, sizeof(float));
     if(!elem->tr_mat)
         return (EXIT_FAILURE);
-    scale_matrix(elem->radio, elem->radio, elem->radio, mat1);
+    if (elem->type == SP)
+        scale_matrix(elem->radio, elem->radio, elem->radio, mat1);
+    else
+    {
+        identity_matrix(mat1); 
+    }   
 	translation_matrix(elem->pos, mat2);
 	multiply_matrix(mat2, mat1, elem->tr_mat);
     return (EXIT_SUCCESS);
@@ -48,16 +53,27 @@ int    get_trans_inv_matrix(t_element *elem)
     float mat1[16];
     float mat2[16];
 
+    
     ft_memsetf(&mat1, 0, 16);
     ft_memsetf(&mat2, 0, 16);
-    //printf("\nzeros"), print_matrix(mat1);
     elem->tri_mat = ft_callocf(16, sizeof(float));
     if(!elem->tri_mat)
         return (EXIT_FAILURE);
     //printf("center\n"), print_pos(elem->pos);
-    scale_matrix(1 / elem->radio, 1 / elem->radio, 1 / elem->radio, mat1);
+    if (elem->type == SP)
+        scale_matrix(1 / elem->radio, 1 / elem->radio, 1 / elem->radio, mat1);
+    else
+    {
+        identity_matrix(mat1); 
+    }   
 	translation_matrix(scalar_product(elem->pos, -1), mat2);
     //printf("\ntraslacion"), print_matrix(elem->tri_mat);
 	multiply_matrix(mat1, mat2, elem->tri_mat);
+    
+   /*
+    identity_matrix(elem->tr_mat);
+    if(invert_matrix(elem->tr_mat, elem->tri_mat))
+        elem->tri_mat = NULL;
+    */
     return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/12 12:04:21 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 14:36:08 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@
 //Color palette
 # define BLACK              (t_color){0, 0, 0}
 # define BLUE               (t_color){0, 0, 255}
+//# define SKY_BLUE           (t_color){255, 255, 255}
 # define SKY_BLUE           (t_color){135, 206, 235}
 
 //Constant macros

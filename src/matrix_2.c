@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 13:53:52 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/22 21:11:04 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 13:08:18 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	invert_matrix(float *mat, float *inv)
 	int i;
 
 	det = determinant_matrix(mat);
-	if (det < EPSILON)
+	if (ft_abs(det) < EPSILON)
 		return (1);
 	cofactor_matrix(mat, aux);
 	transpose_matrix(aux, inv);

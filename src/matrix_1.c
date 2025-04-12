@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 16:50:20 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/25 21:31:30 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 13:21:24 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ void	identity_matrix(float *mat)
     int i;
 
 	i = 0;
+	ft_memset(mat, 0, 16);
 	while(i < 4)
 	{
 		mat[i * 4 + i] = 1;

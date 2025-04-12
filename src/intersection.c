@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 08:13:32 by binary            #+#    #+#             */
-/*   Updated: 2025/04/12 12:14:39 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 12:48:16 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,34 +88,25 @@ t = (punto en el plano - origen del rayo) * normal del plano / (dirección del r
 
 t_hit plane_intersection(t_ray ray, t_element elem)
 {
-	t_hit	hit;
-	t_vec	vec1;
-	float	numerator;
-	float	denominator;
-	float	t;
-	
-	vec1 = rest_coord(elem.pos, ray.origin);
-	numerator = dot_product(vec1, elem.vec);
-	denominator = dot_product (ray.vec, elem.vec);
 
-	t_vec aux = cross_product(vec1, ray.vec);
-	
-	if (is_zerovector(aux)) // rayo y plano son paralelos
+	t_hit inters;
+
+	inters.hit = false;
+	if (ft_abs(ray.vec.y) < EPSILON)
+		return (inters);
+	else
 	{
-		hit.hit = false;
-		hit.t1 = hit.t2 = 0;
-		return (hit);
+		inters.t1 = -ray.origin.y / ray.vec.y;
+		inters.t2 = inters.t1;
+		if (inters.t1 > EPSILON)
+		{
+			inters.elem = elem;
+			inters.hit = true;
+		}
+		else
+			inters.hit = false;
 	}
-	t = numerator / denominator;
-	if (t < -EPSILON)
-	{
-		hit.hit = false;
-		hit.t1 = hit.t2 = 0;
-		return (hit);
-	}
-	hit.hit = true;
-	hit.t1 = hit.t2 = t;
-	return (hit);
+	return (inters);
 }
 
 

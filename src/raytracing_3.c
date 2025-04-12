@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:38:58 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/05 20:15:00 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 14:48:39 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ t_hit   *intersect_world(t_ray ray, t_data *scene)
         if (scene->elem[i].type == SP)
             inters[i] = sphere_intersection(local_ray, scene->elem[i]);
         else if (scene->elem[i].type == PL)
-            inters[i] = plane_intersection(local_ray, scene->elem[i]);
-        i++;
+			inters[i] = plane_intersection(local_ray, scene->elem[i]);
+		i++;
     }
     return (inters);
 }

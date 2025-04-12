@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 19:28:06 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/12 12:15:33 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 14:57:12 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ float	lightning(t_data *scene, t_comps comps, int in_shadow)
 	ft_memsetf(colors, 0.0, 3);
 	lightv = normalize(rest_coord(scene->lig.pos, comps.point));
 	colors[0] = scene->lig.bright * comps.elem.material.ambient;
-	//if (in_shadow == SHADOW)
-	//	return(colors[0]);
+	//printf("In shadow: %d\n", in_shadow);
+	if (in_shadow == SHADOW)
+		return(colors[0]);
 	light_dot_normal = dot_product(lightv, comps.normal);
 	if (light_dot_normal < -EPSILON)
 		diffuse_specular_zero(colors);
