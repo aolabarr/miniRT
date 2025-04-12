@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/29 16:53:15 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:33:46 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,9 +147,9 @@ int get_element(char *line, t_element *elem)
 			return (EXIT_FAILURE);
 		}
 		// printf("CYLINDER\n");
-		// printf("Diam: %f\n", elem->diam);
+		// printf("Diam: %f\n", elem->radio);
 		// printf("Height: %f\n", elem->height);
-		// printf("Color: %0X06\n", elem->color);
+		// printf("COLOR CILINDRO %f %f %f\n", elem->color.red, elem->color.green, elem->color.blue);
 		// printf("Position x: %f\n", elem->pos.x);
 		// printf("Position y: %f\n", elem->pos.y);
 		// printf("Position z: %f\n", elem->pos.z);

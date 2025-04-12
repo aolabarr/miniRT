@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/12 14:59:07 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:49:29 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ int	create_image(t_data *data)
 
 	if (init_trans_matrix(data))
 		return (EXIT_FAILURE);
-	//printf("\ntr_mat"), print_matrix(data->elem[0].tr_mat), printf("\n");
-	//printf("\ntri_mat"), print_matrix(data->elem[0].tri_mat), printf("\n");
-	//printf("\ntr_mat"), print_matrix(data->elem[1].tr_mat), printf("\n");
+	// printf("\ntr_mat"), print_matrix(data->elem[0].tr_mat), printf("\n");
+	// printf("\ntri_mat"), print_matrix(data->elem[0].tri_mat), printf("\n");
+	// printf("\ntr_mat"), print_matrix(data->elem[1].tr_mat), printf("\n");
 	// printf("\ntri_mat"), print_matrix(data->elem[1].tri_mat), printf("\n");
 	// printf("\ntr_mat"), print_matrix(data->elem[2].tr_mat), printf("\n");
 	// printf("\ntri_mat"), print_matrix(data->elem[2].tri_mat), printf("\n");
