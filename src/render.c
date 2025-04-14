@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/12 16:49:29 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/14 21:09:35 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,10 +134,10 @@ void	put_color_pixel(t_data *scene, t_image img, int x, int y)
 // 	pixel_pos.w = 1;
 
 
-// 	// pixel_pos = sum_coord( \
-// 	// 			sum_coord(mult_coord_float(data->img.canvas[0], (1 - u) * (1 - v)), \
-// 	// 					mult_coord_float(data->img.canvas[1], u * (1 - v))), \
-// 	// 			sum_coord(mult_coord_float(data->img.canvas[2], (1 - u) * v), \
+// 	// pixel_pos = sum_coord( 
+// 	// 			sum_coord(mult_coord_float(data->img.canvas[0], (1 - u) * (1 - v)), 
+// 	// 					mult_coord_float(data->img.canvas[1], u * (1 - v))), 
+// 	// 			sum_coord(mult_coord_float(data->img.canvas[2], (1 - u) * v), 
 // 	// 					mult_coord_float(data->img.canvas[3], u * v)));
 
 // 	ray.origin = data->cam.pos;

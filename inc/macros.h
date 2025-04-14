@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/12 19:50:19 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/04/14 21:22:00 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define CANVAS_DISTANCE    1
 
 // Pong model values
-# define EPSILON 		    0.01
+# define EPSILON 		    0.001
 # define DIFFUSE            0.7
 # define SPECULAR           0.7
 # define SHININESS          200

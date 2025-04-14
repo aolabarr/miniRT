@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lightning.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 19:28:06 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/12 19:50:58 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/04/14 21:31:49 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ float	lightning(t_data *scene, t_comps comps, int in_shadow)
 
 	(void)in_shadow;
 	ft_memsetf(colors, 0.0, 3);
-	lightv = normalize(rest_coord(scene->lig.pos, comps.point));
+	lightv = normalize(rest_coord(scene->lig.pos, comps.over_point));
 	colors[0] = scene->lig.bright * comps.elem.material.ambient;
 	// printf("In shadow: %d\n", in_shadow);
 	if (in_shadow == SHADOW)
@@ -76,13 +76,15 @@ int	is_shadowed(t_data *scene, t_pos point)
 	}
 	hit = find_hit(scene, inters);
 	free(inters);
-	if (hit.hit == true && !is_equal(hit_t(hit), magnitude(v)) && hit_t(hit) < magnitude(v))
+	// if (hit.hit == true && !is_equal(hit_t(hit), magnitude(v)) && hit_t(hit) < magnitude(v))
+	// {
+	// 	// printf("hit: %d\tt: %f\tmag: %f\n",hit.hit, hit_t(hit), magnitude(v));
+	// 	return(SHADOW);
+	// }
+	if (hit.hit == true && hit_t(hit) > EPSILON && hit_t(hit) < magnitude(v))
 	{
-		// printf("hit: %d\tt: %f\tmag: %f\n",hit.hit, hit_t(hit), magnitude(v));
-		return(SHADOW);
+		return (SHADOW);
 	}
 	return (NO_SHADOW);
-		
-
-
 }
+
