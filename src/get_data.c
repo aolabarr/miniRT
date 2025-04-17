@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/17 13:49:13 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/04/17 19:04:01 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,15 +196,14 @@ int	get_color(char *str, t_color *color)
 	if (!temp || len_mat(temp) != 3)
 		return (ft_free_mat(temp), ERR_SCENE);
 	r = ft_atoi(temp[0]);
-	if (color->red < 0 || color->red > 255)
+	if (r < 0 || r > 255)
 		return (ft_free_mat(temp), ERR_SCENE);
 	g = ft_atoi(temp[1]);
-	if (color->green < 0 || color->green > 255)
+	if (g < 0 || g > 255)
 		return (ft_free_mat(temp), ERR_SCENE);
 	b = ft_atoi(temp[2]);
-	if (color->blue < 0 || color->blue > 255)
+	if (b < 0 || b > 255)
 		return (ft_free_mat(temp), ERR_SCENE);
-	color->blue = ft_atoif(temp[2]) / 255;
 	color->red = r/255.0f;
 	color->green = g/255.0f;
 	color->blue = b/255.0f;
