@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lightning.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 19:28:06 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/14 21:31:49 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/17 18:12:04 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ int	is_shadowed(t_data *scene, t_pos point)
 	// 	// printf("hit: %d\tt: %f\tmag: %f\n",hit.hit, hit_t(hit), magnitude(v));
 	// 	return(SHADOW);
 	// }
-	if (hit.hit == true && hit_t(hit) > EPSILON && hit_t(hit) < magnitude(v))
+	// 
+	if (hit.hit == true && !is_equal(hit_t(hit), magnitude(v)) && hit_t(hit) > EPSILON && hit_t(hit) < magnitude(v))
 	{
 		return (SHADOW);
 	}

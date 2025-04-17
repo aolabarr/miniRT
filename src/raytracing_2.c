@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:12:28 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/17 14:18:51 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/17 17:05:49 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_vec	normal_at(t_element elem, t_pos hit_wd_point)
 		multiply_matrix_pos(elem.tri_mat, hit_wd_point, &hit_ob_point);
 		ob_normal = hit_ob_point;
 		ob_normal.y = 0.0;
+		ob_normal.w = VECTOR;
 		multiply_matrix_vector(elem.tr_mat, ob_normal, &wd_normal);
 	}
 	wd_normal.w = 0;

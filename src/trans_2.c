@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 16:07:46 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/17 16:11:47 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/17 17:12:13 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ void	handle_rotation(t_element *elem, float *mat_r, int dir)
 	if (elem->type == PL && dir == NORMAL)
 		rotation_matrix_from_to(WORLD_Y, elem->vec, mat_r);
     else if (elem->type == PL && dir == INVERSE)
+		rotation_matrix_from_to(elem->vec, WORLD_Y, mat_r);
+	else if (elem->type == CY && dir == NORMAL)
+		rotation_matrix_from_to(WORLD_Y, elem->vec, mat_r);
+    else if (elem->type == CY && dir == INVERSE)
 		rotation_matrix_from_to(elem->vec, WORLD_Y, mat_r);
 	else
 		identity_matrix(mat_r);
