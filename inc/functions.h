@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/17 10:10:41 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/04/17 13:49:16 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,10 @@ int	is_shadowed(t_data *scene, t_pos point);
 /* color.c*/
 void testing_colors(t_data *scene);
 t_color blend_colors(t_color col1, t_color col2, float ratio);
-t_color hadamar_product(t_color col1, t_color col2);
+t_color hadamard_product(t_color col1, t_color col2);
+t_color mult_color_scalar(t_color col, float scalar);
+t_color add_colors(t_color col1, t_color col2);
+
 
 /* math_1.c */
 float ft_abs(float num);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/14 21:22:00 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/17 13:55:26 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@
 //Color palette
 # define BLACK              (t_color){0, 0, 0}
 # define BLUE               (t_color){0, 0, 255}
-//# define SKY_BLUE           (t_color){255, 255, 255}
+# define SKY_GREY           (t_color){0.15, 0.15, 0.15}
 # define SKY_BLUE           (t_color){135, 206, 235}
 
 //Constant macros

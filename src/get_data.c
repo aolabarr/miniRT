@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/17 11:24:16 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/04/17 13:49:13 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,22 +188,26 @@ int add_element(t_data *scene, t_element *new_elem)
 int	get_color(char *str, t_color *color)
 {
 	char	**temp;
-	
+	int		r;
+	int		g;
+	int		b;
+
 	temp = ft_split(str, ',');
 	if (!temp || len_mat(temp) != 3)
 		return (ft_free_mat(temp), ERR_SCENE);
-	color->red = ft_atoif(temp[0]);
+	r = ft_atoi(temp[0]);
 	if (color->red < 0 || color->red > 255)
 		return (ft_free_mat(temp), ERR_SCENE);
-	color->red = ft_atoif(temp[0])/255;
-	color->green = ft_atoif(temp[1]);
+	g = ft_atoi(temp[1]);
 	if (color->green < 0 || color->green > 255)
 		return (ft_free_mat(temp), ERR_SCENE);
-	color->green = ft_atoif(temp[1]) / 255;
-	color->blue = ft_atoif(temp[2]);
+	b = ft_atoi(temp[2]);
 	if (color->blue < 0 || color->blue > 255)
 		return (ft_free_mat(temp), ERR_SCENE);
 	color->blue = ft_atoif(temp[2]) / 255;
+	color->red = r/255.0f;
+	color->green = g/255.0f;
+	color->blue = b/255.0f;
 	ft_free_mat(temp);
 	return (EXIT_SUCCESS);
 }
@@ -212,9 +216,9 @@ int rgb_to_hex(t_color color)
 {
 	int		hex_color;
 	
-	color.red = (int)clamp_color(color.red)*255;
-	color.green = (int)clamp_color(color.green)*255;
-	color.blue = (int)clamp_color(color.blue)*255;
+	color.red = clamp_color((int)(color.red*255));
+	color.green = clamp_color((int)(color.green*255));
+	color.blue = clamp_color((int)(color.blue*255));
 
 	hex_color = ((int)(color.red) << 16) | ((int)(color.green) << 8) | (int)(color.blue);
 	return (hex_color);
@@ -224,8 +228,8 @@ float clamp_color(float color)
 {
 	if (color < 0)
 		return (0);
-	if (color > 1)
-		return (1);
+	if (color > 255)
+		return (255);
 	return (color);
 }
 
