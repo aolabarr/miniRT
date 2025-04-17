@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 16:07:46 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/17 14:05:48 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/17 16:11:47 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ void	handle_scale(t_element *elem, float *mat_s, int dir)
 		scale_matrix(elem->radio, elem->radio, elem->radio, mat_s);
 	else if (elem->type == SP && dir == INVERSE)
 		scale_matrix(1 / elem->radio, 1 / elem->radio, 1 / elem->radio, mat_s);
+	else if (elem->type == CY && dir == NORMAL)
+		scale_matrix(elem->radio, elem->radio, elem->radio, mat_s);
+	else if (elem->type == CY && dir == INVERSE)
+		scale_matrix(1 / elem->radio, 1 / elem->radio, 1 / elem->radio, mat_s);
 	else
 		identity_matrix(mat_s);
 	return ;
@@ -40,9 +44,11 @@ void	handle_scale(t_element *elem, float *mat_s, int dir)
 void	handle_rotation(t_element *elem, float *mat_r, int dir)
 {
 	(void)elem, (void)mat_r, (void)dir;
-	if (elem->type == PL)
+	if (elem->type == PL && dir == NORMAL)
+		rotation_matrix_from_to(WORLD_Y, elem->vec, mat_r);
+    else if (elem->type == PL && dir == INVERSE)
 		rotation_matrix_from_to(elem->vec, WORLD_Y, mat_r);
-    else
+	else
 		identity_matrix(mat_r);
 	return ;
 }
@@ -76,7 +82,7 @@ void rodrigues_matrix(t_vec a, float angle, float *mat)
 	mat[0] = c + a.x * a.x * (1 - c);
 	mat[1] = a.x * a.y * (1 - c) - a.z * s;
 	mat[2] = a.x * a.z * (1 - c) + a.y * s;
-	mat[4] = a.y * a.x * (1 - c) + a.y * s;
+	mat[4] = a.y * a.x * (1 - c) + a.z * s;
 	mat[5] = c + a.y * a.y * (1 - c);
 	mat[6] = a.y * a.z * (1 - c) - a.x * s;
 	mat[8] = a.z * a.x * (1 - c) - a.y * s;

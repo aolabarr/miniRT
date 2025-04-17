@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:45:43 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/05 13:20:28 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/14 21:10:38 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	set_traslation_move(t_data *scene, int key)
 	t_pos to;
 	t_vec world_up;
 	t_vec rigth_up[2];
-
+	(void) from;
+	(void) to;
 	from = scene->cam.pos;
 	to = new_lineal_point(scene->cam.pos, scene->cam.vec, 1);
 	if(is_equal(scene->cam.vec.y, 1.0) || is_equal(scene->cam.vec.y, -1.0))

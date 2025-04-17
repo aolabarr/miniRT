@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 08:13:32 by binary            #+#    #+#             */
-/*   Updated: 2025/04/12 16:46:25 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/04/12 19:21:02 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ t_hit plane_intersection(t_ray ray, t_element elem)
 	else
 	{
 		inters.t1 = -ray.origin.y / ray.vec.y;
+		
 		inters.t2 = inters.t1;
 		if (inters.t1 > EPSILON)
 		{
@@ -109,7 +110,7 @@ t_hit cylinder_intersection(t_ray ray, t_element elem)
 
 	inters.hit = false;
 	a = ray.vec.x * ray.vec.x + ray.vec.z * ray.vec.z;
-	if (a < -EPSILON) 
+	if (ft_abs(a) < EPSILON) 
 		return (inters);
 	b = 2 * ray.origin.x * ray.vec.x + 2 * ray.origin.z * ray.vec.z;
 	c = ray.origin.x * ray.origin.x + ray.origin.z * ray.origin.z - 1;
@@ -120,17 +121,18 @@ t_hit cylinder_intersection(t_ray ray, t_element elem)
 	inters.t2 = (- b + sqrtf(dis)) / (2 * a);
 	inters.elem = elem;
 	if ((inters.t1 < -EPSILON && inters.t2 < -EPSILON) || (ft_abs(inters.t1) < EPSILON && ft_abs(inters.t2) < EPSILON))
-	{
-		inters.hit = false;
 		return (inters);
-	}
+	// else 
+	// 	inters.hit = true; /*sin truncar*/
+	/*truncado*/
 	float min_y = -elem.height / 2.0;
 	float max_y = elem.height / 2.0;
 	float y1 = ray.origin.y + inters.t1 * ray.vec.y;
 	float y2 = ray.origin.y + inters.t2 * ray.vec.y;	
-	if ((y1 > min_y && y1 < max_y) || ( y2 > min_y && y2 < max_y))
+	if (!is_equal(y1, min_y) && (y1 > min_y) && !is_equal(y1, max_y)  && (y1 < max_y))
 		inters.hit = true;
-			
+	else if (!is_equal(y2, min_y) && (y2 > min_y) && !is_equal(y2, max_y)  && (y2 < max_y))
+		inters.hit = true;
 	return (inters);
 }
 

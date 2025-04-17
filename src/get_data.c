@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/12 16:33:46 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/04/17 13:49:13 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int get_element(char *line, t_element *elem)
 		// printf("Vector x: %f\n", elem->vec.x);
 		// printf("Vector y: %f\n", elem->vec.y);
 		// printf("Vector z: %f\n", elem->vec.z);
-		// printf("Color: %0X06\n", elem->color);
+		// printf("COLOR PLANO %f %f %f\n", elem->color.red, elem->color.green, elem->color.blue);
 		// printf("Position x: %f\n", elem->pos.x);
 		// printf("Position y: %f\n", elem->pos.y);
 		// printf("Position z: %f\n", elem->pos.z);
@@ -188,19 +188,26 @@ int add_element(t_data *scene, t_element *new_elem)
 int	get_color(char *str, t_color *color)
 {
 	char	**temp;
-	
+	int		r;
+	int		g;
+	int		b;
+
 	temp = ft_split(str, ',');
 	if (!temp || len_mat(temp) != 3)
 		return (ft_free_mat(temp), ERR_SCENE);
-	color->red = ft_atoi(temp[0]);
+	r = ft_atoi(temp[0]);
 	if (color->red < 0 || color->red > 255)
 		return (ft_free_mat(temp), ERR_SCENE);
-	color->green = ft_atoi(temp[1]);
+	g = ft_atoi(temp[1]);
 	if (color->green < 0 || color->green > 255)
 		return (ft_free_mat(temp), ERR_SCENE);
-	color->blue = ft_atoi(temp[2]);
+	b = ft_atoi(temp[2]);
 	if (color->blue < 0 || color->blue > 255)
 		return (ft_free_mat(temp), ERR_SCENE);
+	color->blue = ft_atoif(temp[2]) / 255;
+	color->red = r/255.0f;
+	color->green = g/255.0f;
+	color->blue = b/255.0f;
 	ft_free_mat(temp);
 	return (EXIT_SUCCESS);
 }
@@ -209,11 +216,11 @@ int rgb_to_hex(t_color color)
 {
 	int		hex_color;
 	
-	color.red = clamp_color(color.red);
-	color.green = clamp_color(color.green);
-	color.blue = clamp_color(color.blue);
+	color.red = clamp_color((int)(color.red*255));
+	color.green = clamp_color((int)(color.green*255));
+	color.blue = clamp_color((int)(color.blue*255));
 
-	hex_color = ((int)color.red << 16) | ((int)color.green << 8) | (int)color.blue;
+	hex_color = ((int)(color.red) << 16) | ((int)(color.green) << 8) | (int)(color.blue);
 	return (hex_color);
 }
 

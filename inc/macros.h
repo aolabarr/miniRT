@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/12 16:24:52 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/17 14:25:27 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define CANVAS_DISTANCE    1
 
 // Pong model values
-# define EPSILON 		    0.01
+# define EPSILON 		    0.001
 # define DIFFUSE            0.7
 # define SPECULAR           0.7
 # define SHININESS          200
@@ -63,8 +63,8 @@
 //Color palette
 # define BLACK              (t_color){0, 0, 0}
 # define BLUE               (t_color){0, 0, 255}
-//# define SKY_BLUE           (t_color){255, 255, 255}
-# define SKY_BLUE           (t_color){135, 206, 235}
+# define SKY_GREY           (t_color){0.15, 0.15, 0.15}
+# define SKY_BLUE           (t_color){0.5, 0.8, 0.92}
 
 //Constant macros
 # define PLUS_KEY		65453

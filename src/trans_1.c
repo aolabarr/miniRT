@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 11:17:46 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/12 16:41:36 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/17 16:21:37 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int    get_trans_matrix(t_element *elem)
     if(!elem->tr_mat)
         return (EXIT_FAILURE);
     handle_scale(elem, mat_s, NORMAL);
-	translation_matrix(elem->pos, mat_t);
+    translation_matrix(elem->pos, mat_t);
     handle_rotation(elem, mat_r, NORMAL);
 	multiply_matrix(mat_r, mat_s, aux);
     multiply_matrix(mat_t, aux, elem->tr_mat);
@@ -57,8 +57,8 @@ int    get_trans_inv_matrix(t_element *elem)
     if(!elem->tri_mat)
         return (EXIT_FAILURE);
     handle_scale(elem, mat_s, INVERSE);
-    handle_rotation(elem, mat_r, INVERSE);  
-	translation_matrix(scalar_product(elem->pos, -1), mat_t);
+    handle_rotation(elem, mat_r, INVERSE); 
+    translation_matrix(scalar_product(elem->pos, -1), mat_t);
 	multiply_matrix(mat_r, mat_t, aux);
     multiply_matrix(mat_s, aux, elem->tri_mat);
     

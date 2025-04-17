@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/17 14:06:29 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/17 14:20:31 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,13 @@ void	diffuse_specular_zero(float *colors);
 float	calculate_specular(t_data *scene, t_comps comps, float reflect_dot_eye);
 int	is_shadowed(t_data *scene, t_pos point);
 
-/* colors_test.c*/
+/* color.c*/
 void testing_colors(t_data *scene);
 t_color blend_colors(t_color col1, t_color col2, float ratio);
+t_color hadamard_product(t_color col1, t_color col2);
+t_color mult_color_scalar(t_color col, float scalar);
+t_color add_colors(t_color col1, t_color col2);
+
 
 /* math_1.c */
 float ft_abs(float num);
