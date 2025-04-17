@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/03/26 19:53:27 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/17 10:19:23 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ t_color sub_colors(t_color col1, t_color col2)
 t_color hadamar_product(t_color col1, t_color col2)
 {
     t_color hadamar;
-    hadamar.red = col1.red * col2.red;
-    hadamar.green = col1.green * col2.green;
-    hadamar.blue = col1.blue * col2.blue;
+    hadamar.red = clamp_color(col1.red * col2.red);
+    hadamar.green = clamp_color(col1.green * col2.green);
+    hadamar.blue = clamp_color(col1.blue * col2.blue);
     return(hadamar);
 }
 

@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/12 19:13:45 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/04/17 11:24:16 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,15 +192,18 @@ int	get_color(char *str, t_color *color)
 	temp = ft_split(str, ',');
 	if (!temp || len_mat(temp) != 3)
 		return (ft_free_mat(temp), ERR_SCENE);
-	color->red = ft_atoi(temp[0]);
+	color->red = ft_atoif(temp[0]);
 	if (color->red < 0 || color->red > 255)
 		return (ft_free_mat(temp), ERR_SCENE);
-	color->green = ft_atoi(temp[1]);
+	color->red = ft_atoif(temp[0])/255;
+	color->green = ft_atoif(temp[1]);
 	if (color->green < 0 || color->green > 255)
 		return (ft_free_mat(temp), ERR_SCENE);
-	color->blue = ft_atoi(temp[2]);
+	color->green = ft_atoif(temp[1]) / 255;
+	color->blue = ft_atoif(temp[2]);
 	if (color->blue < 0 || color->blue > 255)
 		return (ft_free_mat(temp), ERR_SCENE);
+	color->blue = ft_atoif(temp[2]) / 255;
 	ft_free_mat(temp);
 	return (EXIT_SUCCESS);
 }
@@ -209,11 +212,11 @@ int rgb_to_hex(t_color color)
 {
 	int		hex_color;
 	
-	color.red = clamp_color(color.red);
-	color.green = clamp_color(color.green);
-	color.blue = clamp_color(color.blue);
+	color.red = (int)clamp_color(color.red)*255;
+	color.green = (int)clamp_color(color.green)*255;
+	color.blue = (int)clamp_color(color.blue)*255;
 
-	hex_color = ((int)color.red << 16) | ((int)color.green << 8) | (int)color.blue;
+	hex_color = ((int)(color.red) << 16) | ((int)(color.green) << 8) | (int)(color.blue);
 	return (hex_color);
 }
 
@@ -221,8 +224,8 @@ float clamp_color(float color)
 {
 	if (color < 0)
 		return (0);
-	if (color > 255)
-		return (255);
+	if (color > 1)
+		return (1);
 	return (color);
 }
 

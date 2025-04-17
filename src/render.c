@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/14 21:09:35 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/17 11:04:34 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	put_color_pixel(t_data *scene, t_image img, int x, int y)
 	t_hit	*inters;
 	t_color color;
 	t_comps comps;
+	t_color auxcolor;
 
 	init_pong_parameters(scene);
 	ray = create_ray(scene, img, x, y);
@@ -96,7 +97,11 @@ void	put_color_pixel(t_data *scene, t_image img, int x, int y)
 	else
 	{
 		comps = prepare_computations(hit, ray);
-		color = add_color_intensity(comps.elem.color, shade_hit(scene, comps));
+		// color = add_color_intensity(comps.elem.color, shade_hit(scene, comps));
+		auxcolor = hadamar_product(comps.elem.color, scene->lig.color);
+		printf("%f %f %f\n", auxcolor.red, auxcolor.green, auxcolor.blue);
+		color = add_color_intensity(auxcolor, shade_hit(scene, comps));
+
 	}
 	offset = (img.line_len * y) + x * (img.bpp / 8);
 	*(int *)((char *)img.addr + offset) = rgb_to_hex(color);

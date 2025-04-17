@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/12 16:49:52 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/17 10:10:41 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,10 @@ void	diffuse_specular_zero(float *colors);
 float	calculate_specular(t_data *scene, t_comps comps, float reflect_dot_eye);
 int	is_shadowed(t_data *scene, t_pos point);
 
-/* colors_test.c*/
+/* color.c*/
 void testing_colors(t_data *scene);
 t_color blend_colors(t_color col1, t_color col2, float ratio);
+t_color hadamar_product(t_color col1, t_color col2);
 
 /* math_1.c */
 float ft_abs(float num);
