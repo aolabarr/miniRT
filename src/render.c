@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/17 14:22:37 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/17 19:05:27 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	put_color_pixel(t_data *scene, t_image img, int x, int y)
 	ray = create_ray(scene, img, x, y);
 	inters = intersect_world(ray, scene);
 	hit = find_hit(scene, inters);
+	free(inters);
 	if (hit.hit == false)
 		color = SKY_BLUE;
 	else
