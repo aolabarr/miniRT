@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/12 16:49:52 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/17 14:06:29 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,8 @@ int    get_trans_inv_matrix(t_element *elem);
 float   *init_zero(float *mat_s, float *mat_t, float *mat_r, float *aux);
 void	handle_scale(t_element *elem, float *mat_s, int dir);
 void	handle_rotation(t_element *elem, float *mat_r, int dir);
+void rodrigues_matrix(t_vec a, float angle, float *mat);
+void rotation_matrix_from_to(t_vec from, t_vec to, float *mat);
 
 /* trans_view.c*/
 void    view_transform(t_pos from, t_pos to, t_vec up, float *mat);

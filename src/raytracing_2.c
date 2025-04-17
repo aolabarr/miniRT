@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:12:28 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/12 15:34:16 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/04/17 12:50:05 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,23 @@ t_vec	normal_at(t_element elem, t_pos hit_wd_point)
 	t_pos hit_ob_point;
 	t_vec ob_normal;
 	t_vec wd_normal;
-	float aux_mat[16];
+	//float aux_mat[16];
 
 	if (elem.type == SP)
 	{
 		multiply_matrix_pos(elem.tri_mat, hit_wd_point, &hit_ob_point);
 		ob_normal = rest_coord(hit_ob_point, zero_pos());
-		transpose_matrix(elem.tri_mat, aux_mat);
-		multiply_matrix_vector(aux_mat, ob_normal, &wd_normal);
+		//transpose_matrix(elem.tri_mat, aux_mat);
+		multiply_matrix_vector(elem.tr_mat, ob_normal, &wd_normal);
 	}
 	else if (elem.type == PL)
 		wd_normal = elem.vec;
 	else if (elem.type == CY)
 	{
-		wd_normal.x = hit_wd_point.x;
-		wd_normal.y = 0; 
-		wd_normal.z = hit_wd_point.z;
+		multiply_matrix_pos(elem.tri_mat, hit_wd_point, &hit_ob_point);
+		ob_normal = hit_ob_point;
+		ob_normal.y = 0.0;
+		multiply_matrix_vector(elem.tr_mat, ob_normal, &wd_normal);
 	}
 	wd_normal.w = 0;
 	return (normalize(wd_normal));
