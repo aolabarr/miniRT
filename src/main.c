@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:22:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/29 11:00:38 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/04/18 09:05:48 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@ int	main(int argc, char **argv)
 		return (handle_error(ERR_EXT), EXIT_FAILURE);
 
 	if (parse(&scene, argv[1]))
-		return(handle_free(&scene), EXIT_FAILURE);
-	
+	{	
+		handle_free(&scene);
+		return( EXIT_FAILURE);
+	}
 	if (create_scene(&scene))
 		return(handle_free(&scene), EXIT_FAILURE);
-	
+
 	return(EXIT_SUCCESS);	
 }
 

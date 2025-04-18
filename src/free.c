@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:11:25 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/02/22 16:16:45 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/18 09:01:11 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_free_mat(char **mat)
 
 void	free_scene(t_data *scene)
 {
+	printf("Liberando escena\n");
 	if (scene->elem)
 	{
 		free(scene->elem);
