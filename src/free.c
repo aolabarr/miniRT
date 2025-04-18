@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:11:25 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/18 09:01:11 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/18 09:16:39 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,18 @@ void	ft_free_mat(char **mat)
 
 void	free_scene(t_data *scene)
 {
-	printf("Liberando escena\n");
+	int i;
+
+	i = 0;
 	if (scene->elem)
 	{
+		while (i < scene->n_elem)
+		{
+			free(scene->elem[i].tr_mat);
+			free(scene->elem[i].tri_mat);
+			i++;
+		}
 		free(scene->elem);
 		scene->elem = NULL;
 	}
-	return ;
 }
