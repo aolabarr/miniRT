@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:22:53 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/18 09:05:21 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/18 11:52:49 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ int	close_window(t_data *scene)
 		mlx_destroy_image(scene->mlx, scene->img.ptr);
 	if (scene->name)
 		ft_free(scene->name);
-	scene->name = NULL;
 	scene->name = NULL;
 	scene->img.ptr = NULL;
 	mlx_destroy_window(scene->mlx, scene->win);

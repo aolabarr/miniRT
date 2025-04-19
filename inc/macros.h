@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/17 18:11:08 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/18 12:40:10 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define CANVAS_DISTANCE    1
 
 // Pong model values
-# define EPSILON 		    0.0001
+# define EPSILON 		    0.001
 # define DIFFUSE            0.7
 # define SPECULAR           0.7
 # define SHININESS          200
@@ -64,7 +64,9 @@
 # define BLACK              (t_color){0, 0, 0}
 # define BLUE               (t_color){0, 0, 255}
 # define SKY_GREY           (t_color){0.15, 0.15, 0.15}
-# define SKY_BLUE           (t_color){0.5, 0.8, 0.92}
+# define SKY_BLUE			(t_color){0.5, 0.8, 0.92}
+# define MIN_RGB			0
+# define MAX_RGB			255
 
 //Constant macros
 # define PLUS_KEY		65453

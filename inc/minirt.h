@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:24:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/25 19:59:54 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/18 12:09:26 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int		get_element(char *line, t_element *elem);
 int		add_element(t_data *scene, t_element *new_elem);
 int	    ft_atoi_hex(char *str);
 int	    dec_to_hex(int dec);
-float	ft_atof(char *str);
+
 
 /* check_values.c */
 int     normalized_vector(t_coord vec);

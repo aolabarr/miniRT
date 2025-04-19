@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:11:25 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/18 09:16:39 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/18 09:29:54 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void handle_free(t_data *scene)
 {
 	free_scene(scene);
 }
-
 
 void	ft_free_v(void *str)
 {

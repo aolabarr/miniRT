@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/17 14:20:31 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/18 11:59:34 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int     rgb_to_hex(t_color color);
 float   clamp_color(float color);
 int	    ft_atoi_hex(char *str);
 int	    dec_to_hex(int dec);
-float	ft_atof(char *str);
 
 /* check_values.c */
 int     normalized_vector(t_coord vec);
@@ -80,7 +79,8 @@ void	free_scene(t_data *scene);
 void	ft_free_v(void *str);
 
 /* parse.c */
-int	parse(t_data *scene, char *map);
+int		parse(t_data *scene, char *map);
+int		parse_line(char *line, t_data *scene);
 
 
 /* raytracing 1.c */

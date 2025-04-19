@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:20:36 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/17 09:57:25 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/04/18 11:52:41 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ int	get_position(char *str, t_coord *pos)
 		ft_free_mat(temp);
 		return (ERR_SCENE);
 	}
-	pos->x = ft_atof(temp[0]);
-	pos->y = ft_atof(temp[1]);
-	pos->z = ft_atof(temp[2]);
+	pos->x = ft_atoif(temp[0]);
+	pos->y = ft_atoif(temp[1]);
+	pos->z = ft_atoif(temp[2]);
 	pos->w = POINT;
 	ft_free_mat(temp);
 	return (EXIT_SUCCESS);
@@ -78,9 +78,9 @@ int	get_vector(char *str, t_coord *vec)
 	char		**temp;
 
 	temp = ft_split(str, ',');
-	vec->x = ft_atof(temp[0]);
-	vec->y = ft_atof(temp[1]);
-	vec->z = ft_atof(temp[2]);
+	vec->x = ft_atoif(temp[0]);
+	vec->y = ft_atoif(temp[1]);
+	vec->z = ft_atoif(temp[2]);
 	vec->w = VECTOR;
 	ft_free_mat(temp);
 	*vec = normalize(*vec);

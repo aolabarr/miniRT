@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lightning.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 19:28:06 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/17 18:12:04 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/18 12:34:11 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ float	lightning(t_data *scene, t_comps comps, int in_shadow)
 	(void)in_shadow;
 	ft_memsetf(colors, 0.0, 3);
 	lightv = normalize(rest_coord(scene->lig.pos, comps.over_point));
-	colors[0] = scene->lig.bright * comps.elem.material.ambient;
+	if (scene->lig.bright == 0)
+		colors[0] = scene->amb.ratio * comps.elem.material.ambient;
+	else 
+		colors[0] = scene->lig.bright * comps.elem.material.ambient;
 	// printf("In shadow: %d\n", in_shadow);
 	if (in_shadow == SHADOW)
 		return(colors[0]);
@@ -32,7 +35,10 @@ float	lightning(t_data *scene, t_comps comps, int in_shadow)
 		diffuse_specular_zero(colors);
 	else
 	{
-		colors[1] = scene->lig.bright * comps.elem.material.diffuse * light_dot_normal;
+		if (scene->lig.bright == 0)
+			colors[1] = scene->amb.ratio * comps.elem.material.diffuse * light_dot_normal;
+		else 
+			colors[1] = scene->lig.bright * comps.elem.material.diffuse * light_dot_normal;
 		reflectv = reflect_at(opp_vector(lightv), comps.normal);
 		reflect_dot_eye = dot_product(reflectv, comps.eyev);
 		if (reflect_dot_eye < -EPSILON || ft_abs(reflect_dot_eye) < EPSILON)

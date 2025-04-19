@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:52:38 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/02/22 16:26:39 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/18 11:33:59 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,48 @@
 
 int	parse(t_data *scene, char *map)
 {
-	int 		fd;
-	char		*line;
-	t_element	elem;
+	int		fd;
+	char	*line;
 
 	init_scene(scene);
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
-		return(handle_error(ERR_FD), EXIT_FAILURE);
-	while((line = get_next_line(fd)))
+		return (handle_error(ERR_FD), EXIT_FAILURE);
+	while (1)
 	{
-		if (line[0] == '\n' || line[0] == '\0')
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		if (parse_line(line, scene))
 		{
-			free(line);
-			continue;
-		}
-		if (line[0] == 'A')
-		{
-			if(get_ambient(line, &scene->amb))
-				return (handle_error(ERR_SCENE),EXIT_FAILURE);
-		}
-		else if (line[0] == 'C')
-		{
-			if(get_camera(line, &scene->cam))
-				return (handle_error(ERR_SCENE), EXIT_FAILURE);
-		}
-		else if (line[0] == 'L')
-		{
-			if(get_light(line, &scene->lig))
-				return (handle_error(ERR_SCENE), EXIT_FAILURE);
-		}
-		else
-		{
-			if(get_element(line, &elem))
-				return (handle_error(ERR_SCENE), EXIT_FAILURE);
-			if(add_element(scene, &elem))
-				return (EXIT_FAILURE);
+			free (line);
+			close (fd);
+			return (handle_error(ERR_SCENE), EXIT_FAILURE);
 		}
 		free (line);
 	}
 	close(fd);
-	return(EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }
 
+int	parse_line(char *line, t_data *scene)
+{
+	t_element	elem;
+
+	if (line[0] == '\n' || line[0] == '\0')
+		return (EXIT_SUCCESS);
+	if (line[0] == 'A')
+		return (get_ambient(line, &scene->amb));
+	else if (line[0] == 'C')
+		return (get_camera(line, &scene->cam));
+	else if (line[0] == 'L')
+		return (get_light(line, &scene->lig));
+	else
+	{
+		if (get_element(line, &elem))
+			return (EXIT_FAILURE);
+		if (add_element(scene, &elem))
+			return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
