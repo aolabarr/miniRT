@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/20 12:27:14 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/20 12:29:28 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	get_light(char *line, t_light *lig)
 			lig->bright = ft_atoif(temp[2]);
 			if (lig->bright >= 0.0 && lig->bright <= 1.0)
 			{
-				if (get_color(temp[3], &lig->color) == ERR_SCENE)
+				if (get_color(temp[3], &lig->color) == ERR_INT)
 					status = EXIT_FAILURE;
 			}
 			else
