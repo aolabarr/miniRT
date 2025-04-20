@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/18 11:52:41 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/20 12:27:14 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	get_ambient(char *line, t_ambient *amb)
 	if (temp && len_mat(temp) == 3)
 	{
 		amb->ratio = ft_atoif(temp[1]);
-		if (amb->ratio >= 0.0 || amb->ratio <= 1.0)
+		if (amb->ratio >= 0.0 && amb->ratio <= 1.0)
 		{
 			if (get_color(temp[2], &(amb->color)) == ERR_INT)
 				status = EXIT_FAILURE;
@@ -79,7 +79,7 @@ int	get_light(char *line, t_light *lig)
 		if (!get_position(temp[1], &(lig->pos)))
 		{
 			lig->bright = ft_atoif(temp[2]);
-			if (lig->bright >= 0.0 || lig->bright <= 1.0)
+			if (lig->bright >= 0.0 && lig->bright <= 1.0)
 			{
 				if (get_color(temp[3], &lig->color) == ERR_SCENE)
 					status = EXIT_FAILURE;
@@ -145,16 +145,16 @@ int	get_color(char *str, t_color *color)
 
 	temp = ft_split(str, ',');
 	if (!temp || len_mat(temp) != 3)
-		return (ft_free_mat(temp), ERR_SCENE);
+		return (ft_free_mat(temp), ERR_INT);
 	rgb[0] = ft_atoi(temp[0]);
 	if (rgb[0] < MIN_RGB || rgb[0] > MAX_RGB)
-		return (ft_free_mat(temp), ERR_SCENE);
+		return (ft_free_mat(temp), ERR_INT);
 	rgb[1] = ft_atoi(temp[1]);
 	if (rgb[1] < MIN_RGB || rgb[1] > MAX_RGB)
-		return (ft_free_mat(temp), ERR_SCENE);
+		return (ft_free_mat(temp), ERR_INT);
 	rgb[2] = ft_atoi(temp[2]);
 	if (rgb[2] < MIN_RGB || rgb[2] > MAX_RGB)
-		return (ft_free_mat(temp), ERR_SCENE);
+		return (ft_free_mat(temp), ERR_INT);
 	color->red = rgb[0] / 255.0f;
 	color->green = rgb[1] / 255.0f;
 	color->blue = rgb[2] / 255.0f;

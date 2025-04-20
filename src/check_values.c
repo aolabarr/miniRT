@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:21:22 by binary            #+#    #+#             */
-/*   Updated: 2025/04/18 11:52:41 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/20 12:22:52 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ int	get_cylinder(char **str, t_element *elem)
 		elem->height = ft_atoif(str[4]);
 		if (get_color(str[5], &(elem->color)) == ERR_INT)
 			return (EXIT_FAILURE);
-		
 	}
 	else
 		return (EXIT_FAILURE);

@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:20:36 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/18 11:52:41 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/20 12:01:03 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int handle_error(int error)
 {
-	ft_printf("Error\n");
+	//ft_printf("Error\n");
 	if (error == ERR_ARG)
 		ft_putendl_fd(ERR_MSG_ARG, STDOUT_FILENO);
 	if (error == ERR_EXT)
