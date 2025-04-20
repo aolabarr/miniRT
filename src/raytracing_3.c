@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:38:58 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/17 18:07:47 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/20 11:10:10 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_comps prepare_computations(t_hit hit, t_ray ray)
    comps.eyev = opp_vector(ray.vec);
    comps.normal = normal_at(comps.elem, comps.point);
    calc_inside(&comps);
-   comps.over_point = new_lineal_point(comps.point, comps.normal, EPSILON);
+   comps.over_point = new_lineal_point(comps.point, comps.normal, EPSILON * 1000);
    return (comps);
 }
 

@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 19:28:06 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/18 12:34:11 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/20 11:08:30 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	is_shadowed(t_data *scene, t_pos point)
 	// 	return(SHADOW);
 	// }
 	// 
-	if (hit.hit == true && !is_equal(hit_t(hit), magnitude(v)) && hit_t(hit) > EPSILON && hit_t(hit) < magnitude(v))
+	if (hit.hit == true && !is_equal(hit_t(hit), magnitude(v)) && (hit_t(hit) > EPSILON *100) && hit_t(hit) < magnitude(v))
 	{
 		return (SHADOW);
 	}
