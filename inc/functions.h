@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/18 11:59:34 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/20 23:25:57 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void	init_color(t_color *color);
 int		check_extension(char *str);
 
 /* get_data.c */
-int     get_ambient(char *line, t_ambient *amb);
-int     get_camera(char *line, t_camera *cam);
-int     get_light(char *line, t_light *lig);
+int     get_ambient(char *line, t_ambient *amb, t_data *scene);
+int     get_camera(char *line, t_camera *cam, t_data *scene);
+int     get_light(char *line, t_light *lig, t_data *scene);
 int		get_element(char *line, t_element *elem);
 int		add_element(t_data *scene, t_element *new_elem);
 int     get_color(char *str, t_color *color);
@@ -65,18 +65,22 @@ float   clamp_color(float color);
 int	    ft_atoi_hex(char *str);
 int	    dec_to_hex(int dec);
 
-/* check_values.c */
+/* check_values_1.c */
 int     normalized_vector(t_coord vec);
 int     len_mat(char **str);
 int		get_sphere (char **str, t_element *elem);
 int		get_plane(char **str, t_element *elem);
 int		get_cylinder(char **str, t_element *elem);
 
+/* check_values_2.c */
+int all_components_scene(t_data *scene);
+
 /* free.c */
 void    handle_free(t_data *scene);
 void    ft_free_mat(char **mat);
 void	free_scene(t_data *scene);
 void	ft_free_v(void *str);
+void	free_scene_first(t_data *scene);
 
 /* parse.c */
 int		parse(t_data *scene, char *map);
@@ -124,6 +128,7 @@ t_color add_colors(t_color col1, t_color col2);
 /* math_1.c */
 float ft_abs(float num);
 int is_equal(float a, float b);
+int	is_zero(float num);
 int is_coord_equal(t_coord a, t_coord b);
 t_vec sum_vector(t_vec a, t_vec b);
 t_vec rest_coord(t_coord a, t_coord b);

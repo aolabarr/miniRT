@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+         #
+#    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/01 15:23:12 by aolabarr          #+#    #+#              #
-#    Updated: 2025/04/17 13:47:53 by beiglesi         ###   ########.fr        #
+#    Updated: 2025/04/20 22:47:56 by binary           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ SRC =	main.c \
 		keys.c \
 		init.c \
 		get_data.c \
-		check_values.c \
+		check_values_1.c \
+		check_values_2.c \
 		lightning.c \
 		raytracing_1.c \
 		raytracing_2.c \

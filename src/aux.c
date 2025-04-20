@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:20:36 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/20 12:01:03 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/20 23:14:08 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,17 @@ int handle_error(int error)
 		ft_putendl_fd(ERR_MSG_FD, STDOUT_FILENO);
 	if (error == ERR_SCENE)
 		ft_putendl_fd(ERR_MSG_SCENE, STDOUT_FILENO);
+	if (error == ERR_DARK)
+		ft_putendl_fd(ERR_MSG_DARK, STDOUT_FILENO);
+	if (error == ERR_AMB)
+		ft_putendl_fd(ERR_MSG_AMB, STDOUT_FILENO);
+	if (error == ERR_CAM)
+		ft_putendl_fd(ERR_MSG_CAM, STDOUT_FILENO);
+	if (error == ERR_LIG)
+		ft_putendl_fd(ERR_MSG_LIG, STDOUT_FILENO);
+	if (error == ERR_ELEM)
+		ft_putendl_fd(ERR_MSG_ELEM, STDOUT_FILENO);
+
 	return (EXIT_FAILURE);
 }
 

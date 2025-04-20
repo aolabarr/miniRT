@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 10:46:45 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/03/10 09:34:19 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/20 19:09:01 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@ void	init_scene(t_data *scene)
 	init_light(&scene->lig);
 	scene->elem = NULL;
 	scene->n_elem = 0;
+	scene->has_amb = FALSE;
+	scene->has_cam = FALSE;
+	scene->has_lig = FALSE;
 }
 
 void	init_ambient(t_ambient *amb)
 {
-	amb->ratio = 0;
+	amb->ratio = 0.0f;
 	init_color(&amb->color);
 }
 
@@ -43,7 +46,7 @@ void	init_light(t_light *light)
 	light->pos.x = 0;
 	light->pos.y = 0;
 	light->pos.z = 0;
-	light->bright = 0;
+	light->bright = 0.0f;
 	init_color(&light->color);
 }
 

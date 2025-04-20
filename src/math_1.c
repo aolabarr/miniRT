@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 17:21:53 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/26 18:16:01 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/04/20 12:51:48 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ float ft_abs(float num)
 	if (num >= 0)
 		return (num);
 	return (-num);
+}
+int	is_zero(float num)
+{
+	if (ft_abs(num) < EPSILON)
+		return (1);
+	return (0);
 }
 
 int is_equal(float a, float b)

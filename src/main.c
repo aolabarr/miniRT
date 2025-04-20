@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:22:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/18 09:05:48 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/20 23:26:24 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ int	main(int argc, char **argv)
 
 	if (parse(&scene, argv[1]))
 	{	
-		handle_free(&scene);
-		return( EXIT_FAILURE);
+		free_scene_first(&scene);
+		return (EXIT_FAILURE);
 	}
+	
+	
 	if (create_scene(&scene))
 		return(handle_free(&scene), EXIT_FAILURE);
 

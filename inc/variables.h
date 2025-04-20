@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variables.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:30:53 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/17 11:17:11 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/04/20 19:04:23 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,9 @@ typedef struct s_data
 	int			update;
 	t_mouse		mouse;
 	int			n_elem;
+	int			has_amb;
+	int			has_cam;
+	int			has_lig;
 }				t_data;
 
 typedef struct s_comps

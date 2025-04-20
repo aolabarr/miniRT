@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:11:25 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/18 09:29:54 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/20 23:25:11 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,28 @@ void	free_scene(t_data *scene)
 	int i;
 
 	i = 0;
-	if (scene->elem)
+	if (scene && scene->elem)
 	{
 		while (i < scene->n_elem)
 		{
 			free(scene->elem[i].tr_mat);
 			free(scene->elem[i].tri_mat);
+			i++;
+		}
+		free(scene->elem);
+		scene->elem = NULL;
+	}
+}
+
+void	free_scene_first(t_data *scene)
+{
+	int i;
+
+	i = 0;
+	if (scene && scene->elem)
+	{
+		while (i < scene->n_elem)
+		{
 			i++;
 		}
 		free(scene->elem);

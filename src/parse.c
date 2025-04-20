@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:52:38 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/20 12:22:53 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/20 23:28:06 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	parse(t_data *scene, char *map)
 		free (line);
 	}
 	close(fd);
+	if (all_components_scene(scene))
+		return(EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
@@ -45,11 +47,13 @@ int	parse_line(char *line, t_data *scene)
 	if (line[0] == '\n' || line[0] == '\0')
 		return (EXIT_SUCCESS);
 	if (line[0] == 'A')
-		return (get_ambient(line, &scene->amb));
+		return (get_ambient(line, &scene->amb, scene));
 	else if (line[0] == 'C')
-		return (get_camera(line, &scene->cam));
+		return (get_camera(line, &scene->cam, scene));
 	else if (line[0] == 'L')
-		return (get_light(line, &scene->lig));
+		return (get_light(line, &scene->lig, scene));
+	// else if (is_zero(scene->amb.ratio) && is_zero(scene->lig.bright))
+	// 	return(handle_error(ERR_DARK), EXIT_FAILURE);
 	else
 	{
 		if (get_element(line, &elem))

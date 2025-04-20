@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/20 12:22:53 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/20 23:14:06 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # define POINT 1
 # define VECTOR 0
 
+# define TRUE	1
+# define FALSE	0
+
 # define ERR_ARG   	0
 # define ERR_EXT   	1
 # define ERR_FD		2
@@ -23,6 +26,10 @@
 # define ERR_MALL	5 
 # define ERR_INT    -1
 # define ERR_SCENE  -3
+# define ERR_DARK   -4
+# define ERR_AMB	-5
+# define ERR_CAM	-6
+# define ERR_LIG	-7
 
 # define ERR_MSG_ARG		"Error: incorrect number of arguments"
 # define ERR_MSG_EXT 		"Error: incorrect file extension"
@@ -30,6 +37,10 @@
 # define ERR_MSG_FD         "Error: can not open file"
 # define ERR_MSG_SCENE      "Error: invalid data in scene"
 # define ERR_MSG_ELEM       "Error: invalid element"
+# define ERR_MSG_DARK		"Error: scene is in the dark"
+# define ERR_MSG_AMB		"Error: scene missing ambient"
+# define ERR_MSG_CAM		"Error: scene missing camera"
+# define ERR_MSG_LIG		"Error: scene missing light"
 
 # define ESC_MSG 			"ESC key pressed"
 # define MINI_RT    		"miniRT"
