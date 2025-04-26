@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:38:58 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/26 10:53:05 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/04/26 10:59:55 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,17 @@ t_comps prepare_computations(t_hit hit, t_ray ray)
 	t_comps comps;
 	float	bias;
 
-   comps.t = hit_t(hit);
-   comps.elem = hit.elem;
-   comps.point = get_hit_point(ray, hit);
-   comps.eyev = opp_vector(ray.vec);
-   comps.normal = normal_at(comps.elem, comps.point);
-   calc_inside(&comps);
-   bias = EPSILON * get_object_scale(comps.elem);
-   comps.over_point = new_lineal_point(comps.point, comps.normal, bias);
-   return (comps);
+	comps.t = hit_t(hit);
+	comps.elem = hit.elem;
+	comps.point = get_hit_point(ray, hit);
+	comps.eyev = opp_vector(ray.vec);
+	comps.normal = normal_at(comps.elem, comps.point);
+	calc_inside(&comps);
+	bias = EPSILON * get_object_scale(comps.elem);
+	//bias = EPSILON * 1000;
+	//bias = EPSILON;
+	comps.over_point = new_lineal_point(comps.point, comps.normal, bias);
+	return (comps);
 }
 
 float	get_object_scale(t_element elem)
