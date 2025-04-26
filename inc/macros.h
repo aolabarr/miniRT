@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/20 23:14:06 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/26 10:42:01 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # define MINI_RT    		"miniRT"
 
 //Canvas values
-# define WIDTH				800
+# define WIDTH				900
 # define ASPECT_RATIO       (16.0 / 9.0)
 # define HEIGHT				(WIDTH / ASPECT_RATIO)
 # define CANVAS_DISTANCE    1

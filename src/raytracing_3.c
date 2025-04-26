@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:38:58 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/20 11:10:10 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/26 10:53:05 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ t_hit   *intersect_world(t_ray ray, t_data *scene)
 
 t_comps prepare_computations(t_hit hit, t_ray ray)
 {
-   t_comps comps;
+	t_comps comps;
+	float	bias;
 
    comps.t = hit_t(hit);
    comps.elem = hit.elem;
@@ -46,8 +47,23 @@ t_comps prepare_computations(t_hit hit, t_ray ray)
    comps.eyev = opp_vector(ray.vec);
    comps.normal = normal_at(comps.elem, comps.point);
    calc_inside(&comps);
-   comps.over_point = new_lineal_point(comps.point, comps.normal, EPSILON * 1000);
+   bias = EPSILON * get_object_scale(comps.elem);
+   comps.over_point = new_lineal_point(comps.point, comps.normal, bias);
    return (comps);
+}
+
+float	get_object_scale(t_element elem)
+{
+    float	scale;
+    t_vec	axis_x;
+	t_vec	axis_y;
+	t_vec	axis_z;
+		
+	axis_x = (t_vec){elem.tr_mat[0], elem.tr_mat[1], elem.tr_mat[2], VECTOR};
+	axis_y = (t_vec){elem.tr_mat[4], elem.tr_mat[5], elem.tr_mat[6], VECTOR};
+	axis_z = (t_vec){elem.tr_mat[7], elem.tr_mat[8], elem.tr_mat[9], VECTOR};
+	scale = (magnitude(axis_x) + magnitude(axis_y) + magnitude(axis_z)) / 3.0f;
+	return (scale);
 }
 
 void    calc_inside(t_comps *comps)

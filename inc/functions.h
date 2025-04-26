@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/20 23:25:57 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/26 10:41:22 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void	init_pong_parameters(t_data *scene);
 t_hit   *intersect_world(t_ray ray, t_data *scene);
 t_comps prepare_computations(t_hit hit, t_ray ray);
 void    calc_inside(t_comps *comps);
+float	get_object_scale(t_element elem);
 float   shade_hit(t_data *scene, t_comps comps);
 
 /* raytracing 4.c */
