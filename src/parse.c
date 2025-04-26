@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:52:38 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/20 23:28:06 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/26 11:17:40 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ int	parse_line(char *line, t_data *scene)
 		return (get_camera(line, &scene->cam, scene));
 	else if (line[0] == 'L')
 		return (get_light(line, &scene->lig, scene));
-	// else if (is_zero(scene->amb.ratio) && is_zero(scene->lig.bright))
-	// 	return(handle_error(ERR_DARK), EXIT_FAILURE);
 	else
 	{
 		if (get_element(line, &elem))
