@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/17 19:05:27 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/04/26 13:51:56 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ int	create_image(t_data *data)
 			y++;
 		}
 		x++;
+		printf("\rRendering: %d %%", (int)(((float)x / 900) * 100));
 	}
+	printf("\nCOMPLETE!\n");
 	return (EXIT_SUCCESS);
 }
 
