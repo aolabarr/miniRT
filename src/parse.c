@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:52:38 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/26 13:28:52 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/04/26 14:42:33 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	parse(t_data *scene, char *map)
 		{
 			free (line);
 			close (fd);
-			return (handle_error(ERR_SCENE), EXIT_FAILURE);
+			return (EXIT_FAILURE);
+			// return (handle_error(ERR_SCENE), EXIT_FAILURE); ????
 		}
 		free (line);
 	}

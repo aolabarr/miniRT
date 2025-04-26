@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/26 13:27:42 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/04/26 14:41:05 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	get_element(char *line, t_element *elem)
 		return (EXIT_FAILURE);
 	temp = ft_split_allwhitespace(line);
 	elem->type = get_elem_type(temp[0]);
+	if (elem->type == UNKOWN)
+		return (ft_free_mat(temp), EXIT_FAILURE);
 	if (get_position(temp[1], &(elem->pos)))
 		return (EXIT_FAILURE);
 	if (elem->type == SP && get_sphere(temp, elem))
