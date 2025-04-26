@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:20:36 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/20 23:14:08 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/26 13:24:22 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,4 +140,99 @@ void	*ft_callocf(int count, int size)
 		return (NULL);
 	ft_memsetf(ptr, 0.0, size);
 	return (ptr);
+}
+
+char	**ft_split_allwhitespace(const char *s)
+{
+	char	**mat;
+	size_t	i;
+	size_t	mlen;
+	size_t	slen;
+
+	mlen = ft_word_count_allwhitespace(s);
+	mat = malloc(sizeof(char *) * (mlen + 1));
+	if (!mat)
+		return (NULL);
+	i = 0;
+	while (i < mlen)
+	{
+		while (is_space(*s))
+			s++;
+		slen = ft_char_count_allwhitespace(s);
+		mat[i] = malloc(sizeof(char) * (slen + 1));
+		if (!mat[i])
+			return (ft_free_mat_n(mat, i));
+		ft_strlcpy(mat[i], s, slen + 1);
+		s += slen;
+		i++;
+	}
+	mat[i] = NULL;
+	return (mat);
+}
+
+
+size_t	ft_word_count_allwhitespace(const char *s)
+{
+	size_t	count;
+	size_t	sw;
+
+	if (!s)
+		return (0);
+	count = 0;
+	sw = 0;
+	while (*s != '\0')
+	{
+		if (is_space(*s))
+			sw = 0;
+		else if (sw == 0)
+		{
+			sw = 1;
+			count++;
+		}
+		s++;
+	}
+	return (count);
+}
+
+size_t	ft_char_count_allwhitespace(const char *s)
+{
+	size_t	count;
+
+	count = 0;
+	while (!is_space(s[count]) && s[count] != '\0')
+		count++;
+	return (count);
+}
+
+char	**ft_free_mat_n(char **mat, size_t mlen)
+{
+	while (mlen)
+	{
+		free(mat[mlen]);
+		mlen--;
+	}
+	free(mat[0]);
+	free(mat);
+	return (NULL);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	size_t	i;
+	char	aux;
+	char	*str;
+
+	aux = (char)c;
+	c = aux;
+	str = (char *)s;
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == c)
+			return (&str[i]);
+		i++;
+	}
+	if (c == '\0')
+		return (&str[i]);
+	return (NULL);
 }

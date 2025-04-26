@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/26 10:41:22 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/04/26 13:24:39 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,12 @@ int			get_position(char *str, t_coord  *pos);
 int         get_vector(char *str, t_coord  *vec);
 t_eltype	get_elem_type(char *str);
 int         is_element(char *str);
-void	*ft_memsetf(void *b, float c, int len);
-void	*ft_callocf(int count, int size);
+void		*ft_memsetf(void *b, float c, int len);
+void		*ft_callocf(int count, int size);
+char		**ft_split_allwhitespace(const char *s);
+size_t		ft_word_count_allwhitespace(const char *s);
+size_t		ft_char_count_allwhitespace(const char *s);
+char		**ft_free_mat_n(char **mat, size_t mlen);
 
 /* init.c */
 void	init_scene(t_data *scene);
@@ -77,7 +81,8 @@ int all_components_scene(t_data *scene);
 
 /* free.c */
 void    handle_free(t_data *scene);
-void    ft_free_mat(char **mat);
+void	ft_free_mat(char **mat);
+char	**ft_free_mat_n(char **mat, size_t mlen);
 void	free_scene(t_data *scene);
 void	ft_free_v(void *str);
 void	free_scene_first(t_data *scene);

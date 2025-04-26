@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/20 23:08:17 by binary           ###   ########.fr       */
+/*   Updated: 2025/04/26 13:27:42 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	get_ambient(char *line, t_ambient *amb, t_data *scene)
 
 	if (valid_str(line))
 		return (EXIT_FAILURE);
-	temp = ft_split(line, ' ');
+	temp = ft_split_allwhitespace(line);
 	if (!temp || len_mat(temp) != 3)
 		return (ft_free_mat(temp), EXIT_FAILURE);
 	amb->ratio = ft_atoif(temp[1]);
@@ -37,7 +37,7 @@ int	get_camera(char *line, t_camera *cam, t_data *scene)
 
 	if (valid_str(line))
 		return (EXIT_FAILURE);
-	temp = ft_split(line, ' ');
+	temp = ft_split_allwhitespace(line);
 	if (!temp || len_mat(temp) != 4)
 		return (ft_free_mat(temp), EXIT_FAILURE);
 	if (get_position(temp[1], &(cam->pos)) != EXIT_SUCCESS)
@@ -56,7 +56,7 @@ int	get_light(char *line, t_light *lig, t_data *scene)
 
 	if (valid_str(line))
 		return (EXIT_FAILURE);
-	temp = ft_split(line, ' ');
+	temp = ft_split_allwhitespace(line);
 	if (!temp || len_mat(temp) != 4)
 		return (ft_free_mat(temp), EXIT_FAILURE);
 	if (get_position(temp[1], &(lig->pos)) != EXIT_SUCCESS)
@@ -77,7 +77,7 @@ int	get_element(char *line, t_element *elem)
 
 	if (valid_str(line))
 		return (EXIT_FAILURE);
-	temp = ft_split(line, ' ');
+	temp = ft_split_allwhitespace(line);
 	elem->type = get_elem_type(temp[0]);
 	if (get_position(temp[1], &(elem->pos)))
 		return (EXIT_FAILURE);
