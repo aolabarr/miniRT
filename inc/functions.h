@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/26 13:24:39 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/02 12:21:47 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	update_hit(t_hit *hit, t_hit inter);
 int     handle_key_input(int key, t_data *scene);
 void	set_traslation_move(t_data *scene, int key);
 void	set_static_zoom(t_data *scene, int key);
+void	set_rotation_move(t_data *scene, int key);
+void	set_orientation(t_data *scene, int key, t_pos to, t_vec *rigth_up);
 
 /* aux.c */
 int		    handle_error(int error);

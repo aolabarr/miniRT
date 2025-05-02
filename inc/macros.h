@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/26 10:42:01 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/02 18:08:28 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # define MINI_RT    		"miniRT"
 
 //Canvas values
-# define WIDTH				900
+# define WIDTH				300
 # define ASPECT_RATIO       (16.0 / 9.0)
 # define HEIGHT				(WIDTH / ASPECT_RATIO)
 # define CANVAS_DISTANCE    1
@@ -70,6 +70,8 @@
 # define WORLD_Y            (t_vec){0, 1, 0, 0}
 # define WORLD_Z            (t_vec){0, 0, 1, 0}
 # define DELTA_TRANS        0.1
+# define DELTA_ROT          0.01
+# define TOL_ANGLE          2
 
 //Color palette
 # define BLACK              (t_color){0, 0, 0}
@@ -79,9 +81,15 @@
 # define MIN_RGB			0
 # define MAX_RGB			255
 
-//Constant macros
+//Keys
 # define PLUS_KEY		65453
 # define MINUS_KEY		65451
+# define A_KEY		    97
+# define D_KEY		    100
+# define W_KEY		    119
+# define S_KEY		    115
+
+//Constants
 # define PI				3.14159265358979323846
 
 

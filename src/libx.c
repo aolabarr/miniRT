@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libx.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:22:53 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/18 11:52:49 by binary           ###   ########.fr       */
+/*   Updated: 2025/05/02 16:25:46 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,15 @@ void	init_canvas(t_data *scene)
 	hsize = 2 * tan((scene->cam.fov * PI / 180) / 2);
 	vsize = hsize / ASPECT_RATIO;
 	center = new_lineal_point(scene->cam.pos, scene->cam.vec, 1);
-	if (scene->cam.vec.y == 1 || scene->cam.vec.y == -1)
-		world_up = (t_vec){0, 0, 1, 0};
+	if(is_equal(scene->cam.vec.y, 1.0) || is_equal(scene->cam.vec.y, -1.0))
+		world_up = WORLD_Z;
 	else
-		world_up = (t_vec){0, 1, 0, 0};
+		world_up = WORLD_Y;
 		
 	right = normalize(cross_product(scene->cam.vec, world_up));
 	up = normalize(cross_product(right, scene->cam.vec));
-	
+
+	printf("CANVAS rigth: %f, %f, %f\tup: %f, %f, %f\n", right.x, right.y, right.z, up.x, up.y,up.z);
 	// Inferior Izquierda
 	aux = new_lineal_point(center, right, -hsize / 2);
 	scene->img.canvas[0] = new_lineal_point(aux, up, -vsize / 2);

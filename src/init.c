@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 10:46:45 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/20 19:09:01 by binary           ###   ########.fr       */
+/*   Updated: 2025/05/02 17:21:50 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	init_camera(t_camera *cam)
 	cam->vec.y = 0;
 	cam->vec.z = 1.0;
 	cam->fov = 70;
+	cam->theta = acos(cam->vec.y);
 }
 
 void	init_light(t_light *light)

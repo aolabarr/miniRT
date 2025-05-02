@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/26 14:41:05 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/02 17:33:11 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	get_camera(char *line, t_camera *cam, t_data *scene)
 	if (get_vector(temp[2], &(cam->vec)) != EXIT_SUCCESS)
 		return (ft_free_mat(temp), EXIT_FAILURE);
 	cam->fov = ft_atoi(temp[3]);
+	cam->theta = ft_abs(acos(cam->vec.y));
 	scene->has_cam = TRUE;
 	ft_free_mat(temp);
 	return (EXIT_SUCCESS);
