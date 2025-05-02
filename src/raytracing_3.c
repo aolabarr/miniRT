@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:38:58 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/02 13:03:02 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/02 19:42:52 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_comps prepare_computations(t_hit hit, t_ray ray)
 	comps.normal = normal_at(comps.elem, comps.point);
 	calc_inside(&comps);
 	bias = EPSILON * get_object_scale(comps.elem);
-	//bias = EPSILON * 1000;
+	// bias = EPSILON * 1000;
 	//bias = EPSILON;
 	comps.over_point = new_lineal_point(comps.point, comps.normal, bias);
 	return (comps);

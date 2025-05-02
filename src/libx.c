@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libx.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:22:53 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/02 16:25:46 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/02 19:39:39 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	init_canvas(t_data *scene)
 	right = normalize(cross_product(scene->cam.vec, world_up));
 	up = normalize(cross_product(right, scene->cam.vec));
 
-	printf("CANVAS rigth: %f, %f, %f\tup: %f, %f, %f\n", right.x, right.y, right.z, up.x, up.y,up.z);
 	// Inferior Izquierda
 	aux = new_lineal_point(center, right, -hsize / 2);
 	scene->img.canvas[0] = new_lineal_point(aux, up, -vsize / 2);

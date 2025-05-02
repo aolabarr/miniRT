@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 08:13:32 by binary            #+#    #+#             */
-/*   Updated: 2025/05/02 13:19:02 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/02 19:30:22 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,6 @@ t_pos	position(t_ray ray, float t)
 	return (res);
 }
 
-// t_pos new_lineal_point(t_pos point, t_vec vec)
-// {
-// 	t_pos	res;
-	
-// 	res.x = point.x + vec.x;
-// 	res.y = point.y + vec.y;
-// 	res.z = point.z + vec.z;
-// 	res.w = point.w + vec.w;
-// 	return (res);
-// }
-
-/* 
-a ← dot(ray.direction, ray.direction)
-b ← 2 * dot(ray.direction, sphere_to_ray)
-c ← dot(sphere_to_ray, sphere_to_ray) - radius^2
-discriminant ← b² - 4 * a * c 
-*/
 
 t_hit	sphere_intersection(t_ray ray, t_element elem)
 {
@@ -66,6 +49,10 @@ t_hit	sphere_intersection(t_ray ray, t_element elem)
 		inters.t2 = (- b + sqrtf(dis)) / (2 * a);
 		inters.elem = elem;
 		if ((inters.t1 < -EPSILON && inters.t2 < -EPSILON) || (ft_abs(inters.t1) < EPSILON && ft_abs(inters.t2) < EPSILON))
+			inters.hit = false;
+		else if ((inters.t1 < -EPSILON && ft_abs(inters.t2) < EPSILON))
+			inters.hit = false;
+		else if ((inters.t2 < -EPSILON && ft_abs(inters.t1) < EPSILON))
 			inters.hit = false;
 		else
 			inters.hit = true;
@@ -123,12 +110,16 @@ t_hit cylinder_intersection(t_ray ray, t_element elem)
 	inters.elem = elem;
 	if ((inters.t1 < -EPSILON && inters.t2 < -EPSILON) || (ft_abs(inters.t1) < EPSILON && ft_abs(inters.t2) < EPSILON))
 		return (inters);
-	
+	else if((inters.t1 < -EPSILON && ft_abs(inters.t2) < EPSILON))
+		return (inters);
+
+	else if((inters.t2 < -EPSILON && ft_abs(inters.t1) < EPSILON))
+		return (inters);
+
 	float min_y = -elem.height / elem.radio / 2;
-	
-	// printf("Elem tipo: %d\theight: %f \t min_y = %f\tdiam =  %f \n", elem.type, elem.height, min_y, elem.radio*2);
+
 	float max_y = elem.height / elem.radio / 2;
-	// printf("Elem tipo: %d\theight: %f \t max_y = %f\n", elem.type, elem.height, max_y);
+	
 	float y1 = ray.origin.y + inters.t1 * ray.vec.y;
 	float y2 = ray.origin.y + inters.t2 * ray.vec.y;	
 	if (!is_equal(y1, min_y) && (y1 > min_y) && !is_equal(y1, max_y)  && (y1 < max_y))

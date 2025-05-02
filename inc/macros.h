@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/05/02 18:12:32 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/02 18:25:55 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 # define MINI_RT    		"miniRT"
 
 //Canvas values
-# define WIDTH				300
+# define WIDTH				900
 # define ASPECT_RATIO       (16.0 / 9.0)
 # define HEIGHT				(WIDTH / ASPECT_RATIO)
 # define CANVAS_DISTANCE    1

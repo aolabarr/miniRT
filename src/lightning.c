@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 19:28:06 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/02 13:09:33 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/02 19:35:20 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ float	lightning(t_data *scene, t_comps comps, int in_shadow)
 		colors[0] = scene->amb.ratio * comps.elem.material.ambient;
 	else 
 		colors[0] = scene->lig.bright * comps.elem.material.ambient;
-	// printf("In shadow: %d\n", in_shadow);
 	if (in_shadow == SHADOW)
 		return(colors[0]);
 	light_dot_normal = dot_product(lightv, comps.normal);
@@ -75,19 +74,8 @@ int	is_shadowed(t_data *scene, t_pos point)
 	ray.origin = point;
 	ray.vec = normalize(v);
 	inters = intersect_world(ray, scene);
-	{
-		//int i = 0;
-		//while(i++ < 3)
-			//printf("is_shadow %d: %d %f %f\n", i, inters->hit, inters->t1, inters->t2);
-	}
 	hit = find_hit(scene, inters);
 	free(inters);
-	// if (hit.hit == true && !is_equal(hit_t(hit), magnitude(v)) && hit_t(hit) < magnitude(v))
-	// {
-	// 	// printf("hit: %d\tt: %f\tmag: %f\n",hit.hit, hit_t(hit), magnitude(v));
-	// 	return(SHADOW);
-	// }
-	// 
 	if (hit.hit == true && !is_equal(hit_t(hit), magnitude(v)) && (hit_t(hit) > EPSILON) && hit_t(hit) < magnitude(v))
 	{
 		return (SHADOW);
