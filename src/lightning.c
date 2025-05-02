@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 19:28:06 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/26 10:58:55 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/02 13:09:33 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ float	lightning(t_data *scene, t_comps comps, int in_shadow)
 		else
 			colors[2] = calculate_specular(scene, comps, reflect_dot_eye);
 	}
-	// printf("COLORS: %f %f %f\n", colors[0],  colors[1], colors[2]);
+	
 	return (colors[0] + colors[1] + colors[2]);
 }
 

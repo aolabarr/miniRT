@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/05/02 18:08:28 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/02 18:12:32 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,19 @@
 # define TRUE	1
 # define FALSE	0
 
-# define ERR_ARG   	0
-# define ERR_EXT   	1
-# define ERR_FD		2
-# define ERR_ELEM	4 
-# define ERR_MALL	5 
-# define ERR_INT    -1
-# define ERR_SCENE  -3
-# define ERR_DARK   -4
-# define ERR_AMB	-5
-# define ERR_CAM	-6
-# define ERR_LIG	-7
+# define ERR_ARG		0
+# define ERR_EXT		1
+# define ERR_FD			2
+# define ERR_ELEM		4 
+# define ERR_MALL		5 
+# define ERR_INT		-1
+# define ERR_MISS_ELEM	-2
+# define ERR_SCENE		-3
+# define ERR_DARK		-4
+
+// # define ERR_AMB	-5
+// # define ERR_CAM	-6
+// # define ERR_LIG	-7
 
 # define ERR_MSG_ARG		"Error: incorrect number of arguments"
 # define ERR_MSG_EXT 		"Error: incorrect file extension"
@@ -38,9 +40,10 @@
 # define ERR_MSG_SCENE      "Error: invalid data in scene"
 # define ERR_MSG_ELEM       "Error: invalid element"
 # define ERR_MSG_DARK		"Error: scene is in the dark"
-# define ERR_MSG_AMB		"Error: scene missing ambient"
-# define ERR_MSG_CAM		"Error: scene missing camera"
-# define ERR_MSG_LIG		"Error: scene missing light"
+# define ERR_MSG_MISS_ELEM	"Error: scene missing element"
+// # define ERR_MSG_AMB		"Error: scene missing ambient"
+// # define ERR_MSG_CAM		"Error: scene missing camera"
+// # define ERR_MSG_LIG		"Error: scene missing light"
 
 # define ESC_MSG 			"ESC key pressed"
 # define MINI_RT    		"miniRT"
