@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 18:59:32 by binary            #+#    #+#             */
-/*   Updated: 2025/04/26 10:36:21 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/02 11:46:12 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 int all_components_scene(t_data *scene)
 {
     if (scene->has_amb == FALSE)
-        return (handle_error(ERR_AMB), EXIT_FAILURE);
+        return (handle_error(ERR_MISS_ELEM), EXIT_FAILURE);
     if (scene->has_cam == FALSE)
-        return (handle_error(ERR_CAM), EXIT_FAILURE);
+        return (handle_error(ERR_MISS_ELEM), EXIT_FAILURE);
     if (scene->has_lig == FALSE)
-        return (handle_error(ERR_LIG), EXIT_FAILURE);
+        return (handle_error(ERR_MISS_ELEM), EXIT_FAILURE);
     if(is_zero(scene->lig.bright) && is_zero(scene->amb.ratio))
-        return (handle_error(ERR_DARK), EXIT_FAILURE);
+        return (handle_error(ERR_MISS_ELEM), EXIT_FAILURE);
     if (scene->n_elem == 0)
-        return (handle_error(ERR_ELEM), EXIT_FAILURE);
+        return (handle_error(ERR_MISS_ELEM), EXIT_FAILURE);
     else
         return (EXIT_SUCCESS);
 } 

@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/26 14:41:05 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/02 11:46:13 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,68 +158,3 @@ float	clamp_color(float color)
 		return (MAX_RGB);
 	return (color);
 }
-
-// int	ft_atoi_hex(char *str)
-// {
-// 	int result;
-
-// 	result = ft_atoi(str);
-// 	if (result < 0 || result > 255)
-// 		return (ERR_INT);
-// 	result = dec_to_hex(result);
-// 	return (result);
-// }
-
-// int	dec_to_hex(int dec)
-// {	
-// 	int		hex;
-// 	int 	factor;
-// 	int		remainder;
-// 	hex = 0;
-// 	factor = 1;
-// 	remainder = 0;
-// 	while (dec > 0)
-// 	{
-// 		remainder = dec % 16;
-// 		hex += remainder * factor;
-// 		factor *= 10;
-// 		dec = dec / 16;
-// 	}
-// 	return (hex);
-// }
-
-// float	ft_atoif(char *str)
-// {
-// 	int 	sign;
-// 	int		i;
-// 	float	result;
-// 	float	factor;
-
-// 	i = 0;
-// 	sign = 1;
-// 	result = 0.0;
-// 	factor = 1.0;
-// 	while (is_space(str[i]))
-// 		i++;
-// 	if (str[i] == '-')
-// 		sign = -1;
-// 	if (str[i] == '-' || str[i] == '+')
-// 		i++;
-// 	while(ft_isdigit(str[i]))
-// 	{
-// 		result = result * 10.0 + (str[i] - '0');
-// 		i++;
-// 	}
-// 	if(str[i] == '.')
-// 	{
-// 		i++;
-// 		while(ft_isdigit(str[i]))
-// 		{
-// 			factor *= 0.1;
-// 			result = result + (str[i] - '0') * factor;
-// 			i++;
-// 		}
-// 	}
-// 	result = result * sign;
-// 	return (result);
-// }

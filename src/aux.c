@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:20:36 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/04/26 14:40:19 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/02 11:47:13 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,8 @@ int handle_error(int error)
 		ft_putendl_fd(ERR_MSG_SCENE, STDOUT_FILENO);
 	if (error == ERR_DARK)
 		ft_putendl_fd(ERR_MSG_DARK, STDOUT_FILENO);
-	if (error == ERR_AMB)
-		ft_putendl_fd(ERR_MSG_AMB, STDOUT_FILENO);
-	if (error == ERR_CAM)
-		ft_putendl_fd(ERR_MSG_CAM, STDOUT_FILENO);
-	if (error == ERR_LIG)
-		ft_putendl_fd(ERR_MSG_LIG, STDOUT_FILENO);
+	if (error == ERR_MISS_ELEM)
+		ft_putendl_fd(ERR_MSG_MISS_ELEM, STDOUT_FILENO);
 	if (error == ERR_ELEM)
 		ft_putendl_fd(ERR_MSG_ELEM, STDOUT_FILENO);
 
