@@ -3,64 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   aux.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:20:36 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/05/02 11:47:13 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/03 10:02:31 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../inc/minirt.h"
 
-int handle_error(int error)
-{
-	//ft_printf("Error\n");
-	if (error == ERR_ARG)
-		ft_putendl_fd(ERR_MSG_ARG, STDOUT_FILENO);
-	if (error == ERR_EXT)
-		ft_putendl_fd(ERR_MSG_EXT, STDOUT_FILENO);
-	if (error == ERR_FD)
-		ft_putendl_fd(ERR_MSG_FD, STDOUT_FILENO);
-	if (error == ERR_SCENE)
-		ft_putendl_fd(ERR_MSG_SCENE, STDOUT_FILENO);
-	if (error == ERR_DARK)
-		ft_putendl_fd(ERR_MSG_DARK, STDOUT_FILENO);
-	if (error == ERR_MISS_ELEM)
-		ft_putendl_fd(ERR_MSG_MISS_ELEM, STDOUT_FILENO);
-	if (error == ERR_ELEM)
-		ft_putendl_fd(ERR_MSG_ELEM, STDOUT_FILENO);
-
-	return (EXIT_FAILURE);
-}
-
-int	is_space(char c)
-{
-	if (c == 32 || (c >= 8 && c <= 13))
-		return (1);
-	return (0);
-}
-
-int	valid_str(char *str)
-{
-	int i;
-
-	i = 1;
-	if (!str)
-		return(1);
-	if(is_element(str))
-	{
-		i = 2;
-	}
-	while(str[i] != '\0')
-	{
-		if ((str[i] >= '0' && str[i] <= '9') || str[i] == '.' || str[i] == ',' \
-			|| str[i] == '-' || is_space(str[i]))
-			i++;
-		else
-			return (1);
-	}
-	return (0);
-}
 
 int	get_position(char *str, t_coord *pos)
 {
@@ -92,50 +43,6 @@ int	get_vector(char *str, t_coord *vec)
 	ft_free_mat(temp);
 	*vec = normalize(*vec);
 	return (EXIT_SUCCESS);
-}
-
-t_eltype get_elem_type(char *str)
-{
-	if (ft_strncmp(str, "sp", 2) == 0)
-		return (SP);
-	if (ft_strncmp(str, "cy", 2) == 0)
-		return (CY);
-	if (ft_strncmp(str, "pl", 2) == 0)	
-		return (PL);
-	else
-		return (handle_error(ERR_ELEM), UNKOWN);
-}
-
-int is_element(char *str)
-{
-	if (!ft_strncmp(str, "sp", 2) || !ft_strncmp(str, "cy", 2) || !ft_strncmp(str, "pl", 2))
-		return (1);
-	else
-		return (0);
-}
-void	*ft_memsetf(void *b, float c, int len)
-{
-	float	*str;
-	int	i;
-
-	str = b;
-	i = 0;
-	while (i < len)
-	{
-		str[i] = c;
-		i++;
-	}
-	return (b);
-}
-void	*ft_callocf(int count, int size)
-{
-	void	*ptr;
-
-	ptr = malloc(count * size);
-	if (!ptr)
-		return (NULL);
-	ft_memsetf(ptr, 0.0, size);
-	return (ptr);
 }
 
 char	**ft_split_allwhitespace(const char *s)
@@ -198,37 +105,4 @@ size_t	ft_char_count_allwhitespace(const char *s)
 	while (!is_space(s[count]) && s[count] != '\0')
 		count++;
 	return (count);
-}
-
-char	**ft_free_mat_n(char **mat, size_t mlen)
-{
-	while (mlen)
-	{
-		free(mat[mlen]);
-		mlen--;
-	}
-	free(mat[0]);
-	free(mat);
-	return (NULL);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	size_t	i;
-	char	aux;
-	char	*str;
-
-	aux = (char)c;
-	c = aux;
-	str = (char *)s;
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == c)
-			return (&str[i]);
-		i++;
-	}
-	if (c == '\0')
-		return (&str[i]);
-	return (NULL);
 }

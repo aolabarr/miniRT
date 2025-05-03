@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 11:17:46 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/17 16:21:37 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/02 18:23:31 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int    get_trans_matrix(t_element *elem)
 
 int    get_trans_inv_matrix(t_element *elem)
 {
-
     float mat_s[16];
     float mat_t[16];
     float mat_r[16];
@@ -61,11 +60,5 @@ int    get_trans_inv_matrix(t_element *elem)
     translation_matrix(scalar_product(elem->pos, -1), mat_t);
 	multiply_matrix(mat_r, mat_t, aux);
     multiply_matrix(mat_s, aux, elem->tri_mat);
-    
-    /*
-    identity_matrix(elem->tr_mat);
-    if(invert_matrix(elem->tr_mat, elem->tri_mat))
-        elem->tri_mat = NULL;
-    */
     return (EXIT_SUCCESS);
 }

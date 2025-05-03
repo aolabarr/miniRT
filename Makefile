@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
+#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/01 15:23:12 by aolabarr          #+#    #+#              #
-#    Updated: 2025/04/20 22:47:56 by binary           ###   ########.fr        #
+#    Updated: 2025/05/03 11:02:09 by aolabarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,10 @@ SRC =	main.c \
 		libx.c \
 		render.c \
 		keys.c \
-		init.c \
-		get_data.c \
+		init_1.c \
+		init_2.c \
+		get_data_1.c \
+		get_data_2.c \
 		check_values_1.c \
 		check_values_2.c \
 		lightning.c \
@@ -40,7 +42,7 @@ SRC =	main.c \
 		raytracing_2.c \
 		raytracing_3.c \
 		raytracing_4.c \
-		free.c \
+		free_1.c \
 		parse.c \
 		math_1.c \
 		math_2.c \
@@ -55,6 +57,7 @@ SRC =	main.c \
 		trans_1.c \
 		trans_2.c \
 		trans_view.c \
+		utils.c \
 		
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 

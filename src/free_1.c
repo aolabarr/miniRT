@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   free_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:11:25 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/26 13:09:18 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/03 09:56:07 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
-
-void handle_free(t_data *scene)
-{
-	free_scene(scene);
-}
 
 void	ft_free_v(void *str)
 {
@@ -75,3 +70,16 @@ void	free_scene_first(t_data *scene)
 		scene->elem = NULL;
 	}
 }
+
+char	**ft_free_mat_n(char **mat, size_t mlen)
+{
+	while (mlen)
+	{
+		free(mat[mlen]);
+		mlen--;
+	}
+	free(mat[0]);
+	free(mat);
+	return (NULL);
+}
+

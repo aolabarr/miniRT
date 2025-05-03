@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_values_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 18:59:32 by binary            #+#    #+#             */
-/*   Updated: 2025/05/02 11:46:12 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/03 10:17:18 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,17 @@ int all_components_scene(t_data *scene)
         return (handle_error(ERR_MISS_ELEM), EXIT_FAILURE);
     else
         return (EXIT_SUCCESS);
-} 
+}
+
+int	check_extension(char *str)
+{
+	int	len;
+
+	len = ft_strlen(str);
+	if (len <  4)
+		return (EXIT_FAILURE);
+	if (ft_strncmp(str + len - 3, ".rt", 3))
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+

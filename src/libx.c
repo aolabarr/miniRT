@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libx.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:22:53 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/02 19:39:39 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/03 14:02:51 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,46 +25,6 @@ void	init_mlx(t_data *scene)
 	scene->update = 1;
 	init_canvas(scene);
 	scene->name = ft_strdup(MINI_RT);
-	return ;
-}
-
-void	init_canvas(t_data *scene)
-{
-	float hsize;
-	float vsize;
-	t_pos	center;
-	t_vec	right;
-	t_vec	up;
-	t_pos	aux;
-	t_vec	world_up;
-
-	hsize = 2 * tan((scene->cam.fov * PI / 180) / 2);
-	vsize = hsize / ASPECT_RATIO;
-	center = new_lineal_point(scene->cam.pos, scene->cam.vec, 1);
-	if(is_equal(scene->cam.vec.y, 1.0) || is_equal(scene->cam.vec.y, -1.0))
-		world_up = WORLD_Z;
-	else
-		world_up = WORLD_Y;
-		
-	right = normalize(cross_product(scene->cam.vec, world_up));
-	up = normalize(cross_product(right, scene->cam.vec));
-
-	// Inferior Izquierda
-	aux = new_lineal_point(center, right, -hsize / 2);
-	scene->img.canvas[0] = new_lineal_point(aux, up, -vsize / 2);
-
-	// Inferior Derecha
-	aux = new_lineal_point(center, right, hsize / 2);
-	scene->img.canvas[1] = new_lineal_point(aux, up, -vsize / 2);
-
-	// Superior Izquierda
-	aux = new_lineal_point(center, right, -hsize / 2);
-	scene->img.canvas[2] = new_lineal_point(aux, up, vsize / 2);
-
-	// Superior Derecha
-	aux = new_lineal_point(center, right, hsize / 2);
-	scene->img.canvas[3] = new_lineal_point(aux, up, vsize / 2);
-
 	return ;
 }
 

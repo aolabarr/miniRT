@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:12:28 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/17 17:05:49 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/02 18:23:56 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@ t_vec	normal_at(t_element elem, t_pos hit_wd_point)
 	t_pos hit_ob_point;
 	t_vec ob_normal;
 	t_vec wd_normal;
-	//float aux_mat[16];
 
 	if (elem.type == SP)
 	{
 		multiply_matrix_pos(elem.tri_mat, hit_wd_point, &hit_ob_point);
 		ob_normal = rest_coord(hit_ob_point, zero_pos());
-		//transpose_matrix(elem.tri_mat, aux_mat);
 		multiply_matrix_vector(elem.tr_mat, ob_normal, &wd_normal);
 	}
 	else if (elem.type == PL)

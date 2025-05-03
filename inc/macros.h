@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/05/02 18:25:55 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/03 14:00:40 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@
 # define WORLD_X            (t_vec){1, 0, 0, 0}
 # define WORLD_Y            (t_vec){0, 1, 0, 0}
 # define WORLD_Z            (t_vec){0, 0, 1, 0}
-# define DELTA_TRANS        0.1
+# define DELTA_TR        0.1
 # define DELTA_ROT          0.01
 # define TOL_ANGLE          2
 
