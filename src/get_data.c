@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/05/02 18:13:24 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/03 13:55:47 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ int	add_element(t_data *scene, t_element *new_elem)
 		i++;
 	}
 	new_array[scene->n_elem] = *new_elem;
+	new_array[scene->n_elem].id = scene->n_elem;
 	if (scene->elem)
 		free(scene->elem);
 	scene->elem = new_array;

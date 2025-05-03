@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 19:28:06 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/02 19:35:20 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/03 13:53:29 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ float	lightning(t_data *scene, t_comps comps, int in_shadow)
 	(void)in_shadow;
 	ft_memsetf(colors, 0.0, 3);
 	lightv = normalize(rest_coord(scene->lig.pos, comps.over_point));
-	if (scene->lig.bright == 0)
-		colors[0] = scene->amb.ratio * comps.elem.material.ambient;
-	else 
-		colors[0] = scene->lig.bright * comps.elem.material.ambient;
+	// if (scene->lig.bright == 0)
+	// 	colors[0] = scene->amb.ratio * comps.elem.material.ambient;
+	// else 
+	// 	colors[0] = scene->lig.bright * comps.elem.material.ambient;
+	colors[0] = scene->amb.ratio * comps.elem.material.ambient;
 	if (in_shadow == SHADOW)
 		return(colors[0]);
 	light_dot_normal = dot_product(lightv, comps.normal);
@@ -63,12 +64,14 @@ float	calculate_specular(t_data *scene, t_comps comps, float reflect_dot_eye)
 	factor = ft_pow(reflect_dot_eye, comps.elem.material.shini);
 	return (scene->lig.bright * comps.elem.material.specular * factor);
 }
-int	is_shadowed(t_data *scene, t_pos point)
+
+int	is_shadowed(t_data *scene, t_pos point, int origin_id)
 {
 	t_vec	v;
 	t_ray	ray;
 	t_hit	*inters;
 	t_hit	hit;
+	(void) origin_id;
 
 	v = rest_coord(scene->lig.pos, point);
 	ray.origin = point;
@@ -76,7 +79,7 @@ int	is_shadowed(t_data *scene, t_pos point)
 	inters = intersect_world(ray, scene);
 	hit = find_hit(scene, inters);
 	free(inters);
-	if (hit.hit == true && !is_equal(hit_t(hit), magnitude(v)) && (hit_t(hit) > EPSILON) && hit_t(hit) < magnitude(v))
+	if (hit.hit == true && !is_equal(hit_t(hit), magnitude(v)) && (hit_t(hit) > EPSILON) && (hit_t(hit) < magnitude(v)) && origin_id != inters->elem.id)
 	{
 		return (SHADOW);
 	}

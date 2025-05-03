@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing_4.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:33:09 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/12 11:41:35 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/03 13:47:27 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ t_hit	find_hit(t_data *scene, t_hit *inters)
 		if (inters[i].hit)
 		{
 			update_hit(&hit, inters[i]);
-		}	
+		}
+		// printf("INTER %d\n", inters[i].elem.id);
 		i++;
 	}
 	return (hit);

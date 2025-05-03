@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:38:58 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/02 19:42:52 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/03 13:48:09 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_hit   *intersect_world(t_ray ray, t_data *scene)
     }
     return (inters);
 }
+
 
 t_comps prepare_computations(t_hit hit, t_ray ray)
 {
@@ -84,7 +85,20 @@ float shade_hit(t_data *scene, t_comps comps)
 {
     int shadowed;
 
-    shadowed = is_shadowed(scene, comps.over_point);
+    shadowed = is_shadowed(scene, comps.over_point, comps.elem.id);
     return (lightning(scene, comps, shadowed));
 }
 
+int line_isspace(char *str)
+{
+	int i;
+
+	i = 0;
+	while(str[i])
+	{
+		if(is_space(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}

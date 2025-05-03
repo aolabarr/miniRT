@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:05:48 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/18 11:53:02 by binary           ###   ########.fr       */
+/*   Updated: 2025/05/03 12:18:14 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ float	hit_t(t_hit hit)
 		//printf("AQUI: %d\tt1: %f\tt2: %f\n", hit.hit, hit.t1, hit.t2);
 		return (NO_HIT);	
 	}
+	// else if ((hit.t1 < -EPSILON && ft_abs(hit.t2) < EPSILON))
+	// 	return (NO_HIT);	
+	// else if ((hit.t2 < -EPSILON && ft_abs(hit.t1) < EPSILON))
+	// 	return (NO_HIT);	
 	if (hit.t1 > EPSILON && hit.t2 > EPSILON)
 	{
 		if (!is_equal(hit.t1, hit.t2) && hit.t1 < hit.t2)

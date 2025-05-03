@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:52:38 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/26 14:42:33 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/03 11:33:17 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ int	parse(t_data *scene, char *map)
 int	parse_line(char *line, t_data *scene)
 {
 	t_element	elem;
-
-	if (line[0] == '\n' || line[0] == '\0')
+	
+	/*MEJORAR LINEA EN BLANCO!*/
+	if (line[0] == '\n'|| line[0] == '\0')
 		return (EXIT_SUCCESS);
 	if (line[0] == 'A')
 		return (get_ambient(line, &scene->amb, scene));
