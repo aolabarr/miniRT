@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/05/03 14:00:40 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/03 14:04:59 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,6 @@
 # define ERR_SCENE		-3
 # define ERR_DARK		-4
 
-// # define ERR_AMB	-5
-// # define ERR_CAM	-6
-// # define ERR_LIG	-7
-
 # define ERR_MSG_ARG		"Error: incorrect number of arguments"
 # define ERR_MSG_EXT 		"Error: incorrect file extension"
 # define ERR_MSG_MALL       "SYS ERROR: malloc failed"
@@ -49,7 +45,7 @@
 # define MINI_RT    		"miniRT"
 
 //Canvas values
-# define WIDTH				900
+# define WIDTH				500
 # define ASPECT_RATIO       (16.0 / 9.0)
 # define HEIGHT				(WIDTH / ASPECT_RATIO)
 # define CANVAS_DISTANCE    1
