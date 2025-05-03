@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/03 11:01:54 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/03 14:08:35 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ t_comps prepare_computations(t_hit hit, t_ray ray);
 void    calc_inside(t_comps *comps);
 float	get_object_scale(t_element elem);
 float   shade_hit(t_data *scene, t_comps comps);
+int line_isspace(char *str);
 
 /* raytracing 4.c */
 t_ray	create_ray(t_data *scene, t_image img, int x, int y);
@@ -125,7 +126,7 @@ void	update_hit(t_hit *hit, t_hit inter);
 float	lightning(t_data *scene, t_comps comps, int in_shadow);
 void	diffuse_specular_zero(float *colors);
 float	calculate_specular(t_data *scene, t_comps comps, float reflect_dot_eye);
-int	is_shadowed(t_data *scene, t_pos point);
+int		is_shadowed(t_data *scene, t_pos point, int origin_id);
 
 /* color.c*/
 void testing_colors(t_data *scene);

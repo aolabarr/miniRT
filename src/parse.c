@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:52:38 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/03 10:20:15 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/03 14:08:16 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ int	parse(t_data *scene, char *map)
 int	parse_line(char *line, t_data *scene)
 {
 	t_element	elem;
-
-	if (line[0] == '\n' || line[0] == '\0')
+	
+	/*MEJORAR LINEA EN BLANCO!*/
+	if (line[0] == '\n'|| line[0] == '\0')
 		return (EXIT_SUCCESS);
 	if (line[0] == 'A')
 		return (get_ambient(line, &scene->amb, scene));

@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 08:13:32 by binary            #+#    #+#             */
-/*   Updated: 2025/05/02 19:30:22 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/03 13:55:44 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ t_hit	sphere_intersection(t_ray ray, t_element elem)
 	float b;
 	float c;
 	float dis;
-	(void)elem;
 	t_hit inters;
 	
 	a = dot_product(ray.vec, ray.vec);
@@ -42,6 +41,7 @@ t_hit	sphere_intersection(t_ray ray, t_element elem)
 		inters.hit = false;
 		inters.t1 = inters.t2 = 0;
 		inters.elem = elem;
+		
 	}
 	else
 	{
@@ -50,14 +50,11 @@ t_hit	sphere_intersection(t_ray ray, t_element elem)
 		inters.elem = elem;
 		if ((inters.t1 < -EPSILON && inters.t2 < -EPSILON) || (ft_abs(inters.t1) < EPSILON && ft_abs(inters.t2) < EPSILON))
 			inters.hit = false;
-		else if ((inters.t1 < -EPSILON && ft_abs(inters.t2) < EPSILON))
-			inters.hit = false;
-		else if ((inters.t2 < -EPSILON && ft_abs(inters.t1) < EPSILON))
-			inters.hit = false;
 		else
 			inters.hit = true;
+			
 	}
-	// printf("Origen esfera: X %f\tY %F\tZ %f\n", elem.pos.x, elem.pos.y, elem.pos.z);
+
 	return (inters);
 }
 
@@ -67,6 +64,7 @@ t_hit plane_intersection(t_ray ray, t_element elem)
 
 	t_hit inters;
 
+	inters.elem = elem;
 	inters.hit = false;
 	if (ft_abs(ray.vec.y) < EPSILON)
 		return (inters);
@@ -96,6 +94,7 @@ t_hit cylinder_intersection(t_ray ray, t_element elem)
 	float	dis;
 	(void)elem;
 
+	inters.elem = elem;
 	inters.hit = false;
 	a = ray.vec.x * ray.vec.x + ray.vec.z * ray.vec.z;
 	if (ft_abs(a) < EPSILON) 
@@ -109,11 +108,6 @@ t_hit cylinder_intersection(t_ray ray, t_element elem)
 	inters.t2 = (- b + sqrtf(dis)) / (2 * a);
 	inters.elem = elem;
 	if ((inters.t1 < -EPSILON && inters.t2 < -EPSILON) || (ft_abs(inters.t1) < EPSILON && ft_abs(inters.t2) < EPSILON))
-		return (inters);
-	else if((inters.t1 < -EPSILON && ft_abs(inters.t2) < EPSILON))
-		return (inters);
-
-	else if((inters.t2 < -EPSILON && ft_abs(inters.t1) < EPSILON))
 		return (inters);
 
 	float min_y = -elem.height / elem.radio / 2;

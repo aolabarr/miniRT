@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:05:48 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/02 18:24:09 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/03 14:10:13 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@ float	hit_t(t_hit hit)
 	{
 		return (NO_HIT);	
 	}
+	// else if ((hit.t1 < -EPSILON && ft_abs(hit.t2) < EPSILON))
+	// 	return (NO_HIT);	
+	// else if ((hit.t2 < -EPSILON && ft_abs(hit.t1) < EPSILON))
+	// 	return (NO_HIT);	
 	if (hit.t1 > EPSILON && hit.t2 > EPSILON)
 	{
 		if (!is_equal(hit.t1, hit.t2) && hit.t1 < hit.t2)

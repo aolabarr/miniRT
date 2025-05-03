@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/05/03 14:04:59 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/03 14:08:49 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@
 # define SPECULAR           0.7
 # define SHININESS          200
 
-# define NO_HIT             -1
+# define NO_HIT             (float)MAXINT
 # define SHADOW             1 
 # define NO_SHADOW          0 
 # define NORMAL             0 
