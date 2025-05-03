@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/02 13:46:47 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/03 11:26:56 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int create_scene(t_data *scene)
 	mlx_loop_hook(scene->mlx, render_image, scene);
 	mlx_hook(scene->win, DestroyNotify, NoEventMask, handle_close, scene);
 	mlx_hook(scene->win, KeyPress, KeyPressMask, handle_key_input, scene);
-	//mlx_hook(scene->win, ButtonPress, ButtonPressMask, handle_scroll, scene);
-	//mlx_hook(scene->win, MotionNotify, PointerMotionMask, mouse_move, scene);
 	mlx_loop(scene->mlx);
 	return (EXIT_SUCCESS);
 }
@@ -57,12 +55,6 @@ int	create_image(t_data *data)
 
 	if (init_trans_matrix(data))
 		return (EXIT_FAILURE);
-	// printf("\ntr_mat"), print_matrix(data->elem[0].tr_mat), printf("\n");
-	// printf("\ntri_mat"), print_matrix(data->elem[0].tri_mat), printf("\n");
-	// printf("\ntr_mat"), print_matrix(data->elem[1].tr_mat), printf("\n");
-	// printf("\ntri_mat"), print_matrix(data->elem[1].tri_mat), printf("\n");
-	// printf("\ntr_mat"), print_matrix(data->elem[2].tr_mat), printf("\n");
-	// printf("\ntri_mat"), print_matrix(data->elem[2].tri_mat), printf("\n");
 	x = 0;
 	while (x < WIDTH)
 	{
@@ -73,7 +65,7 @@ int	create_image(t_data *data)
 			y++;
 		}
 		x++;
-		printf("\rRendering: %d %%", (int)(((float)x / 900) * 100));
+		printf("\rRendering: %d %%", (int)(((float)x / WIDTH) * 100));
 	}
 	printf("\nCOMPLETE!\n");
 	return (EXIT_SUCCESS);

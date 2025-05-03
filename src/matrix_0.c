@@ -5,55 +5,112 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/13 15:08:18 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/26 16:54:57 by aolabarr         ###   ########.fr       */
+/*   Created: 2025/03/16 13:53:52 by aolabarr          #+#    #+#             */
+/*   Updated: 2025/05/03 10:44:49 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-float *create_matrix(float a1,float a2,float a3,float a4,
-    float a5,float a6,float a7,float a8,
-    float a9,float a10,float a11,float a12,
-    float a13,float a14,float a15,float a16)
+int	invert_matrix(float *mat, float *inv)
 {
-    float *mat;
+	float det;
+	float aux[16];
+	int i;
 
-    mat = malloc(16 * sizeof(float));
-    if (!mat)
-        return(mat);
-    mat[0] = a1, mat[1] = a2, mat[2] = a3, mat[3] = a4;
-    mat[4] = a5, mat[5] = a6, mat[6] = a7, mat[7] = a8;
-    mat[8] = a9, mat[9] = a10, mat[10] = a11, mat[11] = a12;
-    mat[12] = a13, mat[13] = a14, mat[14] = a15, mat[15] = a16;
-    return (mat);
-}
-
-void print_matrix(float *mat)
-{
-    printf("\n%.2f\t%.2f\t%.2f\t%.2f\n", mat[0], mat[1], mat[2], mat[3]);
-    printf("%.2f\t%.2f\t%.2f\t%.2f\n", mat[4], mat[5], mat[6], mat[7]);
-    printf("%.2f\t%.2f\t%.2f\t%.2f\n", mat[8], mat[9], mat[10], mat[11]);
-    printf("%.2f\t%.2f\t%.2f\t%.2f\n", mat[12], mat[13], mat[14], mat[15]);
-}
-void print_matrix_4f(float *mat)
-{
-    printf("\n%.4f\t%.4f\t%.4f\t%.4f\n", mat[0], mat[1], mat[2], mat[3]);
-    printf("%.4f\t%.4f\t%.4f\t%.4f\n", mat[4], mat[5], mat[6], mat[7]);
-    printf("%.4f\t%.4f\t%.4f\t%.4f\n", mat[8], mat[9], mat[10], mat[11]);
-    printf("%.4f\t%.4f\t%.4f\t%.4f\n", mat[12], mat[13], mat[14], mat[15]);
+	det = determinant_matrix(mat);
+	if (ft_abs(det) < EPSILON)
+		return (1);
+	cofactor_matrix(mat, aux);
+	transpose_matrix(aux, inv);
+	i = 0;
+	while (i < 16)
+	{
+		inv[i] = inv[i] / det;
+		i++;
+	}
+	return (0);
 }
 
-void print_vector(t_vec vec)
+void	cofactor_matrix(float *mat, float *res)
 {
-    printf("\n%.2f\t%.2f\t%.2f\t(%d)\n", vec.x, vec.y, vec.z, vec.w);
+	int 	i;
+    int 	j;
+
+	i = 0;
+    while (i < 4)
+    {
+        j = 0;
+        while (j < 4)
+        {
+            res[i * 4 + j] = cofactor(mat, i, j);
+            j++;
+        }
+        i++;
+    }
+    return;
 }
-void print_ray(t_ray ray)
+
+float cofactor(float *mat, int row, int col)
 {
-    printf("ray pos: %.2f\t%.2f\t%.2f\t(%d)\n", ray.origin.x, ray.origin.y, ray.origin.z, ray.origin.w);
-    printf("ray vec: %.2f\t%.2f\t%.2f\t(%d)\n", ray.vec.x, ray.vec.y, ray.vec.z, ray.vec.w);
+    float	minor[9];
+	float	det;
+    
+	minor_matrix(mat, minor, row, col);
+	det = minor[0] * (minor[4] * minor[8] - minor[5] * minor[7])
+        - minor[1] * (minor[3] * minor[8] - minor[5] * minor[6])
+        + minor[2] * (minor[3] * minor[7] - minor[4] * minor[6]);
+	if ((row + col) % 2 == 0)
+		return(det);
+	else
+		return (-det);
 }
-void print_pos(t_pos pos)
+
+void minor_matrix(float *mat, float *minor, int row, int col)
 {
-    printf("%.2f\t%.2f\t%.2f\t(%d)\n", pos.x, pos.y, pos.z, pos.w);
+    int i;
+	int	mi;
+	int	aux[2];
+	
+	i = 0;
+	mi = 0;
+    while (i < 4)
+    {
+        if (i == row)
+		{
+			i++;
+			continue;
+		}
+		aux[0] = mi;
+		aux[1] = i;
+		calculate_minor_row(col, minor, mat, aux);
+        mi++;
+        i++;
+    }
+	return;
+}
+
+void	calculate_minor_row(int col, float *minor, float *mat, int *aux)
+{
+	int i;
+	int	j;
+	int	mj;
+	int mi;
+	
+	mj = 0;
+	j = 0;
+	mi = aux[0];
+	i = aux[1];
+	while (j < 4)
+	{
+		if (j == col)
+		{
+			j++;
+			continue;
+		}  
+		minor[mi * 3 + mj] = mat[i * 4 + j];
+		mj++;
+		j++;
+	}
+	return;
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 10:46:45 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/05/02 17:21:50 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/03 10:17:29 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,4 @@ void	init_color(t_color *color)
 	color->red = 0;
 	color->green = 0;
 	color->blue = 0;
-}
-
-int	check_extension(char *str)
-{
-	int	len;
-
-	len = ft_strlen(str);
-	if (len <  4)
-		return (EXIT_FAILURE);
-	if (ft_strncmp(str + len - 3, ".rt", 3))
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
 }

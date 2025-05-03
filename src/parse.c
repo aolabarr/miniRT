@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:52:38 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/26 14:42:33 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/03 10:20:15 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	parse(t_data *scene, char *map)
 			free (line);
 			close (fd);
 			return (EXIT_FAILURE);
-			// return (handle_error(ERR_SCENE), EXIT_FAILURE); ????
 		}
 		free (line);
 	}
@@ -61,4 +60,36 @@ int	parse_line(char *line, t_data *scene)
 			return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
+}
+
+int handle_error(int error)
+{
+	if (error == ERR_ARG)
+		ft_putendl_fd(ERR_MSG_ARG, STDOUT_FILENO);
+	if (error == ERR_EXT)
+		ft_putendl_fd(ERR_MSG_EXT, STDOUT_FILENO);
+	if (error == ERR_FD)
+		ft_putendl_fd(ERR_MSG_FD, STDOUT_FILENO);
+	if (error == ERR_SCENE)
+		ft_putendl_fd(ERR_MSG_SCENE, STDOUT_FILENO);
+	if (error == ERR_DARK)
+		ft_putendl_fd(ERR_MSG_DARK, STDOUT_FILENO);
+	if (error == ERR_MISS_ELEM)
+		ft_putendl_fd(ERR_MSG_MISS_ELEM, STDOUT_FILENO);
+	if (error == ERR_ELEM)
+		ft_putendl_fd(ERR_MSG_ELEM, STDOUT_FILENO);
+
+	return (EXIT_FAILURE);
+}
+
+t_eltype get_elem_type(char *str)
+{
+	if (ft_strncmp(str, "sp", 2) == 0)
+		return (SP);
+	if (ft_strncmp(str, "cy", 2) == 0)
+		return (CY);
+	if (ft_strncmp(str, "pl", 2) == 0)	
+		return (PL);
+	else
+		return (handle_error(ERR_ELEM), UNKOWN);
 }
