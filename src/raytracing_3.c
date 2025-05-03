@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:38:58 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/03 13:48:09 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/03 14:15:45 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ float shade_hit(t_data *scene, t_comps comps)
 {
     int shadowed;
 
-    shadowed = is_shadowed(scene, comps.over_point, comps.elem.id);
+    shadowed = is_shadowed(scene, comps.over_point);
     return (lightning(scene, comps, shadowed));
 }
 

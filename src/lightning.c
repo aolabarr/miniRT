@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 19:28:06 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/03 13:53:29 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/03 14:14:03 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,12 @@ float	calculate_specular(t_data *scene, t_comps comps, float reflect_dot_eye)
 	return (scene->lig.bright * comps.elem.material.specular * factor);
 }
 
-int	is_shadowed(t_data *scene, t_pos point, int origin_id)
+int	is_shadowed(t_data *scene, t_pos point)
 {
 	t_vec	v;
 	t_ray	ray;
 	t_hit	*inters;
 	t_hit	hit;
-	(void) origin_id;
 
 	v = rest_coord(scene->lig.pos, point);
 	ray.origin = point;
@@ -79,7 +78,7 @@ int	is_shadowed(t_data *scene, t_pos point, int origin_id)
 	inters = intersect_world(ray, scene);
 	hit = find_hit(scene, inters);
 	free(inters);
-	if (hit.hit == true && !is_equal(hit_t(hit), magnitude(v)) && (hit_t(hit) > EPSILON) && (hit_t(hit) < magnitude(v)) && origin_id != inters->elem.id)
+	if (hit.hit == true && !is_equal(hit_t(hit), magnitude(v)) && (hit_t(hit) > EPSILON) && (hit_t(hit) < magnitude(v)))
 	{
 		return (SHADOW);
 	}
