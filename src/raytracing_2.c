@@ -14,9 +14,9 @@
 
 t_vec	normal_at(t_element elem, t_pos hit_wd_point)
 {
-	t_pos hit_ob_point;
-	t_vec ob_normal;
-	t_vec wd_normal;
+	t_pos	hit_ob_point;
+	t_vec	ob_normal;
+	t_vec	wd_normal;
 
 	if (elem.type == SP)
 	{
@@ -45,7 +45,7 @@ t_vec	reflect_at(t_vec in, t_vec normal)
 
 t_color	add_color_intensity(t_color color, float intensity)
 {
-	t_color res_color;
+	t_color	res_color;
 
 	res_color.red = clamp_color(color.red * intensity);
 	res_color.green = clamp_color(color.green * intensity);
@@ -55,7 +55,7 @@ t_color	add_color_intensity(t_color color, float intensity)
 
 t_color	create_color(float r, float g, float b)
 {
-	t_color color;
+	t_color	color;
 
 	color.red = r;
 	color.green = g;
@@ -65,16 +65,15 @@ t_color	create_color(float r, float g, float b)
 
 void	init_pong_parameters(t_data *scene)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(i < scene->n_elem)
+	while (i < scene->n_elem)
 	{
 		scene->elem[i].material.ambient = scene->amb.ratio;
 		scene->elem[i].material.diffuse = DIFFUSE;
-		scene->elem[i].material.specular = SPECULAR; 
+		scene->elem[i].material.specular = SPECULAR;
 		scene->elem[i].material.shini = SHININESS;
 		i++;
 	}
 }
-
