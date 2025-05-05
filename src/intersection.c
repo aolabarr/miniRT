@@ -31,30 +31,19 @@ t_hit	sphere_intersection(t_ray ray, t_element elem)
 	float c;
 	float dis;
 	t_hit inters;
-	
+
+	inters.hit = false;
+	inters.t1 = inters.t2 = 0;
+	inters.elem = elem;
 	a = dot_product(ray.vec, ray.vec);
 	b = 2 * dot_product(ray.vec, rest_coord(ray.origin, zero_pos()));
 	c = dot_product(rest_coord(ray.origin, zero_pos()), rest_coord(ray.origin, zero_pos())) - 1;
 	dis = (b * b) - (4 * a * c);
 	if (dis < -EPSILON)
-	{
-		inters.hit = false;
-		inters.t1 = inters.t2 = 0;
-		inters.elem = elem;
-		
-	}
-	else
-	{
-		inters.t1 = (- b - sqrtf(dis)) / (2 * a);
-		inters.t2 = (- b + sqrtf(dis)) / (2 * a);
-		inters.elem = elem;
-		if ((inters.t1 < -EPSILON && inters.t2 < -EPSILON) || (ft_abs(inters.t1) < EPSILON && ft_abs(inters.t2) < EPSILON))
-			inters.hit = false;
-		else
-			inters.hit = true;
-			
-	}
-
+		return (inters);
+	inters.t1 = (- b - sqrtf(dis)) / (2 * a);
+	inters.t2 = (- b + sqrtf(dis)) / (2 * a);
+	inters.hit = inters.t1 > EPSILON || inters.t2  > EPSILON;
 	return (inters);
 }
 
@@ -87,40 +76,45 @@ t_hit plane_intersection(t_ray ray, t_element elem)
 
 t_hit cylinder_intersection(t_ray ray, t_element elem)
 {
+	
+	
 	t_hit	inters;
 	float	a;
 	float	b;
 	float	c;
 	float	dis;
-	(void)elem;
 
 	inters.elem = elem;
 	inters.hit = false;
+
 	a = ray.vec.x * ray.vec.x + ray.vec.z * ray.vec.z;
-	if (ft_abs(a) < EPSILON) 
+	if (ft_abs(a) < EPSILON)
 		return (inters);
-	b = 2 * ray.origin.x * ray.vec.x + 2 * ray.origin.z * ray.vec.z;
+
+	b = 2 * (ray.origin.x * ray.vec.x + ray.origin.z * ray.vec.z);
 	c = ray.origin.x * ray.origin.x + ray.origin.z * ray.origin.z - 1;
-	dis = (b * b) - 4 * a *c;
-	if (dis < -EPSILON) 
-		return (inters);
-	inters.t1 = (- b - sqrtf(dis)) / (2 * a);
-	inters.t2 = (- b + sqrtf(dis)) / (2 * a);
-	inters.elem = elem;
-	if ((inters.t1 < -EPSILON && inters.t2 < -EPSILON) || (ft_abs(inters.t1) < EPSILON && ft_abs(inters.t2) < EPSILON))
+	dis = b * b - 4 * a * c;
+	if (dis < -EPSILON)
 		return (inters);
 
-	float min_y = -elem.height / elem.radio / 2;
+	inters.t1 = (-b - sqrtf(dis)) / (2 * a);
+	inters.t2 = (-b + sqrtf(dis)) / (2 * a);
 
-	float max_y = elem.height / elem.radio / 2;
-	
-	float y1 = ray.origin.y + inters.t1 * ray.vec.y;
-	float y2 = ray.origin.y + inters.t2 * ray.vec.y;	
-	if (!is_equal(y1, min_y) && (y1 > min_y) && !is_equal(y1, max_y)  && (y1 < max_y))
+	float	y1;
+	float	y2;
+	float	min_y;
+	float	max_y;
+
+	min_y = -elem.height / elem.radio / 2.0f;
+	max_y =  elem.height / elem.radio / 2.0f;
+
+	y1 = ray.origin.y + inters.t1 * ray.vec.y;
+	if (inters.t1 > EPSILON && y1 > min_y && y1 < max_y)
 		inters.hit = true;
-	else if (!is_equal(y2, min_y) && (y2 > min_y) && !is_equal(y2, max_y)  && (y2 < max_y))
+	y2 = ray.origin.y + inters.t2 * ray.vec.y;
+	if (inters.t2 > EPSILON && y2 > min_y && y2 < max_y)
 		inters.hit = true;
-	return (inters);
+	return inters;
 }
 
 t_pos	zero_pos(void)
@@ -133,5 +127,4 @@ t_pos	zero_pos(void)
 	zero.w = 1;
 	return(zero);
 }
-
 
