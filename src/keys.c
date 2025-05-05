@@ -34,12 +34,12 @@ int	handle_key_input(int key, t_data *scene)
 
 void	set_traslation_move(t_data *sc, int key)
 {
-	t_pos from;
-	t_pos to;
+	// t_pos from;
+	// t_pos to;
 	t_vec world_up;
 	t_vec rigth_up[2];
-	from = sc->cam.pos;
-	to = new_lineal_point(sc->cam.pos, sc->cam.vec, 1);
+	// from = sc->cam.pos;
+	// to = new_lineal_point(sc->cam.pos, sc->cam.vec, 1);
 	if(is_equal(sc->cam.vec.y, 1.0) || is_equal(sc->cam.vec.y, -1.0))
 		world_up = WORLD_Z;
 	else
@@ -70,12 +70,12 @@ void	set_static_zoom(t_data *sc, int key)
 
 void	set_rotation_move(t_data *scene, int key)
 {
-	t_pos from;
+	// t_pos from;
 	t_pos to;
 	t_vec rigth_up[2];
 
 	printf("dir rot: %p\t%p\n", (void *)&scene->cam.pos, (void *)&scene->cam.vec);
-	from = scene->cam.pos;
+	// from = scene->cam.pos;
 	to = new_lineal_point(scene->cam.pos, scene->cam.vec, 1);
 	rigth_up[0] = normalize(cross_product(scene->cam.vec, WORLD_Y));
 	rigth_up[1] = normalize(cross_product(rigth_up[0], scene->cam.vec));
