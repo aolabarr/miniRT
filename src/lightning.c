@@ -27,7 +27,7 @@ float	lightning(t_data *scene, t_comps comps, int in_shadow)
 	// 	colors[0] = scene->amb.ratio * comps.elem.material.ambient;
 	// else 
 	// 	colors[0] = scene->lig.bright * comps.elem.material.ambient;
-	colors[0] = scene->amb.ratio * comps.elem.material.ambient;
+	colors[0] = scene->lig.bright * comps.elem.material.ambient;
 	if (in_shadow == SHADOW)
 		return(colors[0]);
 	light_dot_normal = dot_product(lightv, comps.normal);
@@ -65,23 +65,22 @@ float	calculate_specular(t_data *scene, t_comps comps, float reflect_dot_eye)
 	return (scene->lig.bright * comps.elem.material.specular * factor);
 }
 
-int	is_shadowed(t_data *scene, t_pos point)
+int is_shadowed(t_data *scene, t_pos point)
 {
 	t_vec	v;
 	t_ray	ray;
 	t_hit	*inters;
 	t_hit	hit;
+	float	dist_light;
 
 	v = rest_coord(scene->lig.pos, point);
+	dist_light = magnitude(v);
 	ray.origin = point;
 	ray.vec = normalize(v);
 	inters = intersect_world(ray, scene);
 	hit = find_hit(scene, inters);
 	free(inters);
-	if (hit.hit == true && !is_equal(hit_t(hit), magnitude(v)) && (hit_t(hit) > EPSILON) && (hit_t(hit) < magnitude(v)))
-	{
+	if (hit.hit && hit_t(hit) < dist_light)
 		return (SHADOW);
-	}
 	return (NO_SHADOW);
 }
-
