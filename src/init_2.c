@@ -19,7 +19,7 @@ void	init_canvas(t_data *scene)
 	t_vec	world_up;
 
 	center = new_lineal_point(scene->cam.pos, scene->cam.vec, 1);
-	if(is_equal(scene->cam.vec.y, 1.0) || is_equal(scene->cam.vec.y, -1.0))
+	if (is_equal(scene->cam.vec.y, 1.0) || is_equal(scene->cam.vec.y, -1.0))
 		world_up = WORLD_Z;
 	else
 		world_up = WORLD_Y;
@@ -31,8 +31,8 @@ void	init_canvas(t_data *scene)
 
 void	put_canvas_values(t_data *scene, t_vec *right_up, t_pos center)
 {
-	float hsize;
-	float vsize;
+	float	hsize;
+	float	vsize;
 	t_pos	aux;
 
 	hsize = 2 * tan((scene->cam.fov * PI / 180) / 2);
