@@ -12,10 +12,10 @@
 
 #include "../inc/minirt.h"
 
-t_pos calc_pixel_position(int x, int y, t_pos *canvas)
+t_pos	calc_pixel_position(int x, int y, t_pos *canvas)
 {
-	float u;
-	float v;
+	float	u;
+	float	v;
 	t_pos	pixel_pos;
 	t_pos	aux[4];
 
@@ -43,17 +43,17 @@ t_pos	get_hit_point(t_ray ray, t_hit hit)
 {
 	float	t;
 	t_pos	point;
-	
+
 	t = hit_t(hit);
 	point = new_lineal_point(ray.origin, ray.vec, t);
 	return (point);
 }
 
 float	hit_t(t_hit hit)
-{	
+{
 	if (hit.t1 < -EPSILON && hit.t2 < -EPSILON)
 	{
-		return (NO_HIT);	
+		return (NO_HIT);
 	}
 	// else if ((hit.t1 < -EPSILON && ft_abs(hit.t2) < EPSILON))
 	// 	return (NO_HIT);	
@@ -62,19 +62,15 @@ float	hit_t(t_hit hit)
 	if (hit.t1 > EPSILON && hit.t2 > EPSILON)
 	{
 		if (!is_equal(hit.t1, hit.t2) && hit.t1 < hit.t2)
-			return(hit.t1);
+			return (hit.t1);
 		else
-			return(hit.t2);
+			return (hit.t2);
 	}
 	else
 	{
 		if (hit.t1 > EPSILON)
-			return(hit.t1);
+			return (hit.t1);
 		else
-			return(hit.t2);
+			return (hit.t2);
 	}
 }
-
-
-
-
