@@ -21,12 +21,12 @@ void	ft_free_v(void *str)
 
 void	ft_free_mat(char **mat)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!mat)
 		return ;
-	while(mat[i])
+	while (mat[i])
 	{
 		if (mat[i])
 			free(mat[i]);
@@ -39,7 +39,7 @@ void	ft_free_mat(char **mat)
 
 void	free_scene(t_data *scene)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (scene && scene->elem)
@@ -57,7 +57,7 @@ void	free_scene(t_data *scene)
 
 void	free_scene_first(t_data *scene)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (scene && scene->elem)
@@ -82,4 +82,3 @@ char	**ft_free_mat_n(char **mat, size_t mlen)
 	free(mat);
 	return (NULL);
 }
-

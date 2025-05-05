@@ -66,7 +66,6 @@ int	create_image(t_data *data)
 		}
 		x++;
 		printf("\rRendering: %d %%", (int)(((float)x / WIDTH) * 100));
-		printf("\rRendering: %d %%", (int)(((float)x / WIDTH) * 100));
 	}
 	printf("\nCOMPLETE!\n");
 	return (EXIT_SUCCESS);

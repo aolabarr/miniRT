@@ -129,7 +129,7 @@ float	calculate_specular(t_data *scene, t_comps comps, float reflect_dot_eye);
 int		is_shadowed(t_data *scene, t_pos point);
 
 /* color.c*/
-void testing_colors(t_data *scene);
+
 t_color blend_colors(t_color col1, t_color col2, float ratio);
 t_color hadamard_product(t_color col1, t_color col2);
 t_color mult_color_scalar(t_color col, float scalar);
@@ -137,16 +137,13 @@ t_color add_colors(t_color col1, t_color col2);
 
 
 /* math_1.c */
-float ft_abs(float num);
-int is_equal(float a, float b);
-int	is_zero(float num);
+
 int is_coord_equal(t_coord a, t_coord b);
 t_vec sum_vector(t_vec a, t_vec b);
 t_vec rest_coord(t_coord a, t_coord b);
 t_vec opp_vector(t_vec vec);
-t_vec scalar_product(t_vec vec, float scalar);
-t_vec cross_product(t_vec v1, t_vec v2);
-t_pos new_lineal_point(t_pos origin, t_vec vector, float t);
+
+
 
 /* math_2.c */
 float magnitude(t_vec vec);
@@ -154,17 +151,29 @@ t_vec normalize(t_vec vec);
 float dot_product(t_vec a, t_vec b);
 t_pos	sum_coord(t_pos coord1, t_pos coord2);
 t_pos	mult_coord_float(t_pos coord1, float t);
-int		is_zerovector(t_vec vec);
+
 
 /* math_3.c */
 float	ft_pow(float num, int pow);
+int		is_zerovector(t_vec vec);
+float ft_abs(float num);
+int is_equal(float a, float b);
+int	is_zero(float num);
+
+/* math_4.c */
+t_vec scalar_product(t_vec vec, float scalar);
+t_vec cross_product(t_vec v1, t_vec v2);
+t_pos new_lineal_point(t_pos origin, t_vec vector, float t);
+t_pos	zero_pos(void);
 
 /* intersection.c */
 t_pos	position(t_ray ray, float t);
-t_pos	zero_pos(void);
+
 t_hit	sphere_intersection(t_ray ray, t_element elem);
 t_hit	plane_intersection(t_ray ray, t_element elem);
 t_hit cylinder_intersection(t_ray ray, t_element elem);
+bool truncate_cylinder(t_ray ray, t_element elem, float t1, float t2);
+
 
 /* matrix_0.c*/
 int	invert_matrix(float *mat, float *inv);

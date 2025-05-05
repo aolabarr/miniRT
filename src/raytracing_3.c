@@ -89,16 +89,4 @@ float shade_hit(t_data *scene, t_comps comps)
     return (lightning(scene, comps, shadowed));
 }
 
-int line_isspace(char *str)
-{
-	int i;
 
-	i = 0;
-	while(str[i])
-	{
-		if(is_space(str[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}

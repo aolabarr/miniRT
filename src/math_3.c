@@ -25,3 +25,31 @@ float	ft_pow(float num, int pow)
 		res = res * num;
 	return (res);
 }
+
+int	is_zerovector(t_vec vec)
+{
+	if (vec.x == 0 && vec.y == 0 && vec.z == 0 && vec.z == 0)
+		return (1);
+	return (0);
+}
+
+float	ft_abs(float num)
+{
+	if (num >= 0)
+		return (num);
+	return (-num);
+}
+
+int	is_zero(float num)
+{
+	if (ft_abs(num) < EPSILON)
+		return (1);
+	return (0);
+}
+
+int	is_equal(float a, float b)
+{
+	if (ft_abs(a - b) < EPSILON)
+		return (1);
+	return (0);
+}

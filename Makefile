@@ -27,7 +27,8 @@ MATH_DIR = /usr/local/lib
 LIBFLAGS = -L$(LIBFT_DIR) -lft -L$(LIBIO_DIR) -lio -L$(LIBMLX_DIR) -lmlx_Linux -L$(MATH_DIR) -lm -lX11 -lXext
 
 SRC =	main.c \
-		aux.c \
+		aux_1.c \
+		aux_2.c \
 		libx.c \
 		render.c \
 		keys.c \
@@ -47,6 +48,7 @@ SRC =	main.c \
 		math_1.c \
 		math_2.c \
 		math_3.c \
+		math_4.c \
 		color.c \
 		matrix_0.c \
 		matrix_1.c \
