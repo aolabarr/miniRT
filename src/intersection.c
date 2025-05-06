@@ -36,7 +36,8 @@ t_hit	sphere_intersection(t_ray ray, t_element elem)
 	inters.elem = elem;
 	a = dot_product(ray.vec, ray.vec);
 	b = 2 * dot_product(ray.vec, rest_coord(ray.origin, zero_pos()));
-	c = dot_product(rest_coord(ray.origin, zero_pos()), rest_coord(ray.origin, zero_pos())) - 1;
+	c = dot_product(rest_coord(ray.origin, zero_pos()),
+			rest_coord(ray.origin, zero_pos())) - 1;
 	dis = (b * b) - (4 * a * c);
 	if (dis < -EPSILON)
 		return (inters);

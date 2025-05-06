@@ -30,7 +30,8 @@ SRC =	main.c \
 		aux_1.c \
 		aux_2.c \
 		libx.c \
-		render.c \
+		render_2.c \
+		render_1.c \
 		keys.c \
 		init_1.c \
 		init_2.c \

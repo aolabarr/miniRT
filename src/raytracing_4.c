@@ -23,7 +23,6 @@ t_ray	create_ray(t_data *scene, t_image img, int x, int y)
 	return (ray);
 }
 
-
 t_hit	find_hit(t_data *scene, t_hit *inters)
 {
 	int		i;
@@ -31,28 +30,28 @@ t_hit	find_hit(t_data *scene, t_hit *inters)
 
 	hit.hit = false;
 	i = 0;
-	while(i < scene->n_elem)
+	while (i < scene->n_elem)
 	{
-		
 		if (inters[i].hit)
 		{
 			update_hit(&hit, inters[i]);
 		}
-		// printf("INTER %d\n", inters[i].elem.id);
 		i++;
 	}
 	return (hit);
 }
+
 void	update_hit(t_hit *hit, t_hit inter)
 {
 	if ((*hit).hit == false)
 		*hit = inter;
 	else
 	{
-		if (is_equal(hit_t(*hit), hit_t(inter)) || (hit_t(*hit) - hit_t(inter)) < 0)
+		if (is_equal(hit_t(*hit), hit_t(inter))
+			|| (hit_t(*hit) - hit_t(inter)) < 0)
 			return ;
 		else
 			*hit = inter;
-	}	
+	}
 	return ;
 }

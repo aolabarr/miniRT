@@ -40,7 +40,8 @@ t_vec	normal_at(t_element elem, t_pos hit_wd_point)
 
 t_vec	reflect_at(t_vec in, t_vec normal)
 {
-	return (rest_coord(in, scalar_product(normal, 2.0 * dot_product(in, normal))));
+	return (rest_coord(in,
+			scalar_product(normal, 2.0 * dot_product(in, normal))));
 }
 
 t_color	add_color_intensity(t_color color, float intensity)

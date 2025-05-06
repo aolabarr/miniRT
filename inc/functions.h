@@ -20,12 +20,17 @@ void	*new_window(t_data *scene, char *title);
 int		handle_close(t_data *scene);
 int		close_window(t_data *scene);
 
-/* render.c */
+/* render_1.c */
 int     create_scene(t_data *scene);
 int	    render_image(t_data *scene);
 int	    create_image(t_data *scene);
+
+/* render_2.c */
 void	put_color_pixel(t_data *scene, t_image img, int x, int y);
-void	update_hit(t_hit *hit, t_hit inter);
+void compute_lighting (t_data *scene, t_color *amb_all, t_color *lig_all);
+t_color	compute_color_for_pixel(t_data *scene, t_ray ray, t_color amb, t_color lig);
+
+
 
 /* keys.c */
 int     handle_key_input(int key, t_data *scene);

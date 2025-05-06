@@ -12,21 +12,21 @@
 
 #include "../inc/minirt.h"
 
-int line_isspace(char *str)
+int	line_isspace(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
-		if(!is_space(str[i]))
+		if (!is_space(str[i]))
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-int handle_error(int error)
+int	handle_error(int error)
 {
 	if (error == ERR_ARG)
 		ft_putendl_fd(ERR_MSG_ARG, STDOUT_FILENO);
@@ -42,6 +42,5 @@ int handle_error(int error)
 		ft_putendl_fd(ERR_MSG_MISS_ELEM, STDOUT_FILENO);
 	if (error == ERR_ELEM)
 		ft_putendl_fd(ERR_MSG_ELEM, STDOUT_FILENO);
-
 	return (EXIT_FAILURE);
 }

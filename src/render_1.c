@@ -70,35 +70,3 @@ int	create_image(t_data *data)
 	printf("\nCOMPLETE!\n");
 	return (EXIT_SUCCESS);
 }
-
-void	put_color_pixel(t_data *scene, t_image img, int x, int y)
-{
-	int		offset;
-	t_ray	ray;
-	t_hit	hit;
-	t_hit	*inters;
-	t_color	color;
-	t_comps	comps;
-	t_color	amb_all;
-	t_color	lig_all;
-	t_color	res_color;
-
-	amb_all = mult_color_scalar(scene->amb.color, scene->amb.ratio);
-	lig_all = mult_color_scalar(scene->lig.color, scene->lig.bright);
-	init_pong_parameters(scene);
-	ray = create_ray(scene, img, x, y);
-	inters = intersect_world(ray, scene);
-	hit = find_hit(scene, inters);
-	free(inters);
-	if (hit.hit == false)
-		color = SKY_BLUE;
-	else
-	{
-		comps = prepare_computations(hit, ray);
-		res_color = hadamard_product(add_colors(amb_all,lig_all), comps.elem.color);
-		color = add_color_intensity(res_color, shade_hit(scene, comps));
-	}
-	offset = (img.line_len * y) + x * (img.bpp / 8);
-	*(int *)((char *)img.addr + offset) = rgb_to_hex(color);
-
-}

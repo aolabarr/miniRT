@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/minirt.h"
+#include "../inc/minirt.h"
 
 int	is_space(char c)
 {
@@ -32,7 +32,7 @@ int	valid_str(char *str)
 	}
 	while (str[i] != '\0')
 	{
-		if ((str[i] >= '0' && str[i] <= '9') || str[i] == '.' || str[i] == ',' \
+		if ((str[i] >= '0' && str[i] <= '9') || str[i] == '.' || str[i] == ','
 			|| str[i] == '-' || is_space(str[i]))
 			i++;
 		else
@@ -43,7 +43,8 @@ int	valid_str(char *str)
 
 int	is_element(char *str)
 {
-	if (!ft_strncmp(str, "sp", 2) || !ft_strncmp(str, "cy", 2) || !ft_strncmp(str, "pl", 2))
+	if (!ft_strncmp(str, "sp", 2) || !ft_strncmp(str, "cy", 2)
+		|| !ft_strncmp(str, "pl", 2))
 		return (1);
 	else
 		return (0);
