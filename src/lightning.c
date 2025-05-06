@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lightning.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 19:28:06 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/03 14:14:03 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:37:25 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ float	lightning(t_data *scene, t_comps comps, int in_shadow)
 	(void)in_shadow;
 	ft_memsetf(colors, 0.0, 3);
 	lightv = normalize(rest_coord(scene->lig.pos, comps.over_point));
-	// if (scene->lig.bright == 0)
-	// 	colors[0] = scene->amb.ratio * comps.elem.material.ambient;
-	// else 
-	// 	colors[0] = scene->lig.bright * comps.elem.material.ambient;
-	colors[0] = scene->lig.bright * comps.elem.material.ambient;
+	if (scene->lig.bright == 0)
+		colors[0] = scene->amb.ratio * comps.elem.material.ambient;
+	else 
+		colors[0] = scene->lig.bright * comps.elem.material.ambient;
+	// colors[0] = scene->lig.bright * comps.elem.material.ambient;
 	if (in_shadow == SHADOW)
 		return (colors[0]);
 	light_dot_normal = dot_product(lightv, comps.normal);

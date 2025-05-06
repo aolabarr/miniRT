@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:18:32 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/05/03 14:08:49 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:26:13 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,13 @@
 # define TOL_ANGLE          2
 
 //Color palette
-# define BLACK              (t_color){0, 0, 0}
-# define BLUE               (t_color){0, 0, 255}
-# define SKY_GREY           (t_color){0.15, 0.15, 0.15}
-# define SKY_BLUE			(t_color){0.5, 0.8, 0.92}
+// # define BLACK              (t_color){0, 0, 0}
+// # define BLUE               (t_color){0, 0, 255}
+// # define SKY_GREY           (t_color){0.15, 0.15, 0.15}
+# define BACKGROUND_R       0.5     //SKY_BLUE
+# define BACKGROUND_B       0.8     //SKY_BLUE
+# define BACKGROUND_G       0.92    //SKY_BLUE
+// # define SKY_BLUE			(t_color){0.5, 0.8, 0.92}
 # define MIN_RGB			0
 # define MAX_RGB			255
 

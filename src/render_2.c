@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/03 14:03:32 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:34:46 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,13 @@ t_color	compute_color_for_pixel(t_data *sc, t_ray ray, t_color amb, t_color lig)
 	hit = find_hit(sc, inters);
 	free(inters);
 	if (!hit.hit)
-		return (SKY_BLUE);
+		return (background_color(BACKGROUND_R, BACKGROUND_G, BACKGROUND_B));
 	comps = prepare_computations(hit, ray);
 	res_color = hadamard_product(add_colors(amb, lig), comps.elem.color);
 	return (add_color_intensity(res_color, shade_hit(sc, comps)));
+}
+
+t_color	background_color(float r, float g, float b)
+{
+	return ((t_color){r, g, b});
 }
