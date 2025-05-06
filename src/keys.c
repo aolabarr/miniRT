@@ -24,7 +24,7 @@ int	handle_key_input(int key, t_data *scene)
 		set_rotation_move(scene, key);
 	else if (key == PLUS_KEY || key == MINUS_KEY)
 		set_static_zoom(scene, key);
-	if (key == XK_Left || key == XK_Right || 
+	if (key == XK_Left || key == XK_Right ||
 		key == XK_Up || key == XK_Down ||
 		key == A_KEY || key == D_KEY || key == W_KEY || key == S_KEY ||
 		key == PLUS_KEY || key == MINUS_KEY)

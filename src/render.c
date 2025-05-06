@@ -12,14 +12,14 @@
 
 #include "../inc/minirt.h"
 
-int create_scene(t_data *scene)
+int	create_scene(t_data *scene)
 {
 	init_mlx(scene);
 	scene->mlx = mlx_init();
 	if (!scene->mlx)
-		return (handle_error(ERR_MALL),EXIT_FAILURE);
+		return (handle_error(ERR_MALL), EXIT_FAILURE);
 	if (!new_window(scene, scene->name))
-		return (handle_error(ERR_MALL),EXIT_FAILURE);
+		return (handle_error(ERR_MALL), EXIT_FAILURE);
 	mlx_loop_hook(scene->mlx, render_image, scene);
 	mlx_hook(scene->win, DestroyNotify, NoEventMask, handle_close, scene);
 	mlx_hook(scene->win, KeyPress, KeyPressMask, handle_key_input, scene);
@@ -73,16 +73,15 @@ int	create_image(t_data *data)
 
 void	put_color_pixel(t_data *scene, t_image img, int x, int y)
 {
-	int	offset;
-	
+	int		offset;
 	t_ray	ray;
 	t_hit	hit;
 	t_hit	*inters;
-	t_color color;
-	t_comps comps;
-	t_color amb_all;
-	t_color lig_all;
-	t_color res_color;
+	t_color	color;
+	t_comps	comps;
+	t_color	amb_all;
+	t_color	lig_all;
+	t_color	res_color;
 
 	amb_all = mult_color_scalar(scene->amb.color, scene->amb.ratio);
 	lig_all = mult_color_scalar(scene->lig.color, scene->lig.bright);
@@ -98,10 +97,8 @@ void	put_color_pixel(t_data *scene, t_image img, int x, int y)
 		comps = prepare_computations(hit, ray);
 		res_color = hadamard_product(add_colors(amb_all,lig_all), comps.elem.color);
 		color = add_color_intensity(res_color, shade_hit(scene, comps));
-
 	}
 	offset = (img.line_len * y) + x * (img.bpp / 8);
 	*(int *)((char *)img.addr + offset) = rgb_to_hex(color);
 
 }
-
