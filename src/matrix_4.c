@@ -12,39 +12,40 @@
 
 #include "../inc/minirt.h"
 
-
 void	identity_matrix(float *mat)
 {
-    int i;
+	int	i;
 
 	i = 0;
 	ft_memset(mat, 0, 16);
-	while(i < 4)
+	while (i < 4)
 	{
 		mat[i * 4 + i] = 1;
 		i++;
-	} 
-    return;
+	}
+	return ;
 }
+
 void	transpose_matrix(float *mat, float *res)
 {
-    int		i;
-	int		j;
-   
+	int	i;
+	int	j;
+
 	i = 0;
-    while (i < 4)
-    {
-        j = 0;
-        while (j < 4)
-        {
-            res[j * 4 + i] = mat[i * 4 + j];
-            j++;
-        }
-        i++;
-    }
-    return;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			res[j * 4 + i] = mat[i * 4 + j];
+			j++;
+		}
+		i++;
+	}
+	return ;
 }
-int is_equal_matrix(float *mat1, float *mat2)
+
+int	is_equal_matrix(float *mat1, float *mat2)
 {
 	int	i;
 
@@ -55,5 +56,5 @@ int is_equal_matrix(float *mat1, float *mat2)
 			return (0);
 		i++;
 	}
-	return(1);
+	return (1);
 }

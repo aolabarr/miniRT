@@ -14,9 +14,9 @@
 
 int	invert_matrix(float *mat, float *inv)
 {
-	float det;
-	float aux[16];
-	int i;
+	float	det;
+	float	aux[16];
+	int		i;
 
 	det = determinant_matrix(mat);
 	if (ft_abs(det) < EPSILON)
@@ -34,69 +34,69 @@ int	invert_matrix(float *mat, float *inv)
 
 void	cofactor_matrix(float *mat, float *res)
 {
-	int 	i;
-    int 	j;
+	int	i;
+	int	j;
 
 	i = 0;
-    while (i < 4)
-    {
-        j = 0;
-        while (j < 4)
-        {
-            res[i * 4 + j] = cofactor(mat, i, j);
-            j++;
-        }
-        i++;
-    }
-    return;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			res[i * 4 + j] = cofactor(mat, i, j);
+			j++;
+		}
+		i++;
+	}
+	return ;
 }
 
-float cofactor(float *mat, int row, int col)
+float	cofactor(float *mat, int row, int col)
 {
-    float	minor[9];
+	float	minor[9];
 	float	det;
-    
+
 	minor_matrix(mat, minor, row, col);
 	det = minor[0] * (minor[4] * minor[8] - minor[5] * minor[7])
-        - minor[1] * (minor[3] * minor[8] - minor[5] * minor[6])
-        + minor[2] * (minor[3] * minor[7] - minor[4] * minor[6]);
+		- minor[1] * (minor[3] * minor[8] - minor[5] * minor[6])
+		+ minor[2] * (minor[3] * minor[7] - minor[4] * minor[6]);
 	if ((row + col) % 2 == 0)
-		return(det);
+		return (det);
 	else
 		return (-det);
 }
 
-void minor_matrix(float *mat, float *minor, int row, int col)
+void	minor_matrix(float *mat, float *minor, int row, int col)
 {
-    int i;
+	int	i;
 	int	mi;
 	int	aux[2];
-	
+
 	i = 0;
 	mi = 0;
-    while (i < 4)
-    {
-        if (i == row)
+	while (i < 4)
+	{
+		if (i == row)
 		{
 			i++;
-			continue;
+			continue ;
 		}
 		aux[0] = mi;
 		aux[1] = i;
 		calculate_minor_row(col, minor, mat, aux);
-        mi++;
-        i++;
-    }
-	return;
+		mi++;
+		i++;
+	}
+	return ;
 }
 
 void	calculate_minor_row(int col, float *minor, float *mat, int *aux)
 {
-	int i;
+	int	i;
 	int	j;
 	int	mj;
-	int mi;
-	
+	int	mi;
+
 	mj = 0;
 	j = 0;
 	mi = aux[0];
@@ -106,11 +106,11 @@ void	calculate_minor_row(int col, float *minor, float *mat, int *aux)
 		if (j == col)
 		{
 			j++;
-			continue;
-		}  
+			continue ;
+		}
 		minor[mi * 3 + mj] = mat[i * 4 + j];
 		mj++;
 		j++;
 	}
-	return;
+	return ;
 }
