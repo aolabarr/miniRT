@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 17:08:11 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/13 15:34:30 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:40:31 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
 // Added functions
-float   ft_atoif(const char *str);
+float	ft_atoif(const char *str);
 char	*ft_strjoin_freed(char *s1, char const *s2);
 void	ft_free_mat_str(char **mat, size_t size);
 size_t	ft_matsize(char **str);

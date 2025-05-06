@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_float.c                                    :+:      :+:    :+:   */
+/*   ft_atoif.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 14:12:18 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/03/13 15:31:44 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:39:45 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 static float	get_decimals(float res, int i, const char *str);
 
-float   ft_atoif(const char *str)
+float	ft_atoif(const char *str)
 {
 	size_t		i;
 	int			sign;
-	float       res;
+	float		res;
 
 	if (!str)
 		return (0);
@@ -41,14 +41,15 @@ float   ft_atoif(const char *str)
 		res = get_decimals(res, i, str);
 	return (res * sign);
 }
+
 static float	get_decimals(float res, int i, const char *str)
 {
-	float ord;
+	float	ord;
 
 	ord = 1;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-        ord /= 10;
+		ord /= 10;
 		res = res + (str[i] - 48) * ord;
 		i++;
 	}
