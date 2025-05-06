@@ -204,13 +204,16 @@ void	transpose_matrix(float *mat, float *res);
 
 /* trans_1.c*/
 int		init_trans_matrix(t_data *scene);
-int		get_trans_matrix(t_element *elem);
-int		get_trans_inv_matrix(t_element *elem);
+// int		get_trans_matrix(t_element *elem);
+int	get_trans_matrix(t_element *elem, t_data *scene);
+// int		get_trans_inv_matrix(t_element *elem);
+int	get_trans_inv_matrix(t_element *elem, t_data *scene);
 
 /* trans_2.c*/
 float	*init_zero(float *mat_s, float *mat_t, float *mat_r, float *aux);
 void	handle_scale(t_element *elem, float *mat_s, int dir);
-void	handle_rotation(t_element *elem, float *mat_r, int dir);
+// void	handle_rotation(t_element *elem, float *mat_r, int dir);
+void	handle_rotation(t_element *elem, float *mat_r, int dir, t_data *sc);
 void	rodrigues_matrix(t_vec a, float angle, float *mat);
 void	rotation_matrix_from_to(t_vec from, t_vec to, float *mat);
 

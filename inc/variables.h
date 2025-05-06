@@ -137,6 +137,8 @@ typedef struct s_data
 	t_camera	cam;
 	t_light		lig;
 	t_element	*elem;
+	t_vec		world_y;
+	t_vec		world_z;
 	void		*mlx;
 	void		*win;
 	char		*name;

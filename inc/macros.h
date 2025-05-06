@@ -65,9 +65,9 @@
 # define MOVE_FACTOR 		0.1            
 
 // Coordate systems and relative moves
-# define WORLD_X            (t_vec){1, 0, 0, 0}
-# define WORLD_Y            (t_vec){0, 1, 0, 0}
-# define WORLD_Z            (t_vec){0, 0, 1, 0}
+// # define WORLD_X            (t_vec){1, 0, 0, 0}
+// # define WORLD_Y            (t_vec){0, 1, 0, 0}
+// # define WORLD_Z            (t_vec){0, 0, 1, 0}
 # define DELTA_TR        0.1
 # define DELTA_ROT          0.01
 # define TOL_ANGLE          2

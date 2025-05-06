@@ -40,9 +40,9 @@ void	set_traslation_move(t_data *sc, int key)
 	// from = sc->cam.pos;
 	// to = new_lineal_point(sc->cam.pos, sc->cam.vec, 1);
 	if (is_equal(sc->cam.vec.y, 1.0) || is_equal(sc->cam.vec.y, -1.0))
-		world_up = WORLD_Z;
+		world_up = sc->world_z;
 	else
-		world_up = WORLD_Y;
+		world_up = sc->world_y;
 	rigth_up[0] = normalize(cross_product(sc->cam.vec, world_up));
 	rigth_up[1] = normalize(cross_product(rigth_up[0], sc->cam.vec));
 	if (key == XK_Left)
@@ -76,7 +76,7 @@ void	set_rotation_move(t_data *scene, int key)
 	// printf("dir rot: %p\t%p\n", (void *)&scene->cam.pos, (void *)&scene->cam.vec);
 	// from = scene->cam.pos;
 	to = new_lineal_point(scene->cam.pos, scene->cam.vec, 1);
-	rigth_up[0] = normalize(cross_product(scene->cam.vec, WORLD_Y));
+	rigth_up[0] = normalize(cross_product(scene->cam.vec, scene->world_y));
 	rigth_up[1] = normalize(cross_product(rigth_up[0], scene->cam.vec));
 	set_orientation(scene, key, to, rigth_up);
 	init_canvas(scene);

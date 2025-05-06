@@ -43,17 +43,17 @@ void	handle_scale(t_element *elem, float *mat_s, int dir)
 	return ;
 }
 
-void	handle_rotation(t_element *elem, float *mat_r, int dir)
+void	handle_rotation(t_element *elem, float *mat_r, int dir, t_data *sc)
 {
 	(void)elem, (void)mat_r, (void)dir;
 	if (elem->type == PL && dir == NORMAL)
-		rotation_matrix_from_to(WORLD_Y, elem->vec, mat_r);
+		rotation_matrix_from_to(sc->world_y, elem->vec, mat_r);
 	else if (elem->type == PL && dir == INVERSE)
-		rotation_matrix_from_to(elem->vec, WORLD_Y, mat_r);
+		rotation_matrix_from_to(elem->vec, sc->world_y, mat_r);
 	else if (elem->type == CY && dir == NORMAL)
-		rotation_matrix_from_to(WORLD_Y, elem->vec, mat_r);
+		rotation_matrix_from_to(sc->world_y, elem->vec, mat_r);
 	else if (elem->type == CY && dir == INVERSE)
-		rotation_matrix_from_to(elem->vec, WORLD_Y, mat_r);
+		rotation_matrix_from_to(elem->vec, sc->world_y, mat_r);
 	else
 		identity_matrix(mat_r);
 	return ;

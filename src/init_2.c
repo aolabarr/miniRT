@@ -20,9 +20,9 @@ void	init_canvas(t_data *scene)
 
 	center = new_lineal_point(scene->cam.pos, scene->cam.vec, 1);
 	if (is_equal(scene->cam.vec.y, 1.0) || is_equal(scene->cam.vec.y, -1.0))
-		world_up = WORLD_Z;
+		world_up = scene->world_z;
 	else
-		world_up = WORLD_Y;
+		world_up = scene->world_y;
 	right_up[0] = normalize(cross_product(scene->cam.vec, world_up));
 	right_up[1] = normalize(cross_product(right_up[0], scene->cam.vec));
 	put_canvas_values(scene, right_up, center);
