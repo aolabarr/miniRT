@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variables.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:30:53 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/05/03 14:14:58 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:28:37 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ typedef struct s_ambient
 
 typedef struct s_shear
 {
- 	float	xy;
- 	float	xz;
- 	float	yx;
+	float	xy;
+	float	xz;
+	float	yx;
 	float	yz;
 	float	zx;
 	float	zy;
@@ -44,7 +44,7 @@ typedef struct s_coord
 	float	y;
 	float	z;
 	int		w;
-}			t_coord, t_pos, t_vec;
+}	t_coord, t_pos,	t_vec;
 
 typedef struct s_ang
 {
@@ -55,13 +55,12 @@ typedef struct s_ang
 
 typedef struct s_camera
 {
-	t_coord 	pos;
-	t_vec		vec;
-	int			fov;
-	float		theta;
+	t_coord	pos;
+	t_vec	vec;
+	int		fov;
+	float	theta;
 
 }			t_camera;
-
 
 typedef struct s_light
 {
@@ -70,7 +69,7 @@ typedef struct s_light
 	t_color		color;
 }				t_light;
 
-typedef	enum e_eltype
+typedef enum e_eltype
 {
 	SP,
 	CY,
@@ -85,7 +84,6 @@ typedef struct s_material
 	float	diffuse;		// valores entre 0 y 1
 	float	specular;		// valores entre 0 y 1
 	float	shini;			// valores entre 10 y 200
-
 }			t_material;
 
 typedef struct s_element
@@ -139,6 +137,8 @@ typedef struct s_data
 	t_camera	cam;
 	t_light		lig;
 	t_element	*elem;
+	t_vec		world_y;
+	t_vec		world_z;
 	void		*mlx;
 	void		*win;
 	char		*name;
@@ -155,14 +155,12 @@ typedef struct s_data
 typedef struct s_comps
 {
 	float		t;
-	t_element 	elem;
+	t_element	elem;
 	t_pos		point;
 	t_vec		eyev;
 	t_vec		normal;
 	bool		inside;
 	t_pos		over_point;
 }				t_comps;
-
-
 
 #endif

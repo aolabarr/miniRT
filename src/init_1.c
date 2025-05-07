@@ -22,6 +22,8 @@ void	init_scene(t_data *scene)
 	scene->has_amb = FALSE;
 	scene->has_cam = FALSE;
 	scene->has_lig = FALSE;
+	scene->world_y = (t_vec){0, 1, 0, 0};
+	scene->world_z = (t_vec){0, 0, 1, 0};
 }
 
 void	init_ambient(t_ambient *amb)

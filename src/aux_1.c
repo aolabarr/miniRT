@@ -10,12 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/minirt.h"
-
+#include "../inc/minirt.h"
 
 int	get_position(char *str, t_coord *pos)
 {
-	char **temp;
+	char	**temp;
 
 	temp = ft_split(str, ',');
 	if (len_mat(temp) != 3)
@@ -72,7 +71,6 @@ char	**ft_split_allwhitespace(const char *s)
 	mat[i] = NULL;
 	return (mat);
 }
-
 
 size_t	ft_word_count_allwhitespace(const char *s)
 {

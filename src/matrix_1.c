@@ -14,9 +14,9 @@
 
 void	multiply_matrix(float *mat1, float *mat2, float *res)
 {
-	int i;
-	int j;
-	int k;
+	int	i;
+	int	j;
+	int	k;
 
 	ft_memsetf(res, 0, 16);
 	i = 0;
@@ -35,64 +35,64 @@ void	multiply_matrix(float *mat1, float *mat2, float *res)
 		}
 		i++;
 	}
-	return;
+	return ;
 }
 
 void	multiply_matrix_vector(float *mat, t_vec vector, t_vec *res)
 {
-    int		i;
+	int		i;
 	int		j;
-	float   vec[4];
-	float   result[4];
+	float	vec[4];
+	float	result[4];
 
 	init_coordf(result);
 	copy_coord_to_array(vector, vec);
 	i = 0;
 	while (i < 4)
-    {
+	{
 		j = 0;
-		while(j < 4)
-        {
-            result[i] += mat[i * 4 + j] * vec[j];
+		while (j < 4)
+		{
+			result[i] += mat[i * 4 + j] * vec[j];
 			j++;
-        }
+		}
 		i++;
-    }
+	}
 	res->x = result[0];
 	res->y = result[1];
 	res->z = result[2];
 	res->w = VECTOR;
-    return;
+	return ;
 }
 
 void	multiply_matrix_pos(float *mat, t_pos point, t_pos *res)
 {
-    int		i;
+	int		i;
 	int		j;
-	float   pos[4];
-	float   result[4];
+	float	pos[4];
+	float	result[4];
 
 	init_coordf(result);
 	copy_coord_to_array(point, pos);
 	i = 0;
 	while (i < 4)
-    {
+	{
 		j = 0;
-		while(j < 4)
-        {
-            result[i] += mat[i * 4 + j] * pos[j];
+		while (j < 4)
+		{
+			result[i] += mat[i * 4 + j] * pos[j];
 			j++;
-        }
+		}
 		i++;
-    }
+	}
 	res->x = result[0];
 	res->y = result[1];
 	res->z = result[2];
 	res->w = POINT;
-    return;
+	return ;
 }
 
-void init_coordf(float *coord)
+void	init_coordf(float *coord)
 {
 	coord[0] = 0;
 	coord[1] = 0;
@@ -101,7 +101,7 @@ void init_coordf(float *coord)
 	return ;
 }
 
-void copy_coord_to_array(t_coord coord, float *array)
+void	copy_coord_to_array(t_coord coord, float *array)
 {
 	array[0] = coord.x;
 	array[1] = coord.y;
@@ -109,4 +109,3 @@ void copy_coord_to_array(t_coord coord, float *array)
 	array[3] = coord.w;
 	return ;
 }
-

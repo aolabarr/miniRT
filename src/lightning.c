@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lightning.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 19:28:06 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/03 14:14:03 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:37:25 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ float	lightning(t_data *scene, t_comps comps, int in_shadow)
 	(void)in_shadow;
 	ft_memsetf(colors, 0.0, 3);
 	lightv = normalize(rest_coord(scene->lig.pos, comps.over_point));
-	// if (scene->lig.bright == 0)
-	// 	colors[0] = scene->amb.ratio * comps.elem.material.ambient;
-	// else 
-	// 	colors[0] = scene->lig.bright * comps.elem.material.ambient;
-	colors[0] = scene->lig.bright * comps.elem.material.ambient;
+	if (scene->lig.bright == 0)
+		colors[0] = scene->amb.ratio * comps.elem.material.ambient;
+	else 
+		colors[0] = scene->lig.bright * comps.elem.material.ambient;
+	// colors[0] = scene->lig.bright * comps.elem.material.ambient;
 	if (in_shadow == SHADOW)
-		return(colors[0]);
+		return (colors[0]);
 	light_dot_normal = dot_product(lightv, comps.normal);
 	if (light_dot_normal < -EPSILON)
 		diffuse_specular_zero(colors);
@@ -37,7 +37,7 @@ float	lightning(t_data *scene, t_comps comps, int in_shadow)
 	{
 		if (scene->lig.bright == 0)
 			colors[1] = scene->amb.ratio * comps.elem.material.diffuse * light_dot_normal;
-		else 
+		else
 			colors[1] = scene->lig.bright * comps.elem.material.diffuse * light_dot_normal;
 		reflectv = reflect_at(opp_vector(lightv), comps.normal);
 		reflect_dot_eye = dot_product(reflectv, comps.eyev);
@@ -46,7 +46,6 @@ float	lightning(t_data *scene, t_comps comps, int in_shadow)
 		else
 			colors[2] = calculate_specular(scene, comps, reflect_dot_eye);
 	}
-	
 	return (colors[0] + colors[1] + colors[2]);
 }
 
@@ -59,13 +58,13 @@ void	diffuse_specular_zero(float *colors)
 
 float	calculate_specular(t_data *scene, t_comps comps, float reflect_dot_eye)
 {
-	float factor;
+	float	factor;
 
 	factor = ft_pow(reflect_dot_eye, comps.elem.material.shini);
 	return (scene->lig.bright * comps.elem.material.specular * factor);
 }
 
-int is_shadowed(t_data *scene, t_pos point)
+int	is_shadowed(t_data *scene, t_pos point)
 {
 	t_vec	v;
 	t_ray	ray;

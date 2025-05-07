@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 09:47:46 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/03 09:49:49 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/05 21:53:40 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/minirt.h"
+#include "../inc/minirt.h"
 
 int	is_space(char c)
 {
@@ -21,18 +21,18 @@ int	is_space(char c)
 
 int	valid_str(char *str)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	if (!str)
-		return(1);
-	if(is_element(str))
+		return (1);
+	if (is_element(str))
 	{
 		i = 2;
 	}
-	while(str[i] != '\0')
+	while (str[i] != '\0')
 	{
-		if ((str[i] >= '0' && str[i] <= '9') || str[i] == '.' || str[i] == ',' \
+		if ((str[i] >= '0' && str[i] <= '9') || str[i] == '.' || str[i] == ','
 			|| str[i] == '-' || is_space(str[i]))
 			i++;
 		else
@@ -40,9 +40,11 @@ int	valid_str(char *str)
 	}
 	return (0);
 }
-int is_element(char *str)
+
+int	is_element(char *str)
 {
-	if (!ft_strncmp(str, "sp", 2) || !ft_strncmp(str, "cy", 2) || !ft_strncmp(str, "pl", 2))
+	if (!ft_strncmp(str, "sp", 2) || !ft_strncmp(str, "cy", 2)
+		|| !ft_strncmp(str, "pl", 2))
 		return (1);
 	else
 		return (0);
@@ -51,7 +53,7 @@ int is_element(char *str)
 void	*ft_memsetf(void *b, float c, int len)
 {
 	float	*str;
-	int	i;
+	int		i;
 
 	str = b;
 	i = 0;

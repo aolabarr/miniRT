@@ -57,24 +57,3 @@ int	get_color(char *str, t_color *color)
 	ft_free_mat(temp);
 	return (EXIT_SUCCESS);
 }
-
-int	rgb_to_hex(t_color col)
-{
-	int		hexcol;
-
-	col.red = clamp_color((int)(col.red * 255));
-	col.green = clamp_color((int)(col.green * 255));
-	col.blue = clamp_color((int)(col.blue * 255));
-	hexcol = ((int)(col.red) << 16) | ((int)(col.green) << 8) | (int)(col.blue);
-	return (hexcol);
-}
-
-float	clamp_color(float color)
-{
-	if (color < MIN_RGB)
-		return (MIN_RGB);
-	if (color > MAX_RGB)
-		return (MAX_RGB);
-	return (color);
-}
-

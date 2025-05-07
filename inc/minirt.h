@@ -11,31 +11,26 @@
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
-#define MINIRT_H
+# define MINIRT_H
 
-# include	<unistd.h>
-# include	<stdlib.h>
-# include	<stdio.h>
-# include	<math.h>
-# include	<fcntl.h>
-# include	<string.h>
-# include	<stdbool.h>
-# include	<stddef.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <math.h>
+# include <fcntl.h>
+# include <string.h>
+# include <stdbool.h>
+# include <stddef.h>
 
-# include	"variables.h"
-# include	"macros.h"
-# include	"functions.h"
-# include	"../lib/libft/src/libft.h"
-# include	"../lib/libmlx/mlx_int.h"
-# include	"../lib/libmlx/mlx.h"
+# include "variables.h"
+# include "macros.h"
+# include "functions.h"
+# include "../lib/libft/src/libft.h"
+# include "../lib/libmlx/mlx_int.h"
+# include "../lib/libmlx/mlx.h"
 
-
-
-# include	"../lib/libio/gnl/get_next_line.h"
-# include	"../lib/libio/ftprintf/ft_printf.h"
-# include	"../lib/libft/src/libft.h"
-
-
-
+# include "../lib/libio/gnl/get_next_line.h"
+# include "../lib/libio/ftprintf/ft_printf.h"
+# include "../lib/libft/src/libft.h"
 
 #endif
