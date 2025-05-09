@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:08:17 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/09 16:10:40 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/09 16:54:47 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@
 # define SHININESS          200
 
 // Moves
-# define ZOOM_FACTOR 		0.1
-# define MOVE_FACTOR 		0.1
+# define ZOOM_FACTOR 		0.2
+# define MOVE_FACTOR 		0.2
 # define DELTA_TR        	0.1
 # define DELTA_ROT          0.01
 # define TOL_ANGLE          2         
@@ -77,6 +77,7 @@
 // BLACK              {0, 0, 0}
 // BLUE               {0, 0, 255}
 // SKY_GREY           {0.15, 0.15, 0.15}
+// SKY_BLUE           {0.5, 0.8, 0.92}
 
 //Keys
 # define PLUS_KEY		65453
