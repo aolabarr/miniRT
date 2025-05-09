@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing_4.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:33:09 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/03 13:47:27 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/09 15:06:13 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_ray	create_ray(t_data *scene, t_image img, int x, int y)
 	t_pos	pixel_pos;
 	t_ray	ray;
 
-	pixel_pos = calc_pixel_position(x, y, img.canvas);
+	pixel_pos = calc_pixel_position(x, y, img.canvas, scene->height);
 	ray.origin = scene->cam.pos;
 	ray.vec = normalize(rest_coord(pixel_pos, scene->cam.pos));
 	return (ray);

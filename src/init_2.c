@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 10:15:21 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/03 10:24:21 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/09 15:03:34 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	put_canvas_values(t_data *scene, t_vec *right_up, t_pos center)
 	t_pos	aux;
 
 	hsize = 2 * tan((scene->cam.fov * PI / 180) / 2);
-	vsize = hsize / ASPECT_RATIO;
+	vsize = hsize / scene->aspect_ratio;
 	aux = new_lineal_point(center, right_up[0], -hsize / 2);
 	scene->img.canvas[0] = new_lineal_point(aux, right_up[1], -vsize / 2);
 	aux = new_lineal_point(center, right_up[0], hsize / 2);

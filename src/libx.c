@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:22:53 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/03 14:02:51 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/09 15:03:02 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	init_mlx(t_data *scene)
 	scene->img.line_len = 0;
 	scene->img.endian = 0;
 	scene->update = 1;
+	scene->aspect_ratio = (float)ASPECT_1 / (float)ASPECT_2;
+	scene->height = (float)WIDTH / scene->aspect_ratio;
 	init_canvas(scene);
 	scene->name = ft_strdup(MINI_RT);
 	return ;
@@ -30,7 +32,7 @@ void	init_mlx(t_data *scene)
 
 void	*new_window(t_data *scene, char *title)
 {
-	scene->win = mlx_new_window(scene->mlx, WIDTH, HEIGHT, title);
+	scene->win = mlx_new_window(scene->mlx, WIDTH, scene->height, title);
 	if (!scene->win)
 	{
 		mlx_destroy_display(scene->mlx);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/03 14:03:32 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/09 15:04:54 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	render_image(t_data *data)
 	{
 		if (data->img.ptr)
 			mlx_destroy_image(data->mlx, data->img.ptr);
-		data->img.ptr = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+		data->img.ptr = mlx_new_image(data->mlx, WIDTH, data->height);
 		data->img.addr = mlx_get_data_addr(data->img.ptr,
 				&data->img.bpp,
 				&data->img.line_len,
@@ -59,7 +59,7 @@ int	create_image(t_data *data)
 	while (x < WIDTH)
 	{
 		y = 0;
-		while (y < HEIGHT)
+		while (y < data->height)
 		{
 			put_color_pixel(data, data->img, x, y);
 			y++;

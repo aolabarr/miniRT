@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lightning.c                                        :+:      :+:    :+:   */
+/*   lightning_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 19:28:06 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/06 20:37:25 by binary           ###   ########.fr       */
+/*   Updated: 2025/05/09 15:52:29 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,7 @@ float	lightning(t_data *scene, t_comps comps, int in_shadow)
 	(void)in_shadow;
 	ft_memsetf(colors, 0.0, 3);
 	lightv = normalize(rest_coord(scene->lig.pos, comps.over_point));
-	if (scene->lig.bright == 0)
-		colors[0] = scene->amb.ratio * comps.elem.material.ambient;
-	else 
-		colors[0] = scene->lig.bright * comps.elem.material.ambient;
-	// colors[0] = scene->lig.bright * comps.elem.material.ambient;
+	colors[0] = get_ambient_factor(scene, comps);
 	if (in_shadow == SHADOW)
 		return (colors[0]);
 	light_dot_normal = dot_product(lightv, comps.normal);
@@ -35,16 +31,10 @@ float	lightning(t_data *scene, t_comps comps, int in_shadow)
 		diffuse_specular_zero(colors);
 	else
 	{
-		if (scene->lig.bright == 0)
-			colors[1] = scene->amb.ratio * comps.elem.material.diffuse * light_dot_normal;
-		else
-			colors[1] = scene->lig.bright * comps.elem.material.diffuse * light_dot_normal;
+		colors[1] = get_diffuse_factor(scene, comps, light_dot_normal);
 		reflectv = reflect_at(opp_vector(lightv), comps.normal);
 		reflect_dot_eye = dot_product(reflectv, comps.eyev);
-		if (reflect_dot_eye < -EPSILON || ft_abs(reflect_dot_eye) < EPSILON)
-			colors[2] = 0;
-		else
-			colors[2] = calculate_specular(scene, comps, reflect_dot_eye);
+		colors[2] = get_specular_factor(reflect_dot_eye, scene, comps);
 	}
 	return (colors[0] + colors[1] + colors[2]);
 }

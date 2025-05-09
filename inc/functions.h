@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/06 20:33:57 by binary           ###   ########.fr       */
+/*   Updated: 2025/05/09 16:01:13 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int			handle_error(int error);
 t_eltype	get_elem_type(char *str);
 
 /* raytracing 1.c */
-t_pos		calc_pixel_position(int x, int y, t_pos *canvas);
+t_pos		calc_pixel_position(int x, int y, t_pos *canvas, float height);
 void		ray_transform_to_local(t_element *elem, t_ray ray,
 				t_ray *ray_local);
 t_pos		get_hit_point(t_ray ray, t_hit hit);
@@ -132,9 +132,13 @@ void		diffuse_specular_zero(float *colors);
 float		calculate_specular(t_data *scene, t_comps comps,
 				float reflect_dot_eye);
 int			is_shadowed(t_data *scene, t_pos point);
+float		get_specular_factor(float reflect_dot_eye, t_data *scene,
+				t_comps comps);
+float		get_diffuse_factor(t_data *scene, t_comps comps,
+				float light_dot_normal);
+float		get_ambient_factor(t_data *scene, t_comps comps);
 
 /* color.c*/
-t_color		blend_colors(t_color col1, t_color col2, float ratio);
 t_color		hadamard_product(t_color col1, t_color col2);
 t_color		mult_color_scalar(t_color col, float scalar);
 t_color		add_colors(t_color col1, t_color col2);
@@ -220,11 +224,5 @@ void		rotation_matrix_from_to(t_vec from, t_vec to, float *mat);
 /* trans_view.c*/
 void		view_transform(t_pos from, t_pos to, t_vec up, float *mat);
 void		transform_cam(t_pos from, t_pos to, t_vec up, t_data *scene);
-
-/* PARA PRUEBAS*/
-void		print_matrix(float *mat);
-void		print_vector(t_vec vec);
-void		print_ray(t_ray ray);
-void		print_pos(t_pos pos);
 
 #endif

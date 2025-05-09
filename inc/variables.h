@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variables.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:30:53 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/05/06 20:28:37 by binary           ###   ########.fr       */
+/*   Updated: 2025/05/09 16:08:50 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_shear
 	float	yz;
 	float	zx;
 	float	zy;
-}			t_shear;
+}				t_shear;
 
 typedef struct s_coord
 {
@@ -44,7 +44,7 @@ typedef struct s_coord
 	float	y;
 	float	z;
 	int		w;
-}	t_coord, t_pos,	t_vec;
+}	t_coord,	t_pos,	t_vec;
 
 typedef struct s_ang
 {
@@ -139,6 +139,8 @@ typedef struct s_data
 	t_element	*elem;
 	t_vec		world_y;
 	t_vec		world_z;
+	float		aspect_ratio;
+	float		height;
 	void		*mlx;
 	void		*win;
 	char		*name;

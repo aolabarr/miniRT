@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:05:48 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/03 14:10:13 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/09 16:11:28 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-t_pos	calc_pixel_position(int x, int y, t_pos *canvas)
+t_pos	calc_pixel_position(int x, int y, t_pos *canvas, float height)
 {
 	float	u;
 	float	v;
@@ -20,7 +20,7 @@ t_pos	calc_pixel_position(int x, int y, t_pos *canvas)
 	t_pos	aux[4];
 
 	u = 1.0 - ((float)x / (float)(WIDTH - 1));
-	v = 1.0 - ((float)y / (float)(HEIGHT - 1));
+	v = 1.0 - ((float)y / (float)(height - 1));
 	aux[0] = scalar_product(canvas[1], (1 - u) * (1 - v));
 	aux[1] = scalar_product(canvas[0], u * (1 - v));
 	aux[2] = scalar_product(canvas[3], (1 - u) * v);
@@ -53,12 +53,8 @@ float	hit_t(t_hit hit)
 {
 	if (hit.t1 < -EPSILON && hit.t2 < -EPSILON)
 	{
-		return (NO_HIT);
+		return ((float)NO_HIT);
 	}
-	// else if ((hit.t1 < -EPSILON && ft_abs(hit.t2) < EPSILON))
-	// 	return (NO_HIT);	
-	// else if ((hit.t2 < -EPSILON && ft_abs(hit.t1) < EPSILON))
-	// 	return (NO_HIT);	
 	if (hit.t1 > EPSILON && hit.t2 > EPSILON)
 	{
 		if (!is_equal(hit.t1, hit.t2) && hit.t1 < hit.t2)
