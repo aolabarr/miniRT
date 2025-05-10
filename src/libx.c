@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   libx.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:22:53 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/09 15:03:02 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/10 15:37:39 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void	init_mlx(t_data *scene)
+int	init_mlx(t_data *scene)
 {
 	scene->mlx = NULL;
 	scene->win = NULL;
@@ -27,7 +27,9 @@ void	init_mlx(t_data *scene)
 	scene->height = (float)WIDTH / scene->aspect_ratio;
 	init_canvas(scene);
 	scene->name = ft_strdup(MINI_RT);
-	return ;
+	if (!scene->name)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
 void	*new_window(t_data *scene, char *title)

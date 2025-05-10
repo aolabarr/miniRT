@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 17:21:53 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/04/20 12:51:48 by binary           ###   ########.fr       */
+/*   Updated: 2025/05/10 12:03:33 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_vec	sum_vector(t_vec a, t_vec b)
 
 t_vec	rest_coord(t_coord a, t_coord b)
 {
-	t_coord	res;
+	t_vec	res;
 
 	res.x = a.x - b.x;
 	res.y = a.y - b.y;

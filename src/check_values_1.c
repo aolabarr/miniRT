@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_values_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:21:22 by binary            #+#    #+#             */
-/*   Updated: 2025/05/03 14:04:39 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/10 11:57:19 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-int	normalized_vector(t_coord vec)
+int	normalized_vector(t_vec vec)
 {
 	int	norm;
 

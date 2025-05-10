@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 21:52:40 by binary            #+#    #+#             */
-/*   Updated: 2025/05/05 21:52:45 by binary           ###   ########.fr       */
+/*   Updated: 2025/05/10 15:26:02 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	handle_error(int error)
 		ft_putendl_fd(ERR_MSG_DARK, STDOUT_FILENO);
 	if (error == ERR_MISS_ELEM)
 		ft_putendl_fd(ERR_MSG_MISS_ELEM, STDOUT_FILENO);
+	if (error == ERR_DUPL_ELEM)
+		ft_putendl_fd(ERR_MSG_DUPL_ELEM, STDOUT_FILENO);
 	if (error == ERR_ELEM)
 		ft_putendl_fd(ERR_MSG_ELEM, STDOUT_FILENO);
 	return (EXIT_FAILURE);

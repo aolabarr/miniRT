@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variables.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:30:53 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/05/09 16:08:50 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/10 12:05:29 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ typedef struct s_coord
 	float	y;
 	float	z;
 	int		w;
-}	t_coord,	t_pos,	t_vec;
+}	t_coord;
+
+typedef t_coord	t_vec;
+
+typedef t_coord	t_pos;
 
 typedef struct s_ang
 {
@@ -55,7 +59,7 @@ typedef struct s_ang
 
 typedef struct s_camera
 {
-	t_coord	pos;
+	t_pos	pos;
 	t_vec	vec;
 	int		fov;
 	float	theta;
@@ -64,7 +68,7 @@ typedef struct s_camera
 
 typedef struct s_light
 {
-	t_coord		pos;
+	t_pos		pos;
 	float		bright;
 	t_color		color;
 }				t_light;
@@ -89,7 +93,7 @@ typedef struct s_material
 typedef struct s_element
 {
 	t_eltype	type;
-	t_coord		pos;
+	t_pos		pos;
 	t_coord		vec;
 	t_color		color;
 	t_material	material;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:45:43 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/09 15:57:43 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/10 12:10:52 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,12 @@ int	handle_key_input(int key, t_data *scene)
 	else if (key == PLUS_KEY || key == MINUS_KEY)
 		set_static_zoom(scene, key);
 	if (key == XK_Left || key == XK_Right
-		|| key == XK_Up || key == XK_Down || key == A_KEY || key == D_KEY
-		|| key == W_KEY || key == S_KEY || key == PLUS_KEY || key == MINUS_KEY)
+		|| key == XK_Up || key == XK_Down || key == PLUS_KEY
+		|| key == MINUS_KEY)
+		scene->update = 1;
+	if ((key == A_KEY || key == D_KEY || key == W_KEY || key == S_KEY)
+		&& !(vector_isequal(scene->cam.vec, scene->world_y)
+			|| vector_isequal(scene->cam.vec, opp_vector(scene->world_y))))
 		scene->update = 1;
 	return (0);
 }
@@ -69,6 +73,9 @@ void	set_rotation_move(t_data *scene, int key)
 	t_pos	to;
 	t_vec	rigth_up[2];
 
+	if (vector_isequal(scene->cam.vec, scene->world_y)
+		|| vector_isequal(scene->cam.vec, opp_vector(scene->world_y)))
+		return ;
 	to = new_lineal_point(scene->cam.pos, scene->cam.vec, 1);
 	rigth_up[0] = normalize(cross_product(scene->cam.vec, scene->world_y));
 	rigth_up[1] = normalize(cross_product(rigth_up[0], scene->cam.vec));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:00:05 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/09 16:01:13 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/10 15:32:35 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FUNCTIONS_H
 
 /* libx.c */
-void		init_mlx(t_data *scene);
+int			init_mlx(t_data *scene);
 void		*new_window(t_data *scene, char *title);
 int			handle_close(t_data *scene);
 int			close_window(t_data *scene);
@@ -39,8 +39,8 @@ void		set_rotation_move(t_data *scene, int key);
 void		set_orientation(t_data *scene, int key, t_pos to, t_vec *rigth_up);
 
 /* aux.c */
-int			get_position(char *str, t_coord *pos);
-int			get_vector(char *str, t_coord *vec);
+int			get_position(char *str, t_pos *pos);
+int			get_vector(char *str, t_vec *vec);
 char		**ft_split_allwhitespace(const char *s);
 size_t		ft_word_count_allwhitespace(const char *s);
 size_t		ft_char_count_allwhitespace(const char *s);
@@ -76,7 +76,7 @@ int			rgb_to_hex(t_color color);
 float		clamp_color(float color);
 
 /* check_values_1.c */
-int			normalized_vector(t_coord vec);
+int			normalized_vector(t_vec vec);
 int			len_mat(char **str);
 int			get_sphere(char **str, t_element *elem);
 int			get_plane(char **str, t_element *elem);
@@ -85,6 +85,7 @@ int			get_cylinder(char **str, t_element *elem);
 /* check_values_2.c */
 int			all_components_scene(t_data *scene);
 int			check_extension(char *str);
+int			vector_isequal(t_vec v1, t_vec v2);
 
 /* free.c */
 void		ft_free_mat(char **mat);

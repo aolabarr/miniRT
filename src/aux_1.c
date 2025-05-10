@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aux.c                                              :+:      :+:    :+:   */
+/*   aux_1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:20:36 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/05/03 10:02:31 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/10 11:55:24 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-int	get_position(char *str, t_coord *pos)
+int	get_position(char *str, t_pos *pos)
 {
 	char	**temp;
 
@@ -30,7 +30,7 @@ int	get_position(char *str, t_coord *pos)
 	return (EXIT_SUCCESS);
 }
 
-int	get_vector(char *str, t_coord *vec)
+int	get_vector(char *str, t_vec *vec)
 {
 	char		**temp;
 

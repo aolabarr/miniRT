@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:19:50 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/09 15:04:54 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/05/10 15:37:06 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	create_scene(t_data *scene)
 {
-	init_mlx(scene);
+	if (init_mlx(scene))
+		return (EXIT_FAILURE);
+	if (init_trans_matrix(scene))
+		return (EXIT_FAILURE);
 	scene->mlx = mlx_init();
 	if (!scene->mlx)
 		return (handle_error(ERR_MALL), EXIT_FAILURE);
@@ -53,8 +56,6 @@ int	create_image(t_data *data)
 	int	x;
 	int	y;
 
-	if (init_trans_matrix(data))
-		return (EXIT_FAILURE);
 	x = 0;
 	while (x < WIDTH)
 	{

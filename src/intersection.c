@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 08:13:32 by binary            #+#    #+#             */
-/*   Updated: 2025/05/03 13:55:44 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/10 10:34:25 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,12 @@ t_hit	plane_intersection(t_ray ray, t_element elem)
 	inters.hit = false;
 	if (ft_abs(ray.vec.y) < EPSILON)
 		return (inters);
-	else
+	inters.t1 = -ray.origin.y / ray.vec.y;
+	inters.t2 = inters.t1;
+	if (inters.t1 > EPSILON)
 	{
-		inters.t1 = -ray.origin.y / ray.vec.y;
-		inters.t2 = inters.t1;
-		if (inters.t1 > EPSILON)
-		{
-			inters.elem = elem;
-			inters.hit = true;
-		}
-		else
-			inters.hit = false;
+		inters.elem = elem;
+		inters.hit = true;
 	}
 	return (inters);
 }

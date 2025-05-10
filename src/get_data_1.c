@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:07:13 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/05/03 14:09:32 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/10 15:20:00 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	get_ambient(char *line, t_ambient *amb, t_data *scene)
 		return (ft_free_mat(temp), EXIT_FAILURE);
 	if (get_color(temp[2], &(amb->color)) == ERR_INT)
 		return (ft_free_mat(temp), EXIT_FAILURE);
-	scene->has_amb = TRUE;
+	scene->has_amb++;
 	ft_free_mat(temp);
 	return (EXIT_SUCCESS);
 }
