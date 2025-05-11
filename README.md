@@ -93,3 +93,11 @@ make fclean
 
 - Cuanto mas grande sea la pantalla o más objetos haya en la escena, más tarda en renderizar y por lo tanto la experiencia de usuario en los movimientos se ralentiza mucho.
 - Se ha utilizado como refrencia bibliogáfica el [libro](https://books.out.csli.me/NonFiction/Programming/The%20Ray%20Tracer%20Challenge-Pragmatic%20Bookshelf%20%282019%29%20-%20Jamis%20Buck.pdf) de Jamis Buck,  "The Ray Tracer Challenge: A Test-Driven Guide to Your First 3D Renderer" como referencia para programar el ray tracing.
+
+## Ejemplos de escenas
+
+![Ball](images/ball.jpg)
+![Asterisks](images/asterisk.jpg)
+![Grid of balls](images/ballgrid.jpg)
+![A room](images/room.jpg)
+![3 elements](images/elements.jpg)
