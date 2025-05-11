@@ -72,7 +72,7 @@ El programa permite manipular la cámara mediante las siguientes teclas:
  
 ![Demo miniRT](images/miniRT_demo.gif)
 
-## Compilación y ejecución
+## Compilación
 
 Para compilar el programa `miniRT`, usa el siguiente comando:
 
@@ -80,7 +80,7 @@ Para compilar el programa `miniRT`, usa el siguiente comando:
 make
 ```
 
-Si realizas cambios en `fractol.h`, recompila el proyecto con:
+Si realizas cambios en `macros.h`, recompila el proyecto con:
 
 ```sh
 make re
@@ -91,10 +91,17 @@ Para borrar los objetos y el ejecutable:
 make fclean
 ```
 
+## Ejecución
+
+Una vez que el proyecto ha sido compilado exitosamente, puedes ejecutar el renderizador miniRT introduciendo como argumento la ruta del fichero de la escena, utilizando la siguiente sintaxis en la terminal:
+
+```bash
+./miniRT scenes/nombre_del_archivo.rt
+```
 ## Notas
 
 - Cuanto mas grande sea la pantalla o más objetos haya en la escena, más tarda en renderizar y por lo tanto la experiencia de usuario en los movimientos se ralentiza mucho.
-- Se ha utilizado como refrencia bibliogáfica el [libro](https://books.out.csli.me/NonFiction/Programming/The%20Ray%20Tracer%20Challenge-Pragmatic%20Bookshelf%20%282019%29%20-%20Jamis%20Buck.pdf) de Jamis Buck,  "The Ray Tracer Challenge: A Test-Driven Guide to Your First 3D Renderer" como referencia para programar el ray tracing.
+- Se ha utilizado como referencia bibliográfica el [libro](https://books.out.csli.me/NonFiction/Programming/The%20Ray%20Tracer%20Challenge-Pragmatic%20Bookshelf%20%282019%29%20-%20Jamis%20Buck.pdf) de Jamis Buck,  "The Ray Tracer Challenge: A Test-Driven Guide to Your First 3D Renderer" como referencia para programar el ray tracing.
 
 ## Ejemplos de escenas
 
