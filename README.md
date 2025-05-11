@@ -43,18 +43,18 @@ En este ejemplo:
 
 Este es solo un ejemplo básico. En la carpeta scenes se pueden encontrar diferentes escenas creadas para poder visualizarlas y el usuario puede crear todas las que quiera.
 
-## Configuraciones del Sistema
+## Configuraciones del programa
 
 Este miniRT permite ciertas configuraciones del sistema que pueden ajustarse para personalizar la experiencia de visualización.
 
-### Tamaño de Pantalla
+### Tamaño de pantalla
 
 El tamaño de la ventana de renderizado se define mediante variables en el archivo de cabecera `macros.h`.
 
 * **`WIDTH`**: Define el ancho de la pantalla en píxeles. Puedes modificar el valor asignado a esta macro para cambiar el ancho de la ventana.
 * **Relación de Aspecto**: Actualmente, la relación de aspecto está fijada en **16:9**. El alto de la ventana se calcula automáticamente en función del ancho definido y esta relación.
 
-### Controles de Cámara
+### Controles de cámara
 
 El programa permite manipular la cámara mediante las siguientes teclas:
 
@@ -92,5 +92,4 @@ make fclean
 ## Notas
 
 - Cuanto mas grande sea la pantalla o más objetos haya en la escena, más tarda en renderizar y por lo tanto la experiencia de usuario en los movimientos se ralentiza mucho.
-- Se ha utilziado el libro de Jamis Buck,  "The Ray Tracer Challenge: A Test-Driven Guide to Your First 3D Renderer" como referencia para programar el ray tracing.
-- https://books.out.csli.me/NonFiction/Programming/The%20Ray%20Tracer%20Challenge-Pragmatic%20Bookshelf%20%282019%29%20-%20Jamis%20Buck.pdf
+- Se ha utilizado como refrencia bibliogáfica el [libro](https://books.out.csli.me/NonFiction/Programming/The%20Ray%20Tracer%20Challenge-Pragmatic%20Bookshelf%20%282019%29%20-%20Jamis%20Buck.pdf) de Jamis Buck,  "The Ray Tracer Challenge: A Test-Driven Guide to Your First 3D Renderer" como referencia para programar el ray tracing.
