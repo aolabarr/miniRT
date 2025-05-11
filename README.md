@@ -96,8 +96,8 @@ make fclean
 
 ## Ejemplos de escenas
 
-![Ball](images/ball.jpg)
-![Asterisks](images/asterisk.jpg)
-![Grid of balls](images/ballgrid.jpg)
-![A room](images/room.jpg)
-![3 elements](images/elements.jpg)
+![Ball](images/ball.JPG)
+![Asterisks](images/asterisk.JPG)
+![Grid of balls](images/ballgrid.JPG)
+![A room](images/room.JPG)
+![3 elements](images/elements.JPG)
