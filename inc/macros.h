@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:08:17 by aolabarr          #+#    #+#             */
-/*   Updated: 2025/05/10 15:48:08 by beiglesi         ###   ########.fr       */
+/*   Updated: 2025/05/11 13:52:46 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 # define MINI_RT    		"miniRT"
 
 //Canvas values
-# define WIDTH				900
+# define WIDTH				400
 # define ASPECT_1           16.0
 # define ASPECT_2           9.0
 # define CANVAS_DISTANCE    1
@@ -64,7 +64,7 @@
 # define ZOOM_FACTOR 		0.3
 # define MOVE_FACTOR 		0.3
 # define DELTA_TR        	0.3
-# define DELTA_ROT          0.3
+# define DELTA_ROT          0.1
 # define TOL_ANGLE          2         
 
 //Color
