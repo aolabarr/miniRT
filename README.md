@@ -69,6 +69,8 @@ El programa permite manipular la cámara mediante las siguientes teclas:
 * **Teclas + y -**: Controlan el **zoom** o el movimiento de la cámara en la dirección de su orientación.
     * **+**: Acerca la cámara al punto de mira (zoom in).
     * **-**: Aleja la cámara del punto de mira (zoom out).
+ 
+![Demo miniRT](images/miniRT_demo.gif)
 
 ## Compilación y ejecución
 
